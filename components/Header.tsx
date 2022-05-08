@@ -5,14 +5,14 @@ import Image from 'next/image'
 
 function Header() {
   return (
-    <header className='flex items-center space-x-2 md:space-x-10'><h3>Header</h3>
+    <header className='flex items-center space-x-2 md:space-x-10 z-40 bg-white'><h3>Header</h3>
     <div>
       <nav>
         <ul className='hidden space-x-4 md:flex'>
-          <li className='nav-link'>Home</li>
-          <li className='nav-link'>Shop</li>
-          <li className='nav-link'>Manage Pets</li>
-          <li className='nav-link'>About</li>
+          <li className='nav-link'><Link href="/" >Home</Link></li>
+          <li className='nav-link'><Link href="/shop" >Shop</Link></li>
+          <li className='nav-link'><Link href="/manage_pets" >Manage Pets</Link></li>
+          <li className='nav-link'><Link href="/about" >About</Link></li>
         </ul>
       </nav>
     </div>

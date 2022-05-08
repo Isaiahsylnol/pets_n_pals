@@ -1,27 +1,40 @@
 import type { NextPage } from 'next'
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import Head from 'next/head'
 import Image from 'next/image'
 import Header from '../components/Header'
 import { GetServerSideProps } from 'next';
+import MenuButton from '../components/MenuButton';
+import { Context } from '../context';
 
-const Home: NextPage = ({data}:any) => {
-  const [dogs, setDogs] = useState({data})
+const Home: NextPage = ({ data }: any) => {
+  const { state } = useContext(Context)
+  const [dogs, setDogs] = useState({ data })
   return (
-    <div className="flex min-h-screen flex-col  justify-center py-2">
+    <div >
       <Head>
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Header/>
+      <Header />
 
-      <main className="flex w-full flex-1 flex-col items-center justify-center px-20 text-center">
+     <div className="min-h-screen justify-center bg-red-200">
+      
+     <div className="w-full sm:flex sm:flex-col-2 mx-auto justify-center bg-green-300 space-x-4 p-11 mt-11">
+     <div> {JSON.stringify(state)} </div>
+  <MenuButton image={require('/assets/pet_news.jpg')} link={'/media'}/>
 
-        <div className="mt-6 flex max-w-4xl flex-wrap items-center justify-around sm:w-full">
-          <h2>Index page</h2>
-          <h2>{dogs.data[0].name}</h2>
-        </div>
-      </main>
+  <MenuButton image={require('/assets/media.png')} link={'/media'}/>
+ 
+  <MenuButton image={require('/assets/healthcare.jpg')} link={'/health'}/>
+ 
+ 
+<MenuButton image={require('/assets/toys1.png')} link={'/shop/item-347384/red'}/>
+ 
+
+
+</div>
+     </div>
 
       <footer className="flex h-24 w-full items-center justify-center border-t">
         <a
@@ -41,11 +54,11 @@ const Home: NextPage = ({data}:any) => {
 export default Home
 
 
-export const getServerSideProps: GetServerSideProps = async () => {
+// export const getServerSideProps: GetServerSideProps = async () => {
 
-  const res = await fetch('https://api.thedogapi.com/v1/breeds')
-  const data = await res.json()
-  console.log(data[0]);
-  return { props: {data}}
-  
-}
+//   const res = await fetch('https://api.thedogapi.com/v1/breeds')
+//   const data = await res.json()
+//   console.log(data[0]);
+//   return { props: { data } }
+
+// }
