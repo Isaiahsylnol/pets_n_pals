@@ -19,4 +19,9 @@
         @apply cursor-pointer text-sm font-light text-[#e76565] transition duration-[.4s]
         hover:text-[#762020];
     }
+
+    h1 {
+        font-size: 2em;
+        font-weight: 500;
+    }
 }
