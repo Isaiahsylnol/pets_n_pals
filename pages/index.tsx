@@ -5,7 +5,7 @@ import Image from 'next/image'
 import Header from '../components/Header'
 import { GetServerSideProps } from 'next'
 import MenuButton from '../components/MenuButton'
-import { Context } from '../context'
+import { Context } from '../context/index'
 
 const Home: NextPage = ({ data }: any) => {
   const { state } = useContext(Context)
@@ -20,7 +20,7 @@ const Home: NextPage = ({ data }: any) => {
 
       <div className="min-h-screen justify-center bg-red-200">
         <div className="sm:flex-col-2 mx-auto mt-11 w-full justify-center space-x-4 bg-green-300 p-11 sm:flex">
-          <div> {JSON.stringify(state)} </div>
+          <div> {JSON.stringify(state?.user?.email)} </div>
           <MenuButton image={require('/assets/pet_news.jpg')} link={'/media'} />
           <MenuButton image={require('/assets/media.png')} link={'/media'} />
           <MenuButton image={require('/assets/healthcare.jpg')} link={'/health'}/>

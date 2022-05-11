@@ -11,9 +11,9 @@ function account() {
     if (!(state.user)) {
       router.push('/login')
     }
-  }, [state.user])
+  }, [])
 
-  return <p>Redirecting...</p>
+  return <p>User: { state.user?.email }</p>
   
 }
 
