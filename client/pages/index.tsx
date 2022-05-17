@@ -12,11 +12,13 @@ const Home: NextPage = ({ data }: any) => {
   const [dogs, setDogs] = useState({ data })
   return (
     <div>
-      <Head>
-        <title>Create Next App</title>
+     <div style={{marginBottom: "80px"}}>
+        <Head>
+        <title>Dashboard</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
+      </div>
 
       <div className="min-h-screen justify-center bg-red-200">
         <div className="sm:flex-col-2 mx-auto mt-11 w-full justify-center space-x-4 bg-green-300 p-11 sm:flex">
