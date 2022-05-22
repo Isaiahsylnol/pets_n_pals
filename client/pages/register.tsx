@@ -1,13 +1,12 @@
 import React, { useState } from 'react'
-import { useRouter } from 'next/router'
-// import firebase from '../firebase';
-// import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from '../firebase'
+import { getAuth } from 'firebase/auth';
+import { useForm } from "react-hook-form";
 import Image from 'next/image'
 
 import { createUserWithEmailAndPassword } from 'firebase/auth'
 
 function Register() {
+  const { register, handleSubmit, watch, formState: { errors } } = useForm();
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [error, setError] = useState('')
@@ -26,19 +25,24 @@ function Register() {
   }
 
   const registerUser = (e) => {
+    const auth = getAuth();
     e.preventDefault()
     setError('')
     if (validatePassword()) {
       // Create a new user with email and password using firebase
       createUserWithEmailAndPassword(auth, email, pass)
-        .then((res) => {
-          console.log(res.user)
+        .then((userCredential) => {
+          const user = userCredential.user;
+          console.log("userCredential: ", userCredential)
+          console.log("user: ", user)
         })
         .catch((err) => setError(err.message))
     }
     setEmail('')
     setPassword('')
   }
+
+  console.log(errors)
 
   return (
     <div className="justify-content-center container mx-auto">
@@ -53,11 +57,14 @@ function Register() {
             src={require('/assets/logo2.png')}
           />
         </div>
-        <form onSubmit={registerUser} className="py-6 px-8">
+        <form onSubmit={handleSubmit((data) =>{
+          console.log(data)
+        })} className="py-6 px-8">
           <label className="block font-semibold">Name</label>
           <input
             type="text"
             placeholder="Name"
+            {...register("name", { required: true, maxLength: 20 })}
             onChange={(e) => setName(e.target.value)}
             value={name}
             className=" mt-2 h-5 w-full rounded-md border px-3 py-5 hover:outline-none focus:outline-none focus:ring-1 focus:ring-orange-600"
@@ -66,6 +73,7 @@ function Register() {
           <input
             type="email"
             placeholder="Email"
+            {...register("email", { required: true })}
             onChange={(e) => setEmail(e.target.value)}
             value={email}
             className=" mt-2 h-5 w-full rounded-md border px-3 py-5 hover:outline-none focus:outline-none focus:ring-1 focus:ring-orange-600"
@@ -74,6 +82,7 @@ function Register() {
           <input
             type="password"
             placeholder="Password"
+            {...register("password", { required: true })}
             onChange={(e) => setPassword(e.target.value)}
             value={pass}
             className=" mt-2 h-5 w-full rounded-md border px-3 py-5 hover:outline-none focus:outline-none focus:ring-1 focus:ring-orange-600"
@@ -81,9 +90,10 @@ function Register() {
           <label className="mt-3 block font-semibold">Confirm Password</label>
           <input
             type="password"
+            placeholder="Confirm Password"
+            {...register("conPassword", { required: true })}
             onChange={(e) => setConPassword(e.target.value)}
             value={conPassword}
-            placeholder="Confirm Password"
             className=" mt-2 h-5 w-full rounded-md border px-3 py-5 hover:outline-none focus:outline-none focus:ring-1 focus:ring-orange-600"
           />
           <div className="flex items-baseline justify-between">

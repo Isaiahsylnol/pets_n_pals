@@ -1,11 +1,8 @@
 import express from "express";
+import { currentUser } from "../controllers/auth.js";
 
 const router = express.Router();
 
-router.get("/:message", (req, res) => {
-    res.json({
-        message: `Your message is recieved ${req.params.message}`,
-    })
-})
+router.get("/current-user", currentUser)
 
 export default router;

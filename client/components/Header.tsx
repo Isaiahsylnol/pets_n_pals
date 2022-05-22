@@ -1,9 +1,37 @@
-import React from 'react'
-import {SearchIcon, BellIcon} from '@heroicons/react/solid';
+import React, { useEffect, useContext } from 'react'
+import {SearchIcon, BellIcon, CogIcon} from '@heroicons/react/solid';
 import Link from 'next/link';
 import Image from 'next/image'
+import { getAuth, signOut } from "firebase/auth";
+import { Context } from '../context/index'
+import { useRouter } from 'next/router'
 
 function Header() {
+
+  const router = useRouter()
+
+  const { state } = useContext(Context)
+
+  useEffect(() => {
+    if (!(state.user)) {
+      router.push('/login')
+    }
+    else {
+      console.log(state.user)
+    }
+  }, [state.user])
+
+  const handleButtonClick = () => {
+    const auth = getAuth();
+  signOut(auth).then(() => {
+    // Sign-out successful.
+    state.user = null
+  }).catch((error) => {
+    // An error happened.
+  });
+  console.log(state?.user?.email)
+  };
+  
   return (
     <header className='flex items-center space-x-2 md:space-x-10 z-40 bg-white'><h3>Header</h3>
     <div>
@@ -20,6 +48,20 @@ function Header() {
     <SearchIcon className='hidden h-6 w-6 sm:inline'/> 
     <BellIcon className='h-6 w-6'/>
     <Link href="/account" passHref><AccButton /></Link>
+    <CogIcon className='h-6 w-6' onClick={handleButtonClick}>
+    <div>
+ 
+    <div className="dropdown">
+      <ul>
+        <li>Option 1</li>
+        <li>Option 2</li>
+        <li>Option 3</li>
+        <li>Option 4</li>
+      </ul>
+    </div>
+ 
+</div>
+    </CogIcon>
     
     </div>
     </header>

@@ -13,6 +13,9 @@ const FirebaseAuthState = ({children}) => {
                   type: "LOGOUT",
               })
           } else {
+            const { token } = user.getIdTokenResult();
+            console.log("TOKEN", token);
+
               dispatch({
                   type: "LOGIN",
                   payload: user,

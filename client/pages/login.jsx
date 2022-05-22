@@ -1,5 +1,4 @@
-import React, { useContext, useState } from 'react'
-import { useRouter } from 'next/router'
+import React, { useState } from 'react'
 import LoginRegisterForm from '../components/LoginRegisterForm';
 import Image from 'next/image'
 

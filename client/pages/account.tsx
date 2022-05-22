@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react'
-import { Context } from '../context'
+import { Context } from '../context/index'
 import { useRouter } from 'next/router'
 import { PhoneIcon, ExclamationIcon, ViewGridIcon } from '@heroicons/react/outline';
 import { useEffect } from 'react'
@@ -9,14 +9,18 @@ import PetCard from '../components/PetCard'
 import Footer from '../components/Footer'
 
 function account() {
+  
   const { state } = useContext(Context)
   const router = useRouter()
 
-  // useEffect(() => {
-  //   if (!(state.user)) {
-  //     router.push('/login')
-  //   }
-  // }, [])
+  useEffect(() => {
+    if (!(state.user)) {
+      router.push('/login')
+    }
+    else {
+      console.log(state.user)
+    }
+  }, [])
 
   return (
     <div className="container-fluid mx-auto">
@@ -27,7 +31,7 @@ function account() {
         </Head>
         <Header />
       </div>
-      <div className='min-h-full'>
+      <div className="min-h-screen">
       <div className="mt-4 mx-auto grid grid-cols-1 justify-center gap-6 p-11 bg-gray-240 md:grid-cols-2 lg:grid-cols-2">
         <div className="flex justify-center rounded-xl border-2 border-gray-300 bg-gray-100 p-6 text-6xl">
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-1 w-full">

@@ -1,20 +1,18 @@
-import React, { useContext, useState } from 'react'
+import React from 'react'
 import {signInWithEmailAndPassword, sendEmailVerification} from 'firebase/auth'
-import {auth} from '../firebase'
+import {firebase} from '../firebase'
 import Router from 'next/router'
 import { useForm } from "react-hook-form";
  
 //import {useAuthValue} from './AuthContext'
 
-
-
 function LoginRegisterForm({email, setEmail, pass, setPass, buttonName}) {
 const { register, setError, handleSubmit, formState: { errors } } = useForm();
     const login = e => {
         e.preventDefault()
-        signInWithEmailAndPassword(auth, email, pass)
+        signInWithEmailAndPassword(firebase, email, pass)
         .then(() => {
-          if(!auth.currentUser) {
+          if(!firebase.currentUser) {
             console.log("no user signed in")
           .catch(err => alert(err.message))
         }else{
