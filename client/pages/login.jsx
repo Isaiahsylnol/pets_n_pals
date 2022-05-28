@@ -11,7 +11,7 @@ function login() {
     <div className='container flex flex-col mx-auto justify-content-center'>
       <Image
     className='object-contain'
-    alt="Food Image"
+    alt="Logo Image"
     width={300}
     height={300}
     src={require('/assets/logo2.png')} />

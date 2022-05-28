@@ -1,28 +1,32 @@
 import React, {useEffect, useContext} from 'react';
 import { Context } from '../context';
-import {onAuthStateChanged, getAuth} from 'firebase/auth'
+import axios from 'axios';
+import firebase from '../firebase';
 
 const FirebaseAuthState = ({children}) => {
     const { dispatch } = useContext(Context);
 
     useEffect(() => {
-        const auth = getAuth();
-        return onAuthStateChanged(auth, (user) => {
-          if(!user){
-              dispatch({
-                  type: "LOGOUT",
-              })
-          } else {
-            const { token } = user.getIdTokenResult();
-            console.log("TOKEN", token);
-
-              dispatch({
-                  type: "LOGIN",
-                  payload: user,
-              })
-          }
-         })
-      }, [])
+        firebase.onIdTokenChanged(async (user) => {
+            if(!user){
+                dispatch({
+                    type: "LOGOUT",
+                })
+            } else {
+                const token  = await user.getIdToken();
+                  axios.post('/current-user', {}).then(
+                    dispatch({
+                        type: "LOGIN",
+                        payload: user,
+                    }),
+                    console.log(user)
+                  )
+                  .catch((error) => {
+                      console.error(error)
+                    })
+                }
+             })
+          }, [])
 
     return <>{children}</>
 }

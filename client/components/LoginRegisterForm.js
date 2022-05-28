@@ -1,6 +1,6 @@
 import React from 'react'
 import {signInWithEmailAndPassword, sendEmailVerification} from 'firebase/auth'
-import {firebase} from '../firebase'
+import firebase from '../firebase'
 import Router from 'next/router'
 import { useForm } from "react-hook-form";
  
@@ -8,19 +8,22 @@ import { useForm } from "react-hook-form";
 
 function LoginRegisterForm({email, setEmail, pass, setPass, buttonName}) {
 const { register, setError, handleSubmit, formState: { errors } } = useForm();
+
     const login = e => {
         e.preventDefault()
         signInWithEmailAndPassword(firebase, email, pass)
-        .then(() => {
-          if(!firebase.currentUser) {
+        .then(({user}) => {
+          if(!user) {
             console.log("no user signed in")
           .catch(err => alert(err.message))
         }else{
-            Router.push('/')
+            Router.push('/') 
+            //console.log("user token: ", user.getIdToken())
         }
         })
         .catch(err => setError(err.message))
       }
+
   return (
     <div className='container mx-auto justify-content-center'>
       <h2 className='text-center pt-4'>Login page</h2>

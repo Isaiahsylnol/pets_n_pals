@@ -2,8 +2,7 @@ import '../styles/globals.css'
 import type { AppProps } from 'next/app'
 import { Provider } from '../context/index'
 import {useState, useEffect} from 'react'
-import {firebase} from '../firebase'
-import { onAuthStateChanged } from 'firebase/auth'
+import firebase from '../firebase' 
 import FirebaseAuthState from '../components/FirebaseAuthState'
 
 function MyApp({ Component, pageProps }: AppProps) {
@@ -12,13 +11,11 @@ function MyApp({ Component, pageProps }: AppProps) {
   
     firebase.onAuthStateChanged((user) => {
       if (user) {
-        setCurrentUser(user)
-        const uid = user.uid;
-        console.log(user)
-        // ...
+        setCurrentUser(currentUser)
+        //console.log(currentUser)
       } else {
         // User is signed out
-        // ...
+        console.log("Error finding user: ", user)
       } 
      })
   }, [])

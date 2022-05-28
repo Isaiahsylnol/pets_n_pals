@@ -1,10 +1,12 @@
 
-import admin from "firebase-admin";
+// const admin = require("firebase-admin");
 
-const serviceAccount = import("./serviceAccountKey.json");
+// const serviceAccount = require("./serviceAccountKey.json");
 
-admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount)
-});
+// admin.initializeApp({
+//   credential: admin.credential.cert(serviceAccount),
+//   projectId: "petsnpalsweb-b8a76" 
+// }, "auth2");
 
-export default admin;
+
+// module.exports = admin;

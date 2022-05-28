@@ -5,31 +5,30 @@ import Image from 'next/image'
 import { getAuth, signOut } from "firebase/auth";
 import { Context } from '../context/index'
 import { useRouter } from 'next/router'
+import firebase from '../firebase';
 
 function Header() {
 
   const router = useRouter()
 
-  const { state } = useContext(Context)
+  const { state, dispatch } = useContext(Context)
+  const { user } = state;
 
   useEffect(() => {
     if (!(state.user)) {
       router.push('/login')
     }
     else {
-      console.log(state.user)
+      //console.log(state.user)
     }
   }, [state.user])
 
-  const handleButtonClick = () => {
+  const handleSignOut = async () => {
     const auth = getAuth();
-  signOut(auth).then(() => {
-    // Sign-out successful.
-    state.user = null
-  }).catch((error) => {
-    // An error happened.
-  });
-  console.log(state?.user?.email)
+    await signOut(auth);
+    dispatch({
+      type: "LOGOUT",
+    });
   };
   
   return (
@@ -48,7 +47,7 @@ function Header() {
     <SearchIcon className='hidden h-6 w-6 sm:inline'/> 
     <BellIcon className='h-6 w-6'/>
     <Link href="/account" passHref><AccButton /></Link>
-    <CogIcon className='h-6 w-6' onClick={handleButtonClick}>
+    <CogIcon className='h-6 w-6' onClick={handleSignOut}>
     <div>
  
     <div className="dropdown">

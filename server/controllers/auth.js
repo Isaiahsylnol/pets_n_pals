@@ -1,10 +1,12 @@
-import admin from '../firebase/index.js';
+const admin = require('../firebase/index.js');
+const firebaseAdmin = require('firebase-admin');
+const firebaseApp = firebaseAdmin.initializeApp();
 
-export const currentUser = async (req, res) => {
-    //console.log("REQ HEADERS TOKEN", req.headers.tokens);
+const currentUser = async (req, res) => {
+    //console.log("REQ HEADERS TOKEN", req.headers.token);
 
     try {
-        const firebaseUser = await admin.auth().verifIdToken(req.headers.token);
+        const firebaseUser = await admin.auth().verifyIdToken(req.headers.token);
         console.log('FIREBASE USER IN CURRENT USER MIDDLEWARE', firebaseUser);
         res.json(firebaseUser);
     } catch(err){
@@ -14,3 +16,5 @@ export const currentUser = async (req, res) => {
         })
     }
 }
+
+module.exports = currentUser;

@@ -1,26 +1,71 @@
-import express from "express";
-import mongoose from "mongoose";
-import cors from "cors"
-import morgan from "morgan";
-import dotenv from "dotenv"
-import router from "./routes/auth.js"
+const express = require('express');
+const cors = require('cors');
+const morgan = require('morgan');
+const dotenv = require('dotenv');
+const router = require("./routes/auth.js");
+
 dotenv.config();
 
+const dbConfig = require("./config/db.config");
 const app = express();
+const db = require("./models");
+const Role = db.role;
 
-mongoose
-    .connect(process.env.DATABASE, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-         })
-    .then(() => console.log("DATABASE CONNECTED"))
-    .catch((err) => console.log("DB connection error ", err));
-
+db.mongoose
+  .connect(`mongodb://${dbConfig.HOST}:${dbConfig.PORT}/${dbConfig.DB}`, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  })
+  .then(() => {
+    console.log("Successfully connect to MongoDB.");
+    initial();
+  })
+  .catch(err => {
+    console.error("Connection error", err);
+    process.exit();
+  });
+ 
+function initial() {
+  Role.estimatedDocumentCount((err, count) => {
+    if (!err && count === 0) {
+      new Role({
+        name: "user"
+      }).save(err => {
+        if (err) {
+          console.log("error", err);
+        }
+        console.log("added 'user' to roles collection");
+      });
+      new Role({
+        name: "moderator"
+      }).save(err => {
+        if (err) {
+          console.log("error", err);
+        }
+        console.log("added 'moderator' to roles collection");
+      });
+      new Role({
+        name: "admin"
+      }).save(err => {
+        if (err) {
+          console.log("error", err);
+        }
+        console.log("added 'admin' to roles collection");
+      });
+    }
+  });
+}
 
 app.use(cors());
 app.use(morgan("dev"));
 
 app.use("/api", router);
+
+app.post("/api/current-user", (req, res) => {
+    res.json({
+        message: `Your message is recieved ${JSON.stringify(req.headers.token)}`,
+    })
+})
 
 const port = process.env.PORT || 8000;
 app.listen(port, () => console.log(`Server is running on port ${port}`))
