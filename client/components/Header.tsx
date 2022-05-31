@@ -14,14 +14,14 @@ function Header() {
   const { state, dispatch } = useContext(Context)
   const { user } = state;
 
-  useEffect(() => {
-    if (!(state.user)) {
-      router.push('/login')
-    }
-    else {
-      //console.log(state.user)
-    }
-  }, [state.user])
+  // useEffect(() => {
+  //   if (!(state.user)) {
+  //     router.push('/login')
+  //   }
+  //   else {
+  //     //console.log(state.user)
+  //   }
+  // }, [state.user])
 
   const handleSignOut = async () => {
     const auth = getAuth();

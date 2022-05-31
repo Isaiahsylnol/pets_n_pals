@@ -1,8 +1,6 @@
 import React, { useContext, useState } from 'react'
 import { Context } from '../context/index'
-import { useRouter } from 'next/router'
 import { PhoneIcon, ExclamationIcon, ViewGridIcon } from '@heroicons/react/outline';
-import { useEffect } from 'react'
 import Head from 'next/head'
 import Header from '../components/Header'
 import PetCard from '../components/PetCard'
@@ -11,16 +9,6 @@ import Footer from '../components/Footer'
 function account() {
   
   const { state } = useContext(Context)
-  const router = useRouter()
-
-  useEffect(() => {
-    if (!(state.user)) {
-      router.push('/login')
-    }
-    else {
-      console.log(state.user)
-    }
-  }, [])
 
   return (
     <div className="container-fluid mx-auto">
