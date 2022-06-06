@@ -14,15 +14,18 @@ const FirebaseAuthState = ({children}) => {
                 dispatch({
                     type: "LOGOUT",
                 })
-                router.push('/login')
+                // router.push('/login')
             } else {
                 const token  = await user.getIdToken();
-                  axios.post('/current-user', {}).then(
+                  axios.post('http://localhost:8000/api/auth/signin', {
+                      username: "Kyrie",
+                      password: "gooDmen"
+                  }).then(
                     dispatch({
                         type: "LOGIN",
                         payload: user,
                     }),
-                    console.log(user)
+                    console.log("SING-IN: ", user)
                   )
                   .catch((error) => {
                       console.error(error)
