@@ -1,6 +1,4 @@
-import React, { useState } from 'react'
-import { getAuth } from 'firebase/auth';
-// import { useForm } from "react-hook-form";
+import React from 'react'
 import Image from 'next/image'
 import Router from 'next/router'
 import { createUserWithEmailAndPassword } from 'firebase/auth'
@@ -69,7 +67,15 @@ const RegisterForm = ({ submitForm }) =>  {
             onChange={handleChange}
             className=" mt-2 h-5 w-full rounded-md border px-3 py-5 hover:outline-none focus:outline-none focus:ring-1 focus:ring-orange-600"
           />
+          <input
+            type="password"
+            name="duplicate"
+            value={values.duplicate}
+           
+          />
           {errors.conPassword && <p>{errors.conPassword}</p>}
+          {console.log(errors)}
+          {errors[0]}
           <div className="flex items-baseline justify-between">
             <button type="submit" className="mt-4 w-full rounded-lg bg-blue-400 py-2 px-6 text-white">
               Register

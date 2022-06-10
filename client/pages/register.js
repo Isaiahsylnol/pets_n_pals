@@ -8,6 +8,7 @@ const RegisterPage = () => {
   function submitForm() {
     setIsSubmitted(true);
   }
+  
   return (
       <div>
         {!isSubmitted ? (

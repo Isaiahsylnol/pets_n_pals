@@ -3,9 +3,11 @@ import Image from 'next/image'
 import {signInWithEmailAndPassword, sendEmailVerification} from 'firebase/auth'
 import firebase from '../firebase'
 import Router from 'next/router'
+import axios from 'axios';
 
 function login() {
 
+  const [errors, setErrors] = useState({});
   const [loginEmail, setLoginEmail] = useState('')
   const [loginPass, setLoginPass] = useState('')
  
@@ -17,11 +19,24 @@ function login() {
         console.log("no user signed in")
       .catch(err => alert(err.message))
     }else{
-        Router.push('/') 
+        axios.get('http://localhost:8000/api/user', 
+        {
+            email: loginEmail
+        }
+        ).then(function (response) {
+          // handle success
+          console.log("SUCCESS: ", response);
+        })
+        .catch(function (error) {
+          // handle error
+          console.log(error);
+        })
+        Router.push("/") 
+        
         //console.log("user token: ", user.getIdToken())
     }
     })
-    .catch(err => setError(err.message))
+    .catch(err => setErrors(err.message))
   }
 
   return (

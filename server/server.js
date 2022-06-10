@@ -70,6 +70,7 @@ app.post("/api/current-user", (req, res) => {
 
 require('./routes/auth.routes')(app);
 require('./routes/user.routes')(app);
+require('./routes/pet.route')(app);
 
 const port = process.env.PORT || 8000;
 app.listen(port, () => console.log(`Server is running on port ${port}`))

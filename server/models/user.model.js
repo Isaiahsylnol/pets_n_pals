@@ -21,6 +21,12 @@ const userSchema = new Schema(
         required: true, 
         unique: true
     },
+    pets: [
+        {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "Pet"
+        }
+      ],
     roles: [
         {
           type: mongoose.Schema.Types.ObjectId,

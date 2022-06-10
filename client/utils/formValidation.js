@@ -5,6 +5,10 @@ export default function validateInfo(values) {
         errors.username = "Username required"
     }
 
+    if(values.duplicate) {
+      console.log(values)
+  }
+    
     if (!values.email) {
         errors.email = 'Email required';
       } else if (!/\S+@\S+\.\S+/.test(values.email)) {
