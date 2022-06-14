@@ -1,15 +1,22 @@
-import React, { useState } from 'react' 
+import React, { useEffect, useState } from 'react' 
 import Image from 'next/image' 
 import {signInWithEmailAndPassword, sendEmailVerification} from 'firebase/auth'
 import firebase from '../firebase'
 import Router from 'next/router'
 import axios from 'axios';
+import { Context } from '../context/index'
+import { useContext } from 'react'
 
 function login() {
-
+  const { state, dispatch } = useContext(Context)
+  
   const [errors, setErrors] = useState({});
   const [loginEmail, setLoginEmail] = useState('')
   const [loginPass, setLoginPass] = useState('')
+
+  useEffect(() => {
+console.log("STATE: ", state)
+  }, [])
  
   const login = e => {
     e.preventDefault()
@@ -19,13 +26,18 @@ function login() {
         console.log("no user signed in")
       .catch(err => alert(err.message))
     }else{
-        axios.get('http://localhost:8000/api/user', 
+        axios.post('http://localhost:8000/api/user', 
         {
             email: loginEmail
         }
         ).then(function (response) {
           // handle success
-          console.log("SUCCESS: ", response);
+          console.log("SUCCESS: ", response.data);
+          dispatch({
+            type: "LOGIN",
+            payload: response.data,
+        })
+        localStorage.setItem("userData", JSON.stringify(response.data)) 
         })
         .catch(function (error) {
           // handle error

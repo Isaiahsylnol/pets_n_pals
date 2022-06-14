@@ -5,23 +5,10 @@ import Image from 'next/image'
 import { getAuth, signOut } from "firebase/auth";
 import { Context } from '../context/index'
 import { useRouter } from 'next/router'
-import firebase from '../firebase';
 
 function Header() {
-
   const router = useRouter()
-
-  const { state, dispatch } = useContext(Context)
-  const { user } = state;
-
-  // useEffect(() => {
-  //   if (!(state.user)) {
-  //     router.push('/login')
-  //   }
-  //   else {
-  //     //console.log(state.user)
-  //   }
-  // }, [state.user])
+  const { dispatch } = useContext(Context)
 
   const handleSignOut = async () => {
     const auth = getAuth();
@@ -29,6 +16,7 @@ function Header() {
     dispatch({
       type: "LOGOUT",
     });
+    router.push("/login")
   };
   
   return (

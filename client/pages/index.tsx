@@ -1,5 +1,5 @@
 import type { NextPage } from 'next'
-import { useContext, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import Head from 'next/head'
 import Header from '../components/Header'
 import { GetServerSideProps } from 'next'
@@ -10,6 +10,10 @@ import { Context } from '../context/index'
 const Home: NextPage = ({ data }: any) => {
   const { state } = useContext(Context)
   const [dogs, setDogs] = useState({ data })
+
+  useEffect(() => {
+console.log("DASHBAORD USER: ", state)
+  }, [])
   return (
     <div>
       <div style={{ marginBottom: '80px' }}>

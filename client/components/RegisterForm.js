@@ -70,8 +70,7 @@ const RegisterForm = ({ submitForm }) =>  {
           <input
             type="password"
             name="duplicate"
-            value={values.duplicate}
-           
+            defaultValue={values.duplicate}
           />
           {errors.conPassword && <p>{errors.conPassword}</p>}
           {console.log(errors)}

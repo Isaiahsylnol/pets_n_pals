@@ -1,5 +1,4 @@
-import React, { useContext, useState } from 'react'
-import { Context } from '../context/index'
+import React, { useEffect, useState } from 'react'
 import { PhoneIcon, ExclamationIcon, ViewGridIcon } from '@heroicons/react/outline';
 import Head from 'next/head'
 import Header from '../components/Header'
@@ -8,7 +7,11 @@ import Footer from '../components/Footer'
 
 function account() {
   
-  const { state } = useContext(Context)
+  const [user, setUser] = useState()
+  useEffect(() => {
+    const userData = localStorage.getItem("userData")
+    setUser(JSON.parse(userData))
+      }, [])
 
   return (
     <div className="container-fluid mx-auto">
@@ -28,12 +31,12 @@ function account() {
                 <button className="text-base hover:border-2 hover:text-orange-500 h-11 font-bold py-2 px-4 rounded">
                   Edit
                 </button></div>
-              <p className="text-lg font-bold">Markice Dwayne</p>
-              <p>788 Inglewood Blvd</p>
+              <p className="text-lg font-bold">{ user?.name }</p>
+              <p>{ user?.address }</p>
               <p>Toronto, Canada</p>
               <p>652-333-4553</p>
-              <p>markice@gmail.com</p>
-              <p>Premium</p>
+              <p>{ user?.email }</p>
+              <p>{ user?.account_type }</p>
             </div>
             <div className="p-6 text-base grid grid-cols-2 gap-x-4">
             <button className='bg-yellow-500 hover:bg-blue-700 text-white font-bold py-2 px-4 h-10 w-36 rounded flex justify-start'><PhoneIcon className='h-6 w-6 inline'/><a className='ml-3'>Support</a></button><br/>
