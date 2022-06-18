@@ -8,8 +8,9 @@ dotenv.config();
 
 const dbConfig = require("./config/db.config");
 const app = express();
-const db = require("./models");
+const db = require("./models"); 
 const Role = db.role;
+
 
 db.mongoose
   .connect(`mongodb://${dbConfig.HOST}:${dbConfig.PORT}/${dbConfig.DB}`, {
@@ -18,7 +19,7 @@ db.mongoose
   })
   .then(() => {
     console.log("Successfully connect to MongoDB.");
-    initial();
+    initial(); 
   })
   .catch(err => {
     console.error("Connection error", err);

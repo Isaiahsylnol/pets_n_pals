@@ -21,10 +21,6 @@ const petSchema = new Schema(
         type: String,
         trim: true,
     },
-    ownerId: {
-        type: Number,
-        requred: true
-    }
 },
     { timestamps: true })
 
