@@ -21,7 +21,7 @@ export const Modal = ({
         onClick={onClickOutside}
         onKeyDown={onKeyDown}
       >
-        <div className="modal-area" ref={modalRef}>
+        <div className="modal-area bg-white rounded" ref={modalRef}>
           <button
             ref={buttonRef}
             aria-label="Close Modal"

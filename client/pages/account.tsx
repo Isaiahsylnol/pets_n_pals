@@ -1,34 +1,38 @@
 import React, { useEffect, useState } from 'react'
+import type { NextPage } from 'next'
 import { PhoneIcon, ExclamationIcon, ViewGridIcon } from '@heroicons/react/outline';
 import Head from 'next/head'
 import Header from '../components/Header'
 import PetCard from '../components/PetCard'
 import Footer from '../components/Footer'  
-import Container from '../components/Modal/Container'
+import Container from '../components/Modal/Container' 
 import axios from 'axios';
 
-function account() {
-  
-  const [user, setUser] = useState()
+const Account: NextPage = () => { 
+  const [user, setUser] = useState(null)
+  const [pets, setPets] = useState([])
   const triggerText = 'Open form';
+  console.log("STATE OBJECT: ", user)
+  useEffect(()=>{  
+    const value = localStorage.getItem('userData');
+    const user = !!value ? JSON.parse(value) : undefined;
+    setUser(user) 
+    setPets(user.pets)
+  },[])
 
   const onSubmit = (event) => {
-    event.preventDefault(event);
-    const userData = localStorage.getItem("userData")
-    let user = JSON.parse(userData)
+    event.preventDefault(event);  
     let name = event.target.name.value
     let age = event.target.age.value
     let breed = event.target.breed.value
-    let avatar = event.target.avatar.value
-    let userId = user._id
+    let avatar = event.target.avatar.value 
  
     axios.post("http://localhost:8000/api/auth/add-pet", 
     {
       name, 
       age,
       breed,
-      avatar, 
-      userId
+      avatar,  
     })
   };
 
@@ -71,8 +75,11 @@ function account() {
       <a>Add pet</a>
       </button>
       <Container triggerText={triggerText} onSubmit={onSubmit} />
-              <PetCard title="Buster" image={require('/assets/default_pet_profile.png')} description="French Bulldog" />
-              <PetCard title="Noah" image={require('/assets/default_pet_profile2.jpg')} description="Golden Retriever" />
+      { 
+      pets.map(item => {
+        return <>{<PetCard title={item?.name} image={require('/assets/default_pet_profile.png')} description={item?.breed} />
+      }</>;
+      })}
           </div>
       </div>
       </div>
@@ -81,4 +88,4 @@ function account() {
   )
 }
 
-export default account
+export default Account

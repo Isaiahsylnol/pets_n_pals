@@ -3,7 +3,7 @@ import React from 'react';
 export const Form = ({ onSubmit }) => {
   return (
 
-  <form className="bg-white rounded" onSubmit={onSubmit}>
+  <form className="bg-white" onSubmit={onSubmit}>
     <div className="mb-4">
       <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="name">
         Name
