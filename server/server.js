@@ -9,8 +9,7 @@ dotenv.config();
 const dbConfig = require("./config/db.config");
 const app = express();
 const db = require("./models"); 
-const Role = db.role;
-
+const Role = db.role; 
 
 db.mongoose
   .connect(`mongodb://${dbConfig.HOST}:${dbConfig.PORT}/${dbConfig.DB}`, {
@@ -18,7 +17,7 @@ db.mongoose
     useUnifiedTopology: true
   })
   .then(() => {
-    console.log("Successfully connect to MongoDB.");
+    console.log("Successfully connect to MongoDB."); 
     initial(); 
   })
   .catch(err => {

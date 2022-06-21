@@ -4,22 +4,33 @@ import Head from 'next/head'
 import Header from '../components/Header'
 import PetCard from '../components/PetCard'
 import Footer from '../components/Footer'  
-import Container from '../components/Container'
+import Container from '../components/Modal/Container'
+import axios from 'axios';
 
 function account() {
   
   const [user, setUser] = useState()
   const triggerText = 'Open form';
+
   const onSubmit = (event) => {
     event.preventDefault(event);
-    console.log(event.target.name.value);
-    console.log(event.target.email.value);
-  };
-
-  useEffect(() => {
     const userData = localStorage.getItem("userData")
-    setUser(JSON.parse(userData))
-      }, []) 
+    let user = JSON.parse(userData)
+    let name = event.target.name.value
+    let age = event.target.age.value
+    let breed = event.target.breed.value
+    let avatar = event.target.avatar.value
+    let userId = user._id
+ 
+    axios.post("http://localhost:8000/api/auth/add-pet", 
+    {
+      name, 
+      age,
+      breed,
+      avatar, 
+      userId
+    })
+  };
 
   return (
     <div className="container-fluid mx-auto">

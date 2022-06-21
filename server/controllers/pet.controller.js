@@ -1,31 +1,25 @@
 const config = require("../config/auth.config");
 const db = require("../models");
 const Pet = db.pet;
+const User = db.user;
 
 exports.addPet = (req, res) => {
-  const pet = new Pet({
+    const pet = new Pet({
     name: req.body.name,
     age: req.body.age,
     breed: req.body.breed,
     avatar: req.body.avatar,
-    ownerId: req.body.ownerId
   });
-  
-  pet.save((err) => {
-    if (err) {
-      res.status(500).send({ message: err });
-      return;
-    } 
-  });
+  try {
+  User.findById(req.body.userId, function(err, item) {
 
-  Pet.findOne({
-      name: req.body.name
-  }).exec((err) => {
-    if (err) {
-      res.status(500).send({ message: err });
-      return;
-    }})
-    console.log(pet)
+    item.pets.push(pet)
+    item.save().then(
+      res.json('Pet created!'))
+  })
+  } catch (e) {
+    console.log(e);
+ } 
 };
 
 exports.findPet = (req, res) => {
