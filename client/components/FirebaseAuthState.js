@@ -13,13 +13,20 @@ const FirebaseAuthState = ({children}) => {
                     type: "LOGOUT",
                 })
             } else {
-                const token  = await user.getIdToken();
-                //   axios.post('/current-user', {}).then(
+                const value = localStorage.getItem('userData');
+    const user = !!value ? JSON.parse(value) : undefined;
+ 
+    dispatch({
+                type: "LOGIN",
+                payload: user,
+            })
+                // const token  = await user.getIdToken();
+                //   axios.post('auth/current-user', {}).then(
                 //     dispatch({
                 //         type: "LOGIN",
                 //         payload: user,
                 //     }),
-                    console.log("FIREBASE STATE: ", user)
+                //     console.log("FIREBASE STATE: ", user)
                 //   )
                 //   .catch((error) => {
                 //       console.error(error)

@@ -3,7 +3,7 @@ const firebaseAdmin = require('firebase-admin');
 const firebaseApp = firebaseAdmin.initializeApp();
 
 const currentUser = async (req, res) => {
-    //console.log("REQ HEADERS TOKEN", req.headers.token);
+    console.log("REQ HEADERS TOKEN", req.headers.token);
 
     try {
         const firebaseUser = await admin.auth().verifyIdToken(req.headers.token);

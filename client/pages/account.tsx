@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import type { NextPage } from 'next'
 import { PhoneIcon, ExclamationIcon, ViewGridIcon } from '@heroicons/react/outline';
 import Head from 'next/head'
@@ -7,18 +7,16 @@ import PetCard from '../components/PetCard'
 import Footer from '../components/Footer'  
 import Container from '../components/Modal/Container' 
 import axios from 'axios';
+import { Context } from '../context/index'
 
 const Account: NextPage = () => { 
-  const [user, setUser] = useState(null)
+  const { state } = useContext(Context)
   const [pets, setPets] = useState([])
-  const triggerText = 'Open form';
-  console.log("STATE OBJECT: ", user)
-  useEffect(()=>{  
-    const value = localStorage.getItem('userData');
-    const user = !!value ? JSON.parse(value) : undefined;
-    setUser(user) 
-    setPets(user.pets)
-  },[])
+  const triggerText = 'Add Pet';
+
+  useEffect(() => {  
+    setPets(state?.user?.pets) 
+  },[state])
 
   const onSubmit = (event) => {
     event.preventDefault(event);  
@@ -55,12 +53,12 @@ const Account: NextPage = () => {
                   Edit
                 </button>
               </div>
-              <p className="text-lg font-bold">{ user?.name }</p>
-              <p>{ user?.address }</p>
+              <p className="text-lg font-bold">{ state.user?.name }</p>
+              <p>{ state.user?.address }</p>
               <p>Toronto, Canada</p>
               <p>652-333-4553</p>
-              <p>{ user?.email }</p>
-              <p>{ user?.account_type }</p>
+              <p>{ state.user?.email }</p>
+              <p>{ state.user?.account_type }</p>
             </div>
             <div className="p-6 text-base grid grid-cols-2 gap-x-4">
             <button className='bg-yellow-500 hover:bg-blue-700 text-white font-bold py-2 px-4 h-10 w-36 rounded flex justify-start'><PhoneIcon className='h-6 w-6 inline'/><a className='ml-3'>Support</a></button><br/>
@@ -71,14 +69,11 @@ const Account: NextPage = () => {
         </div>
           {/* grid nested  */}
           <div className="grid grid-cols-1 gap-6 md:grid-cols-1 lg:grid-cols-1 sm:w-full md:w-full lg:w-8/12">
-          <button className='bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 h-10 w-36 roundedflex  float-right'> 
-      <a>Add pet</a>
-      </button>
       <Container triggerText={triggerText} onSubmit={onSubmit} />
       { 
-      pets.map(item => {
-        return <>{<PetCard title={item?.name} image={require('/assets/default_pet_profile.png')} description={item?.breed} />
-      }</>;
+      pets?.map(item => {
+        return <li key={item?.name} style={{listStyle: "none"}}>{<PetCard title={item?.name} image={require('/assets/default_pet_profile.png')} description={item?.breed} />
+      }</li>;
       })}
           </div>
       </div>
