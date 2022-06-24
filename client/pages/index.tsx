@@ -2,18 +2,32 @@ import type { NextPage } from 'next'
 import { useContext, useEffect, useState } from 'react'
 import Head from 'next/head'
 import Header from '../components/Header'
-import { GetServerSideProps } from 'next'
 import MenuButton from '../components/MenuButton'
 import Footer from '../components/Footer'
 import { Context } from '../context/index'
 
 const Home: NextPage = ({ data }: any) => {
   const { state } = useContext(Context)
-  const [dogs, setDogs] = useState({ data })
+  const [pets, setPets] = useState([])
 
-  useEffect(() => {
-console.log("DASHBAORD USER: ", state)
-  }, [])
+  useEffect( () => {
+    const fetchData = async () => {
+      // Iterate through user's pets 
+      // fetching API data concerning the respected dog breed
+      for(let i = 0; i < state?.user?.pets.length; i++){
+        data = await fetch(`https://api.thedogapi.com/v1/breeds/search?q=${state?.user?.pets[i].breed}`).then(response => response.json())
+      .then(item => {
+        pets.push(item)
+        console.log('Success:', item);
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+      }
+    }
+      fetchData()
+  }, [state.user])
+
   return (
     <div>
       <div style={{ marginBottom: '80px' }}>
@@ -29,17 +43,14 @@ console.log("DASHBAORD USER: ", state)
            {/* Column Content */}
             <h2 className="text-xl">text 1</h2>
           </div>
-
           <div className="my-4 bg-orange-200 px-4 w-full overflow-hidden md:my-6 md:px-6 lg:my-5 lg:px-5 xl:my-4 xl:px-4 xl:w-1/2">
            {/* Column Content */}
             <h2>text 2</h2>
           </div>
         </div>
       </main>
-
       <div className="min-h-screen justify-center">
         <div className="sm:flex-col-2 mx-auto mt-11 w-full justify-center space-x-4 bg-green-300 p-11 sm:flex">
-          <div> {JSON.stringify(state?.user?.email)} </div>
           <MenuButton image={require('/assets/pet_news.jpg')} link={'/media'} />
           <MenuButton image={require('/assets/media.png')} link={'/media'} />
           <MenuButton
@@ -58,12 +69,3 @@ console.log("DASHBAORD USER: ", state)
 }
 
 export default Home
-
-// export const getServerSideProps: GetServerSideProps = async () => {
-
-//   const res = await fetch('https://api.thedogapi.com/v1/breeds')
-//   const data = await res.json()
-//   console.log(data[0]);
-//   return { props: { data } }
-
-// }
