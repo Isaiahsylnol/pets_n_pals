@@ -5,33 +5,22 @@ import Head from 'next/head'
 import Header from '../components/Header'
 import PetCard from '../components/PetCard'
 import Footer from '../components/Footer'  
-import Container from '../components/Modal/Container' 
 import axios from 'axios';
+import CreatePetModal from '../components/Modal/CreatePetModal'
 import { Context } from '../context/index'
+
+import ModalService from '../components/Modal/services/ModalService'
 
 const Account: NextPage = () => { 
   const { state } = useContext(Context)
   const [pets, setPets] = useState([])
-  const triggerText = 'Add Pet';
 
   useEffect(() => {  
     setPets(state?.user?.pets) 
   },[state])
 
-  const onSubmit = (event) => {
-    event.preventDefault(event);  
-    let name = event.target.name.value
-    let age = event.target.age.value
-    let breed = event.target.breed.value
-    let avatar = event.target.avatar.value 
- 
-    axios.post("http://localhost:8000/api/auth/add-pet", 
-    {
-      name, 
-      age,
-      breed,
-      avatar,  
-    })
+  const addModal = (modal) => {
+    ModalService.open(modal);
   };
 
   return (
@@ -69,7 +58,8 @@ const Account: NextPage = () => {
         </div>
           {/* grid nested  */}
           <div className="grid grid-cols-1 gap-6 md:grid-cols-1 lg:grid-cols-1 sm:w-full md:w-full lg:w-8/12">
-      <Container triggerText={triggerText} onSubmit={onSubmit} />
+            {/* ADD BUTTONS HERE */}
+            <button onClick={ () => addModal(CreatePetModal) } className="btn btn-primary m-4">Create Pet</button>
       { 
       pets?.map(item => {
         return <li key={item?.name} style={{listStyle: "none"}}>{<PetCard title={item?.name} image={require('/assets/default_pet_profile.png')} description={item?.breed} />

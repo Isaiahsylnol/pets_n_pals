@@ -18,7 +18,7 @@ const Home: NextPage = ({ data }: any) => {
         data = await fetch(`https://api.thedogapi.com/v1/breeds/search?q=${state?.user?.pets[i].breed}`).then(response => response.json())
       .then(item => {
         pets.push(item)
-        console.log('Success:', item);
+        //console.log('Success:', item);
       })
       .catch((error) => {
         console.error('Error:', error);
@@ -26,6 +26,7 @@ const Home: NextPage = ({ data }: any) => {
       }
     }
       fetchData()
+      console.log("STATE: ", state?.user?.pets)
   }, [state.user])
 
   return (

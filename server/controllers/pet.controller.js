@@ -11,7 +11,7 @@ exports.addPet = (req, res) => {
     avatar: req.body.avatar,
   });
   try {
-  User.findById(req.body.userId, function(err, item) {
+  User.findById("629598213645dbcfe0328eea", function(err, item) {
 
     item.pets.push(pet)
     item.save().then(

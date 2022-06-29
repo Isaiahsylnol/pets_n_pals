@@ -31,8 +31,6 @@ console.log("STATE: ", state)
             email: loginEmail
         }
         ).then(function (response) {
-          // handle success
-          console.log("SUCCESS: ", response.data);
           dispatch({
             type: "LOGIN",
             payload: response.data,
