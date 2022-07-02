@@ -5,6 +5,10 @@ export default function validateInfo(values) {
         errors.username = "Username required"
     }
 
+    if(!values.name.trim()) {
+      errors.name = "Name required"
+  }
+
     if(values.duplicate) {
       console.log(values)
   }

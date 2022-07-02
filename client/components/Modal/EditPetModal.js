@@ -3,32 +3,21 @@ import Modal from './Modal'
 import ModalBody from './ModalBody'
 import ModalHeader from './ModalHeader'
 import React from 'react' 
-import { Context } from '../../context'
-import { useContext, useEffect, useState } from 'react'
 
-export default function CreatePetModal(props) {
-  const { state, dispatch } = useContext(Context)
-
-  useEffect(()=>{
-    console.log(state.user._id)
-  },[])
-
+export default function EditPetModal(props) {
+  
   const onSubmit = (event) => {
     event.preventDefault(event)
   // Logic for communicating with server to create pet
+    let target = event.target.targetName.value
+    let username = JSON.parse(localStorage.getItem("userData")).username
     let name = event.target.name.value
-    let age = event.target.age.value
-    let breed = event.target.breed.value
-    let avatar = event.target.avatar.value 
-    let userId = state.user._id
  
-    axios.post("http://localhost:8000/api/auth/add-pet", 
+    axios.post("http://localhost:8000/api/auth/edit", 
     {
-      name, 
-      age,
-      breed,
-      avatar,  
-      userId
+      target, 
+      name,
+      username
     })
   }
   
@@ -59,7 +48,7 @@ export default function CreatePetModal(props) {
         </button>
       </div>
       <ModalHeader>
-        <h3 className="mx-auto  flex justify-center">Create Pet</h3>
+        <h3 className="mx-auto  flex justify-center">Edit Pet</h3>
       </ModalHeader>
       <ModalBody>
         <form onSubmit={onSubmit}>
@@ -83,60 +72,16 @@ export default function CreatePetModal(props) {
               className="mb-2 block text-sm font-bold text-gray-700"
               htmlFor="age"
             >
-              Age
+              targetName
             </label>
             <input
               className="focus:shadow-outline w-full appearance-none rounded border py-2 px-3 leading-tight text-gray-700 shadow focus:outline-none"
-              id="age"
+              id="targetName"
               type="text"
-              name="age"
-              placeholder="Age"
+              name="targetName"
+              placeholder="targetName"
             />
-          </div>
-          <div className="mb-4">
-            <label
-              className="mb-2 block text-sm font-bold text-gray-700"
-              htmlFor="breed"
-            >
-              Breed
-            </label>
-            <div className="relative inline-block w-64">
-              <select
-                className="focus:shadow-outline block w-full appearance-none rounded border border-gray-400 bg-white px-4 py-2 pr-8 leading-tight shadow hover:border-gray-500 focus:outline-none"
-                name="breed"
-              >
-                <option value="option-1">
-                  Really long option that will likely overlap the chevron
-                </option>
-                <option value="Husky">Husky</option>
-                <option value="Spanish water dog">Spanish water dog</option>
-              </select>
-              <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                <svg
-                  className="h-4 w-4 fill-current"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 20 20"
-                >
-                  <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                </svg>
-              </div>
-            </div>
-          </div>
-          <div className="mb-6">
-            <label
-              className="mb-2 block text-sm font-bold text-gray-700"
-              htmlFor="avatar"
-            >
-              Choose a profile picture:
-            </label>
-            <input
-              className="focus:shadow-outline mb-3 w-full appearance-none rounded border py-2 px-3 leading-tight text-gray-700 shadow focus:outline-none"
-              id="avatar"
-              type="file"
-              name="avatar"
-              accept="image/png, image/jpeg"
-            />
-          </div>
+          </div>  
           <div className="flex items-center justify-between">
             <button
               className="focus:shadow-outline mx-auto rounded bg-blue-500 py-2 px-4 font-bold text-white hover:bg-blue-700 focus:outline-none"

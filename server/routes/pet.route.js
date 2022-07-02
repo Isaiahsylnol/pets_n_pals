@@ -12,6 +12,12 @@ module.exports = function(app) {
       "/api/auth/add-pet",
       petController.addPet
     );
+
+    app.post(
+      "/api/auth/edit",
+      petController.editPet
+    );
+
     app.get("/api/auth/pet",
     petController.findPet);
   };

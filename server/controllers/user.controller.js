@@ -17,5 +17,5 @@ exports.allAccess = (req, res) => {
      let user = await User.findOne({
        email: req.body.email
      })
-     res.status(200).send(user)
+     res.send(user)
     }

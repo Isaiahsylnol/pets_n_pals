@@ -35,7 +35,7 @@ console.log("STATE: ", state)
             type: "LOGIN",
             payload: response.data,
         })
-        localStorage.setItem("userData", JSON.stringify(response.data)) 
+        
         })
         .catch(function (error) {
           // handle error

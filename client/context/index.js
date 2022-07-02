@@ -3,9 +3,8 @@ import { createContext, useReducer } from "react";
 const reducer = (state, action) => {
     switch(action.type) {
         case 'LOGIN':
+            localStorage.setItem("userData", JSON.stringify(action.payload)) 
             return {...state, user: action.payload}
-        case 'PET CREATION':
-                return {...state, user: action.payload}
         case 'LOGOUT':
             return {...state, user: null}
         default:

@@ -47,6 +47,16 @@ const RegisterForm = ({ submitForm }) =>  {
             className=" mt-2 h-5 w-full rounded-md border px-3 py-5 hover:outline-none focus:outline-none focus:ring-1 focus:ring-orange-600"
           />
           {errors.email && <p>{errors.email}</p>}
+          <label className="mt-3 block font-semibold">Name</label>
+          <input
+            type="text"
+            placeholder="Name" 
+            name="name"
+            value={values.name}
+            onChange={handleChange}
+            className=" mt-2 h-5 w-full rounded-md border px-3 py-5 hover:outline-none focus:outline-none focus:ring-1 focus:ring-orange-600"
+          />
+          {errors.name && <p>{ errors.name }</p>}
           <label className="mt-3 block font-semibold">Password (6 or more characters)</label>
           <input
             type="password"

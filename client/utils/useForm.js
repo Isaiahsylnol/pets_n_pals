@@ -6,6 +6,7 @@ import axios from 'axios';
 const useForm = (callback, validate) => {
     const [values, setValues] = useState({
         username: '',
+        name: '',
         email: '',
         password: '',
         conPassword: '',
@@ -37,6 +38,7 @@ const useForm = (callback, validate) => {
             const user = userCredential.user;
             axios.post("http://localhost:8000/api/auth/signup", {
               "username": values.username,
+              "name": values.name,
               "email": values.email,
               "password": values.password,
               "roles": ["user"]

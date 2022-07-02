@@ -1,8 +1,14 @@
 import { Menu, Transition } from '@headlessui/react'
 import { Fragment, useEffect, useRef, useState } from 'react'
 import { ChevronDownIcon } from '@heroicons/react/solid'
+import ModalService from '../components/Modal/services/ModalService'
+import EditPetModal from './Modal/EditPetModal'
 
 export default function Dropdown() {
+  const addModal = (modal) => {
+    ModalService.open(modal);
+  };
+
   return (
     <div className="w-56 float-right">
       <Menu as="div" className="relative inline-block text-right float-right">
@@ -29,6 +35,7 @@ export default function Dropdown() {
               <Menu.Item>
                 {({ active }) => (
                   <button
+                    onClick={ () => addModal(EditPetModal) }
                     className={`${
                       active ? 'bg-orange-400 text-white' : 'text-gray-900'
                     } group flex w-full items-center rounded-md px-2 py-2 text-sm`}

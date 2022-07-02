@@ -14,7 +14,7 @@ const Home: NextPage = ({ data }: any) => {
     const fetchData = async () => {
       // Iterate through user's pets 
       // fetching API data concerning the respected dog breed
-      for(let i = 0; i < state?.user?.pets.length; i++){
+      for(let i = 0; i < state?.user?.pets?.length; i++){
         data = await fetch(`https://api.thedogapi.com/v1/breeds/search?q=${state?.user?.pets[i].breed}`).then(response => response.json())
       .then(item => {
         pets.push(item)
