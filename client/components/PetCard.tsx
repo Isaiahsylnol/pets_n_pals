@@ -16,7 +16,7 @@ type CardProps = {
 function PetCard({ image, title, description }: CardProps) {
   return (
     <div className="rounded-xl border-2 border-gray-300 bg-gray-100 p-6 text-6xl"> 
-   <Dropdown />
+   <Dropdown name={title} />
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-1 justify-center p-5 rounded-xl">
               <div><Image
                 src={image}

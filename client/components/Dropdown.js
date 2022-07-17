@@ -4,10 +4,13 @@ import { ChevronDownIcon } from '@heroicons/react/solid'
 import ModalService from '../components/Modal/services/ModalService'
 import EditPetModal from './Modal/EditPetModal'
 
-export default function Dropdown() {
+export default function Dropdown(props) {
   const addModal = (modal) => {
     ModalService.open(modal);
   };
+  useEffect(()=> {
+    console.log(props)
+  }, [])
 
   return (
     <div className="w-56 float-right">
@@ -35,7 +38,7 @@ export default function Dropdown() {
               <Menu.Item>
                 {({ active }) => (
                   <button
-                    onClick={ () => addModal(EditPetModal) }
+                    onClick={ () => addModal(() => EditPetModal(props)) }
                     className={`${
                       active ? 'bg-orange-400 text-white' : 'text-gray-900'
                     } group flex w-full items-center rounded-md px-2 py-2 text-sm`}

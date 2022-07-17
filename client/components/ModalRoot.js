@@ -6,10 +6,11 @@ export default function ModalRoot() {
 
   const [modal, setModal] = useState({});
   useEffect(() => {
-    ModalService.on('open', ({ component, props }) => {
+    ModalService.on('open', ({ component, props, target }) => {
       setModal({
         component,
         props,
+        target,
         close: value => {
           setModal({});
         },
@@ -24,6 +25,7 @@ export default function ModalRoot() {
       { ModalComponent && (
         <ModalComponent
           { ...modal.props }
+          taget
           close={ modal.close }
           className={ ModalComponent ? 'd-block' : '' }
         />

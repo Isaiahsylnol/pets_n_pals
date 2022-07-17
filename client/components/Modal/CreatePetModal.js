@@ -9,10 +9,6 @@ import { useContext, useEffect, useState } from 'react'
 export default function CreatePetModal(props) {
   const { state, dispatch } = useContext(Context)
 
-  useEffect(()=>{
-    console.log(state.user._id)
-  },[])
-
   const onSubmit = (event) => {
     event.preventDefault(event)
   // Logic for communicating with server to create pet

@@ -2,14 +2,15 @@ import axios from 'axios'
 import Modal from './Modal'
 import ModalBody from './ModalBody'
 import ModalHeader from './ModalHeader'
-import React from 'react' 
+import React, { useEffect } from 'react'
 
 export default function EditPetModal(props) {
-  
+
   const onSubmit = (event) => {
     event.preventDefault(event)
+    console.log(props)
   // Logic for communicating with server to create pet
-    let target = event.target.targetName.value
+    let target = props.id
     let username = JSON.parse(localStorage.getItem("userData")).username
     let name = event.target.name.value
  
@@ -20,7 +21,7 @@ export default function EditPetModal(props) {
       username
     })
   }
-  
+
   return (
     <Modal>
       <div className="float-right justify-center">
@@ -67,27 +68,12 @@ export default function EditPetModal(props) {
               placeholder="Name"
             />
           </div>
-          <div className="mb-4">
-            <label
-              className="mb-2 block text-sm font-bold text-gray-700"
-              htmlFor="age"
-            >
-              targetName
-            </label>
-            <input
-              className="focus:shadow-outline w-full appearance-none rounded border py-2 px-3 leading-tight text-gray-700 shadow focus:outline-none"
-              id="targetName"
-              type="text"
-              name="targetName"
-              placeholder="targetName"
-            />
-          </div>  
           <div className="flex items-center justify-between">
             <button
               className="focus:shadow-outline mx-auto rounded bg-blue-500 py-2 px-4 font-bold text-white hover:bg-blue-700 focus:outline-none"
               type="submit"
             >
-              Create Pet Profile
+              Save Edit
             </button>
           </div>
         </form>
