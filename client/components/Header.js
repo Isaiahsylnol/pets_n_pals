@@ -1,21 +1,20 @@
 import React, { useEffect, useContext } from 'react'
 import {SearchIcon, BellIcon, CogIcon} from '@heroicons/react/solid';
+import { useDispatch } from "react-redux";
+import { logout } from "../slices/auth";
 import Link from 'next/link';
 import Image from 'next/image'
-import { getAuth, signOut } from "firebase/auth";
-import { Context } from '../context/index'
-import { useRouter } from 'next/router'
+// import { getAuth, signOut } from "firebase/auth";
+// import { Context } from '../context/index'
+ import { useRouter } from 'next/router'
 
 function Header() {
+  const dispatch = useDispatch();
   const router = useRouter()
-  const { dispatch } = useContext(Context)
+  //const { dispatch } = useContext(Context)
 
   const handleSignOut = async () => {
-    const auth = getAuth();
-    await signOut(auth);
-    dispatch({
-      type: "LOGOUT",
-    });
+    dispatch(logout())
     router.push("/login")
   };
   
@@ -34,7 +33,7 @@ function Header() {
     <div className='flex items-center space-x-4 text-sm font-light'>
     <SearchIcon className='hidden h-6 w-6 sm:inline'/> 
     <BellIcon className='h-6 w-6'/>
-    <Link href="/account" passHref><AccButton /></Link>
+    <Link href="/profile" passHref><AccButton /></Link>
     <CogIcon className='h-6 w-6' onClick={handleSignOut}>
     <div>
  

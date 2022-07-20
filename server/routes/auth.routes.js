@@ -3,7 +3,7 @@ const { verifySignUp } = require("../middlewares");
 
 module.exports = app => {
     const controller = require("../controllers/auth.controller");
-    var router = require("express").Router();
+    const router = require("express").Router();
     
     router.post(
     "/signup",

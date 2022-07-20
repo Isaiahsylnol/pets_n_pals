@@ -1,27 +1,23 @@
-const mongoose = require('mongoose')
-const { Schema } = mongoose
-
-const petSchema = new Schema(
-    {
-    name: {
-        type: String,
-        required: true,
-        trim: true,
-    },
-    age: {
-        type: Number,
-        required: true 
-    },
-    breed: {
-        type: String,
-        trim: true,
-        required: true, 
-    },
-    avatar: {
-        type: String,
-        trim: true,
-    },
-},
-    { timestamps: true })
-
-    module.exports = mongoose.model("Pet", petSchema)
+module.exports = mongoose => {
+    const schema = mongoose.Schema(
+      {
+        name: String,
+        age: Number,
+        breed: String, 
+        weight: {
+          type: Number,
+          default: 23
+        },
+      },
+      { timestamps: true }
+    );
+  
+    schema.method("toJSON", function() {
+      const { __v, _id, ...object } = this.toObject();
+      object.id = _id;
+      return object;
+    });
+  
+    const Pet = mongoose.model("pet", schema);
+    return Pet;
+  };

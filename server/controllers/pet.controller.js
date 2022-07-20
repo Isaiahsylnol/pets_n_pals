@@ -1,38 +1,11 @@
 const db = require('../models')
 const Pet = db.pet;
 const User = db.user;
-// Create and Save a new Pet
-exports.create = (req, res) => {
-    // Validate request
-    if (!req.body.name) {
-      res.status(400).send({ message: "Content can not be empty!" });
-      return;
-    }
-  
-    // Create a pet
-    const pet = new Pet({
-      name: req.body.name,
-      age: req.body.age,
-      breed: req.body.breed
-    });
-  
-    // Save Tutorial in the database
-    pet
-      .save(pet)
-      .then(data => {
-        res.send(data);
-      })
-      .catch(err => {
-        res.status(500).send({
-          message:
-            err.message || "Some error occurred while creating the pet."
-        });
-      });
-  };
+ 
 // Retrieve all Pet from the database.
 exports.findAll = (req, res) => {
     const name = req.query.name;
-    var condition = name ? { name: { $regex: new RegExp(name), $options: "i" } } : {};
+    const condition = name ? { name: { $regex: new RegExp(name), $options: "i" } } : {};
     Pet.find(condition)
       .then(data => {
         res.send(data);
@@ -84,23 +57,16 @@ exports.update = (req, res) => {
 // Delete a Pet with the specified id in the request
 exports.delete = (req, res) => {
     const id = req.params.id;
-    Pet.findByIdAndRemove(id)
-      .then(data => {
-        if (!data) {
-          res.status(404).send({
-            message: `Cannot delete Pet with id=${id}. Maybe Pet was not found!`
-          });
-        } else {
-          res.send({
-            message: "Pet was deleted successfully!"
-          });
-        }
+    try {
+      User.findById(req.body.userId, function(err, user) {
+    
+        user.pets.push(pet)
+        user.save().then(
+          res.json(user))
       })
-      .catch(err => {
-        res.status(500).send({
-          message: "Could not delete Pet with id=" + id
-        });
-      });
+      } catch (err) {
+        console.log(e);
+     } 
   };
 // Delete all Pet from the database.
 exports.deleteAll = (req, res) => {

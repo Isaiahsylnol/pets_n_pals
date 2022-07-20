@@ -8,9 +8,6 @@ export default function Dropdown(props) {
   const addModal = (modal) => {
     ModalService.open(modal);
   };
-  useEffect(()=> {
-    console.log(props)
-  }, [])
 
   return (
     <div className="w-56 float-right">
