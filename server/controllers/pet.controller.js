@@ -34,26 +34,25 @@ exports.findOne = (req, res) => {
   };
 // Update a Pet by the id in the request
 exports.update = (req, res) => {
-    if (!req.body) {
-      return res.status(400).send({
-        message: "Data to update can not be empty!"
-      });
-    }
-    const id = req.params.id;
-    Pet.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
-      .then(data => {
-        if (!data) {
-          res.status(404).send({
-            message: `Cannot update Pet with id=${id}. Maybe Pet was not found!`
-          });
-        } else res.send({ message: "Pet was updated successfully." });
-      })
-      .catch(err => {
-        res.status(500).send({
-          message: "Error updating Pet with id=" + id
-        });
-      });
-  };
+  if (!req.body) {
+    return res.status(400).send({
+      message: "Data to update can not be empty!"
+    });
+  }
+  const id = req.params.id;
+  const name = "Lucy";
+  User.findOneAndUpdate({"pets.name": req.body.target, "pet.id": "62d481ef69c50993a3946eac"}, 
+    { 
+      "$set": {'pets.$.name': req.body.name} 
+    },
+    { 
+      "arrayFilters": [{ "pets.name": req.body.target, "pet.id": "62d481ef69c50993a3946eac" }]
+    },
+    function(err, response) {
+      if(err) console.log(err)
+      console.log(response)
+    })
+};
 // Delete a Pet with the specified id in the request
 exports.delete = (req, res) => {
     const id = req.params.id;
