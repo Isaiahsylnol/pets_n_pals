@@ -41,12 +41,12 @@ exports.update = (req, res) => {
   }
   const id = req.params.id;
   const name = "Lucy";
-  User.findOneAndUpdate({"pets.name": req.body.target, "pet.id": "62d481ef69c50993a3946eac"}, 
+  User.findOneAndUpdate({"pets.name": req.body.p_name, "pet.id": req.body.target}, 
     { 
       "$set": {'pets.$.name': req.body.name} 
     },
     { 
-      "arrayFilters": [{ "pets.name": req.body.target, "pet.id": "62d481ef69c50993a3946eac" }]
+      "arrayFilters": [{ "pets.name": req.body.p_name, "pet.id": req.body.target }]
     },
     function(err, response) {
       if(err) console.log(err)

@@ -8,16 +8,21 @@ export default function EditPetModal(props) {
 
   const onSubmit = (event) => {
     event.preventDefault(event)
-    console.log(event.target.name.value)
-  // Logic for communicating with server to create pet
-    let target = props.name
+  // Logic for communicating with server to Edit pet
+    let p_name = props.name
+    let target = props.id
     let id = JSON.parse(localStorage.getItem("user")).id
     let name = event.target.name.value
- 
-    axios.put(`http://localhost:8080/api/pets/${id}`, 
+      axios.put(`http://localhost:8080/api/pets/${id}`, 
     {
+      p_name,
       target, 
       name,
+    }).then(function (response) {
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.log(error.response.data);
     })
   }
 
