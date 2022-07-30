@@ -1,9 +1,6 @@
 import Head from 'next/head';
-import Image from 'next/image';
-import styles from '../styles/Home.module.css';
 import Header from '../components/Header.js';
 import Footer from '../components/Footer';
-import PetList from '../components/petList';
 import PetCard from '../components/PetCard.js';
 import { Redirect } from 'react-router-dom';
 import { useSelector } from "react-redux";
@@ -85,7 +82,6 @@ export default function Profile() {
                 <li key={item?._id} style={{ listStyle: 'none' }}>
                   {
                     <PetCard
-                      id={item?._id}
                       title={item?.name}
                       image={require('/assets/default_pet_profile.png')}
                       description={item?.breed}

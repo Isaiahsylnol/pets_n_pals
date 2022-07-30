@@ -39,33 +39,21 @@ exports.update = (req, res) => {
       message: "Data to update can not be empty!"
     });
   }
-  const id = req.params.id;
-  const name = "Lucy";
-  User.findOneAndUpdate({"pets.name": req.body.p_name, "pet.id": req.body.target}, 
+  User.findOneAndUpdate({"pets.name": req.body.target, username: req.body.username}, 
     { 
       "$set": {'pets.$.name': req.body.name} 
     },
     { 
-      "arrayFilters": [{ "pets.name": req.body.p_name, "pet.id": req.body.target }]
+      new: true
     },
-    function(err, response) {
+    function(err) {
       if(err) console.log(err)
-      console.log(response)
+      res.send({ message: "Pet was updated successfully." });
     })
 };
 // Delete a Pet with the specified id in the request
 exports.delete = (req, res) => {
-    const id = req.params.id;
-    try {
-      User.findById(req.body.userId, function(err, user) {
-    
-        user.pets.push(pet)
-        user.save().then(
-          res.json(user))
-      })
-      } catch (err) {
-        console.log(e);
-     } 
+  
   };
 // Delete all Pet from the database.
 exports.deleteAll = (req, res) => {

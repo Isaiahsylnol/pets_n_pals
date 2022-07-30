@@ -2,28 +2,20 @@ import axios from 'axios'
 import Modal from './Modal'
 import ModalBody from './ModalBody'
 import ModalHeader from './ModalHeader'
+import { editPet } from '../../slices/pets'
+import { useSelector, useDispatch } from "react-redux";
 import React, { useEffect } from 'react'
 
 export default function EditPetModal(props) {
-
+  const dispatch = useDispatch();
   const onSubmit = (event) => {
     event.preventDefault(event)
   // Logic for communicating with server to Edit pet
-    let p_name = props.name
-    let target = props.id
+    let target = props.name
+    let username = JSON.parse(localStorage.getItem("user")).username
     let id = JSON.parse(localStorage.getItem("user")).id
     let name = event.target.name.value
-      axios.put(`http://localhost:8080/api/pets/${id}`, 
-    {
-      p_name,
-      target, 
-      name,
-    }).then(function (response) {
-      console.log(response);
-    })
-    .catch(function (error) {
-      console.log(error.response.data);
-    })
+    dispatch(editPet({name, target, username, id})) 
   }
 
   return (

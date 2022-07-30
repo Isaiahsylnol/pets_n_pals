@@ -14,6 +14,14 @@ const createPet = (userId, name, age, breed, weight) => {
   });
 };
 
+const editPet = (username, name, target, id) => {
+  return axios.put(API_URL +  id, {
+    target, 
+    name,
+    username
+  });
+};
+
 const getPublicContent = () => {
   return axios.get(API_URL + "all");
 };
@@ -31,6 +39,7 @@ const userService = {
   getUserBoard,
   getModeratorBoard,
   getAdminBoard,
-  createPet
+  createPet,
+  editPet
 };
 export default userService
