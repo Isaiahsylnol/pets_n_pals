@@ -23,6 +23,7 @@ export default function Profile() {
 
   useEffect(()=> {
     setUsers(currentUser)
+    console.log("USER'S PETS: ", users)
   },[currentUser])
   if(users){
     return (
@@ -44,8 +45,8 @@ export default function Profile() {
                         Edit
                       </button>
                     </div>
-                    <p className="text-lg font-bold">{users.username}</p>
-                    <p>{users.address}</p>
+                    <p className="text-lg font-bold">{currentUser?.username}</p>
+                    <p>{currentUser?.address}</p>
                     <p>Toronto, Canada</p>
                     <p>652-333-4553</p>
                     <p>{users.email}</p>
@@ -77,7 +78,7 @@ export default function Profile() {
                 >
                   Create Pet
                 </button>
-                {users.pets?.map((item) => {
+                {currentUser?.pets?.map((item) => {
               return (
                 <li key={item?._id} style={{ listStyle: 'none' }}>
                   {

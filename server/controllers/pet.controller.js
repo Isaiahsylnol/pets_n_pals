@@ -20,16 +20,16 @@ exports.findAll = (req, res) => {
 // Find a single Pet with an id
 exports.findOne = (req, res) => {
     const id = req.params.id;
-    Pet.findById(id)
+    User.findById(id)
       .then(data => {
         if (!data)
-          res.status(404).send({ message: "Not found Pet with id " + id });
-        else res.send(data);
+          res.status(404).send({ message: "Failed to find Pets for user id: " + id });
+        else res.send(data.pets);
       })
       .catch(err => {
         res
           .status(500)
-          .send({ message: "Error retrieving Pet with id=" + id });
+          .send({ message: "Error retrieving Pets for user id= " + id });
       });
   };
 // Update a Pet by the id in the request
@@ -46,21 +46,21 @@ exports.update = (req, res) => {
     { 
       new: true
     },
-    function(err) {
-      if(err) console.log(err)
-      res.send({ message: "Pet was updated successfully." });
+    function(err, user) {
+      if(err) res.send(500, {error: err});
+      res.send({ user });
     })
 };
 // Delete a Pet with the specified id in the request
 exports.delete = (req, res) => {
   
   };
-// Delete all Pet from the database.
+// Delete all Pets from the database.
 exports.deleteAll = (req, res) => {
     Pet.deleteMany({})
       .then(data => {
         res.send({
-          message: `${data.deletedCount} Pet were deleted successfully!`
+          message: `${data.deletedCount} Pet was deleted successfully!`
         });
       })
       .catch(err => {
@@ -80,7 +80,6 @@ exports.deleteAll = (req, res) => {
     }); 
     try {
       User.findById(req.body.userId, function(err, user) {
-    
         user.pets.push(pet)
         user.save().then(
           res.json(user))

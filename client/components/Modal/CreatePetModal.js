@@ -4,7 +4,7 @@ import ModalBody from './ModalBody';
 import ModalHeader from './ModalHeader';
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { createPet } from '../../slices/pets';
+import { createPet } from '../../slices/auth';
 import { Formik, Field, Form, ErrorMessage, useFormik } from "formik";
 import * as Yup from "yup";
 import { clearMessage } from "../../slices/message";
@@ -93,10 +93,10 @@ export default function CreatePetModal(props) {
     },
     validate,
     onSubmit: values => {
+      event.preventDefault()
       const { name, age, breed, weight } = values
- let userId = currentUser.id
+      let userId = currentUser.id
      dispatch(createPet({name, age, breed, weight, userId})).then(window.location.reload())
-    
     }
   })
   

@@ -14,13 +14,12 @@ const createPet = (userId, name, age, breed, weight) => {
   });
 };
 
-const editPet = (username, name, target, id) => {
+const editPet = async (username, name, target, id) => {
   return axios.put(API_URL +  id, {
     target, 
     name,
     username
-  });
-};
+  })};
 
 const getPublicContent = () => {
   return axios.get(API_URL + "all");

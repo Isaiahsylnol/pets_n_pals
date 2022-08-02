@@ -2,7 +2,7 @@ import axios from 'axios'
 import Modal from './Modal'
 import ModalBody from './ModalBody'
 import ModalHeader from './ModalHeader'
-import { editPet } from '../../slices/pets'
+import { editPet } from '../../slices/auth'
 import { useSelector, useDispatch } from "react-redux";
 import React, { useEffect } from 'react'
 
@@ -16,6 +16,17 @@ export default function EditPetModal(props) {
     let id = JSON.parse(localStorage.getItem("user")).id
     let name = event.target.name.value
     dispatch(editPet({name, target, username, id})) 
+    //   axios.put(`http://localhost:8080/api/pets/${id}`, 
+    // {
+    //   username,
+    //   target, 
+    //   name,
+    // }).then(function (response) {
+    //   console.log(response);
+    // })
+    // .catch(function (error) {
+    //   console.log(error.response.data);
+    // })
   }
 
   return (
