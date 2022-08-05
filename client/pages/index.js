@@ -2,18 +2,12 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import Header from '../components/Header.js';
-import Login from "../pages/login";
-import Register from "../components/Register";
-import BoardUser from "./boardUser";
-import BoardModerator from "./boardModerator";
 import BoardAdmin from "./boardAdmin";
 import React, { useState, useEffect, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-
 import { logout } from "../slices/auth";
-
 import EventBus from "../common/EventBus";
+import petService from '../services/pet.service';
 export default function Home() {
   const [showModeratorBoard, setShowModeratorBoard] = useState(false);
   const [showAdminBoard, setShowAdminBoard] = useState(false);
@@ -22,7 +16,9 @@ export default function Home() {
   const logOut = useCallback(() => {
     dispatch(logout());
   }, [dispatch]);
+  let arr = [];
   useEffect(() => {
+    
     if (currentUser) {
       setShowModeratorBoard(currentUser.roles.includes("ROLE_MODERATOR"));
       setShowAdminBoard(currentUser.roles.includes("ROLE_ADMIN"));

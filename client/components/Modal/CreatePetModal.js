@@ -1,105 +1,76 @@
-import axios from 'axios';
-import Modal from './Modal';
-import ModalBody from './ModalBody';
-import ModalHeader from './ModalHeader';
-import React, { useState, useEffect } from "react";
+import Modal from "./Modal";
+import ModalBody from "./ModalBody";
+import ModalHeader from "./ModalHeader";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { createPet } from '../../slices/auth';
-import { Formik, Field, Form, ErrorMessage, useFormik } from "formik";
-import * as Yup from "yup";
-import { clearMessage } from "../../slices/message";
-import CustomSelect from '../CustomSelect';
+import { createPet } from "../../slices/auth";
+import { useFormik } from "formik";
+import CustomSelect from "../CustomSelect";
+import petService from "../../services/pet.service";
 
 export default function CreatePetModal(props) {
   const dispatch = useDispatch();
+  const [dict] = useState([]);
   const { user: currentUser } = useSelector((state) => state.auth);
 
-  const initialValues = {
-    name: "",
-    age: "",
-    breed: "",
-    weight: "",
-  };
-  const options = [
-    { value: 'husky', label: 'Husky' },
-    { value: 'doberman', label: 'Doberman' },
-    { value: 'shitzu', label: 'Shitzu' },
-    { value: 'weiner', label: 'Weiner' }
-  
-  ]
+  // Population of the pet breed select tag's options 
+  useEffect(() => {
+    petService.getDogBreeds().then((response) =>
+      response.data.forEach((element) => {
+        dict.push({
+          value: element.name,
+          label: element.name,
+        });
+      })
+    );
+  }, []);
 
-  const validationSchema = Yup.object().shape({
-    name: Yup.string()
-      .test(
-        "len",
-        "The name must be between 3 and 20 characters.",
-        (val) =>
-          val &&
-          val.toString().length >= 3 &&
-          val.toString().length <= 20
-      )
-      .required("This field is required!"),
-      weight: Yup.number()
-      .test(
-        "len",
-        "The weight must be between 1lbs and 230lbs.",
-        (val) =>
-          val &&
-          val >= 1 &&
-          val <= 230
-      )
-      .required("This field is required!"),
-    age: Yup.number()
-      .test(
-        "len",
-        "The age must be between 1 and 40.",
-        (val) =>
-          val &&
-          val >= 1 &&
-          val <= 40
-      )
-      .required("This field is required!"),
-  });
-
-  const validate = values => {
-    const errors = {}
-
+  const validate = (values) => {
+    const errors = {};
+    // Name validation
     if (!values.name) {
-      errors.name = 'Required'
+      errors.name = "Please enter a valid name.";
+    } else if (values.name.length < 3) {
+      errors.name = "Name must be more than 2 characters.";
+    } else if (values.name.length > 20) {
+      errors.name = "Name must be less than 20 characters.";
     }
-
+    // Age validation
     if (!values.age) {
-      errors.age = 'Required'
+      errors.age = "Please enter a valid age.";
+    } else if (values.age > 30) {
+      errors.age = "Age must be less than 30.";
     }
-
+    // Weight validation
     if (!values.weight) {
-      errors.weight = 'Required'
+      errors.weight = "Please enter a valid weight.";
+    } else if (values.weight > 230) {
+      errors.weight = "Weight must be less than 230lb.";
     }
-
-    if(!values.breed){
-      errors.breed='Required'
+    // Breed validation
+    if (!values.breed) {
+      errors.breed = "Please enter a valid breed.";
     }
-
-    return errors
-  }
+    return errors;
+  };
 
   const formik = useFormik({
-
     initialValues: {
-      name: '',
-      age: '',
-      weight: '',
-      breed: ''
+      name: "",
+      age: "",
+      weight: "",
+      breed: "",
     },
     validate,
-    onSubmit: values => {
-      event.preventDefault()
-      const { name, age, breed, weight } = values
-      let userId = currentUser.id
-     dispatch(createPet({name, age, breed, weight, userId})).then(window.location.reload())
-    }
-  })
-  
+    onSubmit: (values) => {
+      const { name, age, breed, weight } = values;
+      let userId = currentUser.id;
+      dispatch(createPet({ name, age, breed, weight, userId })).then(
+        window.location.reload()
+      );
+    },
+  });
+
   return (
     <Modal>
       <div className="float-right justify-center">
@@ -130,63 +101,73 @@ export default function CreatePetModal(props) {
         <h3 className="mx-auto  flex justify-center">Create Pet</h3>
       </ModalHeader>
       <ModalBody>
-      <form onSubmit={formik.handleSubmit}>      
-      <div>
-      <label htmlFor="name">Name</label>
-      <input
-        id="name"
-        name="name"
-        type="text"
-        className='input shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
-        onChange={formik.handleChange}
-        onBlur={formik.handleBlur}
-        value={formik.values.name}/>
-      {formik.touched.name && formik.errors.name ? ( <div className='text-red-500 text-xs italic'>{formik.errors.name}</div>) : null}
-      </div>
-      <div>
-      <label htmlFor="age">Age</label>
-      <input
-        id="age"
-        name="age"
-        type="number"
-        className='input shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
-        onChange={formik.handleChange}
-        value={formik.values.age}/>
-      {formik.touched.age && formik.errors.age ? (
-         <div className='text-red-500 text-xs italic'>{formik.errors.age}</div>
-       ) : null}
-      </div>
-      <div>
-      <label htmlFor="weight">Weight</label>
-      <input
-        id="weight"
-        name="weight"
-        type="number"
-        className='input shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
-        onChange={formik.handleChange}
-        onBlur={formik.handleBlur}
-        value={formik.values.weight}/>
-      {formik.touched.weight && formik.errors.weight ? (
-         <div className='text-red-500 text-xs italic'>{formik.errors.weight}</div>
-       ) : null}
-      </div>
-      <label htmlFor="breed">Breed</label>
-
-      <CustomSelect
-        className='input'
-        onChange={value=>formik.setFieldValue('breed',value.value)}
-        onBlur={formik.handleBlur}
-        value={formik.values.job}
-        options={options}
-        />
-      {formik.touched.breed && formik.errors.breed ? (
-         <div className='text-red-500 text-xs italic'>{formik.errors.breed}</div>
-       ) : null}
-
-      <button type="submit">Register</button>
-
-    </form>
+        <form onSubmit={formik.handleSubmit}>
+          <div>
+            <label htmlFor="name">Name</label>
+            <input
+              id="name"
+              name="name"
+              type="text"
+              className="input shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              value={formik.values.name}
+            />
+            {formik.touched.name && formik.errors.name ? (
+              <div className="text-red-500 text-xs italic">
+                {formik.errors.name}
+              </div>
+            ) : null}
+          </div>
+          <div>
+            <label htmlFor="age">Age</label>
+            <input
+              id="age"
+              name="age"
+              type="number"
+              className="input shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              onChange={formik.handleChange}
+              value={formik.values.age}
+            />
+            {formik.touched.age && formik.errors.age ? (
+              <div className="text-red-500 text-xs italic">
+                {formik.errors.age}
+              </div>
+            ) : null}
+          </div>
+          <div>
+            <label htmlFor="weight">Weight</label>
+            <input
+              id="weight"
+              name="weight"
+              type="number"
+              className="input shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              value={formik.values.weight}
+            />
+            {formik.touched.weight && formik.errors.weight ? (
+              <div className="text-red-500 text-xs italic">
+                {formik.errors.weight}
+              </div>
+            ) : null}
+          </div>
+          <label htmlFor="breed">Breed</label>
+          <CustomSelect
+            className="input"
+            onChange={(value) => formik.setFieldValue("breed", value.value)}
+            onBlur={formik.handleBlur}
+            value={formik.values.breed}
+            options={dict}
+          />
+          {formik.touched.breed && formik.errors.breed ? (
+            <div className="text-red-500 text-xs italic">
+              {formik.errors.breed}
+            </div>
+          ) : null}
+          <button type="submit">Register</button>
+        </form>
       </ModalBody>
     </Modal>
-  )
+  );
 }
