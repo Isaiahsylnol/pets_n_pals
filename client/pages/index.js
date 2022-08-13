@@ -6,7 +6,7 @@ import BoardAdmin from "./boardAdmin";
 import React, { useState, useEffect, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../slices/auth";
-import EventBus from "../common/EventBus";
+import EventBus from '../common/EventBus';
 import petService from '../services/pet.service';
 export default function Home() {
   const [showModeratorBoard, setShowModeratorBoard] = useState(false);

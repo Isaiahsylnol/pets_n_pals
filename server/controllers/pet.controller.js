@@ -53,8 +53,22 @@ exports.update = (req, res) => {
 };
 // Delete a Pet with the specified id in the request
 exports.delete = (req, res) => {
-  
-  };
+  if (!req.body) {
+    return res.status(400).send({
+      message: "Delete query can not be empty!"
+    });
+  }
+  try {
+    User.findById('62cf23619797694d94e4f943', function(err, user) {
+      remainingArr = user.pets.filter(data => data.name != req.body.name);
+      user.pets = remainingArr
+      user.save().then(
+        res.json(user))
+    })
+    } catch (e) {
+      console.log(e);
+   }
+};
 // Delete all Pets from the database.
 exports.deleteAll = (req, res) => {
     Pet.deleteMany({})

@@ -2,6 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { setMessage } from "./message";
 import UserService from  '../services/user.service';
 import AuthService from "../services/auth.service";
+import PetService from  '../services/pet.service';
 
 let user;
 if (typeof window !== 'undefined') {
@@ -53,7 +54,6 @@ export const createPet = createAsyncThunk("pet/create",
       try {
           const response = await UserService.createPet(userId, name, age, breed, weight);
           thunkAPI.dispatch(setMessage(response.data.message));
-          //console.log("res: ", response.data)
           return response.data;
         } catch (error) {
           const message =
@@ -72,6 +72,24 @@ export const editPet = createAsyncThunk("pet/edit",
 async ({ username, name, target, id }, thunkAPI) => {
   try {
     const response = await UserService.editPet(username, name, target, id);
+            thunkAPI.dispatch(setMessage(response.data));
+            return response.data;
+  } catch (error) {
+    const message =
+              (error.response &&
+                error.response.data &&
+                error.response.data.message) ||
+              error.message ||
+              error.toString();
+            thunkAPI.dispatch(setMessage(message));
+            return thunkAPI.rejectWithValue();
+  }
+})
+
+export const deletePet = createAsyncThunk("pet/delete",
+async (name, thunkAPI) => {
+  try {
+    const response = await PetService.deletePet(name);
             thunkAPI.dispatch(setMessage(response.data));
             return response.data;
   } catch (error) {
@@ -118,7 +136,10 @@ const authSlice = createSlice({
     [editPet.fulfilled]: (state, action) => {
       state.user.pets = action.payload.user.pets
       localStorage.setItem("user", JSON.stringify(state.user))
-  }
+  },
+  [deletePet.fulfilled]: (state, action) => {
+    state.user = action.payload;
+  },
   },
 });
 const { reducer } = authSlice;
