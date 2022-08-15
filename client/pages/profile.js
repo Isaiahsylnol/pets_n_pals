@@ -2,10 +2,9 @@ import Head from 'next/head';
 import Header from '../components/Header.js';
 import Footer from '../components/Footer';
 import PetCard from '../components/PetCard.js';
-import { Redirect } from 'react-router-dom';
 import { useSelector } from "react-redux";
-import CreatePetModal from '../components/Modal/CreatePetModal'
-import ModalService from '../components/Modal/services/ModalService'
+import CreatePetModal from '../components/Modal/CreatePetModal';
+import ModalService from '../components/Modal/services/ModalService';
 import {
   PhoneIcon,
   ExclamationIcon,
@@ -15,17 +14,17 @@ import React, { useEffect, useState } from 'react'
 
 export default function Profile() {
   const { user: currentUser } = useSelector((state) => state.auth);
-  const [users, setUsers] = useState()
+  const [user, setUser] = useState()
 
   const addModal = (modal) => {
     ModalService.open(modal)
   }
 
   useEffect(()=> {
-    setUsers(currentUser)
-    console.log("USER'S PETS: ", users)
+    setUser(currentUser)
+    console.log("USER'S PETS: ", currentUser)
   },[currentUser])
-  if(users){
+  if(user){
     return (
         <div className="container-fluid mx-auto">
           <div style={{ marginBottom: '80px' }}>
@@ -45,12 +44,12 @@ export default function Profile() {
                         Edit
                       </button>
                     </div>
-                    <p className="text-lg font-bold">{currentUser?.username}</p>
-                    <p>{currentUser?.address}</p>
+                    <p className="text-lg font-bold">{user?.username}</p>
+                    <p>{user?.address}</p>
                     <p>Toronto, Canada</p>
                     <p>652-333-4553</p>
-                    <p>{users.email}</p>
-                    <p>{users.account_type}</p>
+                    <p>{user.email}</p>
+                    <p>{user.account_type}</p>
                     <div className="mt-10 grid grid-cols-1 gap-y-3 text-base">
                       <button className="flex h-10 w-36 justify-start rounded bg-yellow-500 py-2 px-4 font-bold text-white hover:bg-blue-700">
                         <PhoneIcon className="inline h-6 w-6" />
@@ -78,7 +77,7 @@ export default function Profile() {
                 >
                   Create Pet
                 </button>
-                {currentUser?.pets?.map((item) => {
+                {user?.pets?.map((item) => {
               return (
                 <li key={item?._id} style={{ listStyle: 'none' }}>
                   {

@@ -1,11 +1,11 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { setMessage } from "./message";
-import UserService from  '../services/user.service';
-import AuthService from "../services/auth.service";
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { setMessage } from './message';
+import UserService from '../services/user.service';
+import AuthService from '../services/auth.service';
 import PetService from  '../services/pet.service';
 
 let user;
-if (typeof window !== 'undefined') {
+if (typeof window !== "undefined") {
   user = JSON.parse(localStorage.getItem("user"));
 }
 export const register = createAsyncThunk(
@@ -91,6 +91,7 @@ async (name, thunkAPI) => {
   try {
     const response = await PetService.deletePet(name);
             thunkAPI.dispatch(setMessage(response.data));
+            localStorage.setItem("user", JSON.stringify(response.data))
             return response.data;
   } catch (error) {
     const message =

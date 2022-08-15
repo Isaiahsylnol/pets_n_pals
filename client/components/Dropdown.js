@@ -1,10 +1,10 @@
-import { Menu, Transition } from '@headlessui/react'
-import { Fragment, useEffect } from 'react'
-import { ChevronDownIcon } from '@heroicons/react/solid'
-import ModalService from '../components/Modal/services/ModalService'
-import { useDispatch, useSelector } from "react-redux"
-import EditPetModal from './Modal/EditPetModal'
-import { deletePet } from '../slices/auth'
+import { Menu, Transition } from '@headlessui/react';
+import { Fragment, useEffect } from 'react';
+import { ChevronDownIcon } from '@heroicons/react/solid';
+import ModalService from '../components/Modal/services/ModalService';
+import { useDispatch, useSelector } from 'react-redux';
+import EditPetModal from './Modal/EditPetModal';
+import { deletePet } from '../slices/auth';
 
 export default function Dropdown(props) {
   const { user: currentUser } = useSelector((state) => state.auth);
@@ -43,7 +43,7 @@ export default function Dropdown(props) {
               <Menu.Item>
                 {({ active }) => (
                   <button
-                    onClick={ () => addModal(() => EditPetModal(props)) }
+                  onClick={() => addModal(EditPetModal)}
                     className={`${
                       active ? 'bg-orange-400 text-white' : 'text-gray-900'
                     } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
