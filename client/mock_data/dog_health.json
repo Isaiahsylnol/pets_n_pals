@@ -1,0 +1,30 @@
+[
+    {
+        "id": "1",
+        "breed": "Boxer",
+        "title": "Boxer health",
+        "article": "mock article data",
+        "date_created": "1971-08-01T00:00:00+00:00"
+    },
+    {
+        "id": "2",
+        "breed": "Husky",
+        "title": "Husky health",
+        "article": "mock article data",
+        "date_created": "1971-08-01T00:00:00+00:00"
+    },
+    {
+        "id": "3",
+        "breed": "Weiner",
+        "title": "Weiner health",
+        "article": "mock article data",
+        "date_created": "1971-08-01T00:00:00+00:00"
+    },
+    {
+        "id": "4",
+        "breed": "Akita",
+        "title": "Akita health",
+        "article": "mock article data",
+        "date_created": "1971-08-01T00:00:00+00:00"
+    }
+]

@@ -1,5 +1,5 @@
-const { authJwt } = require("../middlewares");
-const controller = require("../controllers/auth.controller");
+const { authJwt } = require('../middlewares');
+const controller = require('../controllers/auth.controller');
 module.exports = app => {
   const users = require("../controllers/user.controller.js");
   const router = require("express").Router();
@@ -23,6 +23,5 @@ module.exports = app => {
     [authJwt.verifyToken, authJwt.isAdmin],
     controller.adminBoard
   );
- 
-  app.use('/api/users', router);
+  app.use("/api/user", router);
 }

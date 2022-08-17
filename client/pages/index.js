@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../slices/auth";
 import EventBus from '../common/EventBus';
 import petService from '../services/pet.service';
+
 export default function Home() {
   const [showModeratorBoard, setShowModeratorBoard] = useState(false);
   const [showAdminBoard, setShowAdminBoard] = useState(false);
@@ -16,9 +17,9 @@ export default function Home() {
   const logOut = useCallback(() => {
     dispatch(logout());
   }, [dispatch]);
-  let arr = [];
+
   useEffect(() => {
-    
+    petService.curatedPetFeed(currentUser.pets)
     if (currentUser) {
       setShowModeratorBoard(currentUser.roles.includes("ROLE_MODERATOR"));
       setShowAdminBoard(currentUser.roles.includes("ROLE_ADMIN"));

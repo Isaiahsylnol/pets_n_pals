@@ -1,7 +1,13 @@
 import axios from 'axios';
+import dogHealth from '../mock_data/dog_health.json'
 const API_URL = 'https://api.thedogapi.com/v1/breeds';
 const getDogBreeds = async () => {
     return await axios.get(API_URL)
+};
+
+const curatedPetFeed = async (pets) => {
+    let result = dogHealth.filter(o1 => pets.some(o2 => o1.breed === o2.breed));
+    console.log(result);
 };
 
 const deletePet = async (name) => {
@@ -10,6 +16,7 @@ const deletePet = async (name) => {
 
 const petService = {
     getDogBreeds,
+    curatedPetFeed,
     deletePet
 }
 
