@@ -5,9 +5,9 @@ const getDogBreeds = async () => {
     return await axios.get(API_URL)
 };
 
-const curatedPetFeed = async (pets) => {
-    let result = dogHealth.filter(o1 => pets.some(o2 => o1.breed === o2.breed));
-    console.log(result);
+const curatedPetFeed = (pets) => {
+    let result = dogHealth.filter(o1 => pets?.some(o2 => o1.breed === o2.breed));
+    return result;
 };
 
 const deletePet = async (name) => {
