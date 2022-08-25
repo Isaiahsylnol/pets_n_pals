@@ -65,9 +65,7 @@ export default function CreatePetModal(props) {
     onSubmit: (values) => {
       const { name, age, breed, weight } = values;
       let userId = currentUser.id;
-      dispatch(createPet({ name, age, breed, weight, userId })).then(
-        window.location.reload()
-      );
+      dispatch(createPet({ name, age, breed, weight, userId }))
     },
   });
 

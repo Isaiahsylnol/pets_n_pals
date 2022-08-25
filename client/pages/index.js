@@ -3,12 +3,13 @@ import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import Header from '../components/Header.js';
 import BoardAdmin from "./boardAdmin";
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { logout } from "../slices/auth";
+import { logout } from '../slices/auth';
 import EventBus from '../common/EventBus';
 import petService from '../services/pet.service';
-import NewsWidget from '../components/NewsWidget';
+import dynamic from 'next/dynamic';
+const NewsWidget = dynamic(()=>import('../components/NewsWidget'), { ssr: false });
 
 export default function Home() {
   const [showModeratorBoard, setShowModeratorBoard] = useState(false);
@@ -20,6 +21,10 @@ export default function Home() {
   }, [dispatch]);
   
  let feed = petService.curatedPetFeed(currentUser?.pets);
+
+ useEffect(() => {
+  
+}, []);
   useEffect(() => {
     if (currentUser) {
       setShowModeratorBoard(currentUser.roles.includes("ROLE_MODERATOR"));
@@ -44,9 +49,7 @@ export default function Home() {
       </Head>
       <Header />
       <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
+     
         <p className={styles.description}>
           Get started by editing{' '}
           <code className={styles.code}>pages/index.js</code>
@@ -55,12 +58,13 @@ export default function Home() {
         <div className={styles.grid}>
         {feed?.map((item) => {
               return (
-                <NewsWidget className={styles.card} item={item}/>
+                <div className='p-3'>
+                  <NewsWidget className={styles.card} item={item}/>
+                </div>
               )
             })}
         </div>
       </main>
-
       <footer className={styles.footer}>
         <a
           href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"

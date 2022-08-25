@@ -4,27 +4,63 @@
         "breed": "Boxer",
         "title": "Boxer health",
         "article": "mock article data",
-        "date_created": "1971-08-01T00:00:00+00:00"
+        "date_created": "1971-08-01T00:00:00+00:00",
+        "thumbnail": "puppy_house.jpg"
     },
     {
         "id": "2",
         "breed": "Husky",
         "title": "Husky health",
         "article": "mock article data",
-        "date_created": "1971-08-01T00:00:00+00:00"
+        "date_created": "1971-08-01T00:00:00+00:00",
+        "thumbnail": "dog_house1.jpg"
     },
     {
         "id": "3",
         "breed": "Weiner",
         "title": "Weiner health",
         "article": "mock article data",
-        "date_created": "1971-08-01T00:00:00+00:00"
+        "date_created": "1971-08-01T00:00:00+00:00",
+        "thumbnail": "dog_pills.jpg"
+    },
+    {
+        "id": "8",
+        "breed": "Barbet",
+        "title": "Barbet health",
+        "article": "mock article data",
+        "date_created": "1971-08-01T00:00:00+00:00",
+        "thumbnail": "dog_pills.jpg"
     },
     {
         "id": "4",
         "breed": "Akita",
         "title": "Akita health",
         "article": "mock article data",
-        "date_created": "1971-08-01T00:00:00+00:00"
+        "date_created": "1971-08-01T00:00:00+00:00",
+        "thumbnail": "types_of_akita_dog_breeds_3909_orig.jpg"
+    },
+    {
+        "id": "5",
+        "breed": "Any",
+        "title": "Teach Fido the Latest Tricks",
+        "article": "mock article data",
+        "date_created": "2021-08-01T00:00:00+00:00",
+        "thumbnail": "pet_news.jpg"
+    },
+    {
+        "id": "6",
+        "breed": "Any",
+        "title": "Best dog walk times",
+        "article": "mock article data",
+        "date_created": "2021-08-01T00:00:00+00:00",
+        "thumbnail": "pet_news.jpg"
+    },
+    {
+        "id": "7",
+        "breed": "Any",
+        "title": "How to Shower Fido",
+        "article": "mock article data",
+        "date_created": "2021-08-01T00:00:00+00:00",
+        "thumbnail": "pet_news.jpg"
     }
 ]

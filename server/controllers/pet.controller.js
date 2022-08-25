@@ -59,7 +59,7 @@ exports.delete = (req, res) => {
     });
   }
   try {
-    User.findById('62cf23619797694d94e4f943', function(err, user) {
+    User.findById(req.body.id, function(err, user) {
       remainingArr = user.pets.filter(data => data.name != req.body.name);
       user.pets = remainingArr
       user.save().then(

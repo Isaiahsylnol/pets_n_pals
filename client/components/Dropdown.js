@@ -1,6 +1,7 @@
 import { Menu, Transition } from '@headlessui/react';
 import { Fragment, useEffect } from 'react';
 import { ChevronDownIcon } from '@heroicons/react/solid';
+import { DotsHorizontalIcon } from '@heroicons/react/solid';
 import ModalService from '../components/Modal/services/ModalService';
 import { useDispatch, useSelector } from 'react-redux';
 import EditPetModal from './Modal/EditPetModal';
@@ -21,10 +22,9 @@ export default function Dropdown(props) {
     <div className="w-56 float-right">
       <Menu as="div" className="relative inline-block text-right float-right">
         <div>
-          <Menu.Button className="inline-flex w-full justify-center rounded-md bg-black bg-opacity-40 px-4 py-2 text-sm font-medium text-white hover:bg-opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
-            Options
-            <ChevronDownIcon
-              className="ml-2 -mr-1 h-5 w-5 text-white-200 hover:text-orange-100"
+          <Menu.Button className="inline-flex w-full justify-center rounded-md px-4 py-2 text-sm font-medium text-black hover:bg-opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
+            <DotsHorizontalIcon
+              className="h-5 w-5 text-white-200 hover:text-orange-100"
               aria-hidden="true"
             />
           </Menu.Button>

@@ -82,6 +82,7 @@ export default function Profile() {
                 <li key={item?._id} style={{ listStyle: 'none' }}>
                   {
                     <PetCard
+                    userId={user?.id}
                       title={item?.name}
                       image={require('/assets/default_pet_profile.png')}
                       description={item?.breed}

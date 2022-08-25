@@ -12,7 +12,6 @@ module.exports = app => {
   router.put("/:id", pets.update);
   // Delete a Pet with id
   router.delete("/:id", pets.delete);
-  // Delete all Pets
   //router.delete("/", pets.deleteAll);
   app.use('/api/pets', router);
 };

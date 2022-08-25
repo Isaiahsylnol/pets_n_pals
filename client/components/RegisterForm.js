@@ -4,7 +4,7 @@ import Router from 'next/router'
 import { createUserWithEmailAndPassword } from 'firebase/auth'
 import axios from 'axios';
 import useForm from '../utils/useForm';
-import validate from "../utils/formValidation";
+import validate from '../utils/formValidation';
 
 const RegisterForm = ({ submitForm }) =>  {
 

@@ -6,12 +6,13 @@ const getDogBreeds = async () => {
 };
 
 const curatedPetFeed = (pets) => {
-    let result = dogHealth.filter(o1 => pets?.some(o2 => o1.breed === o2.breed));
+    let result = dogHealth.filter(o1 => pets?.some(o2 => o1.breed === o2.breed || o1.breed === 'Any'));
+
     return result;
 };
 
-const deletePet = async (name) => {
-    return await axios.delete(`http://localhost:8080/api/pets/62cf23619797694d94e4f943`, { data: name })
+const deletePet = async (userId, name) => {
+    return await axios.delete(`http://localhost:8080/api/pets/62cf23619797694d94e4f943`, { data: userId, name })
 };
 
 const petService = {
