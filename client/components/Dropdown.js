@@ -1,6 +1,5 @@
 import { Menu, Transition } from '@headlessui/react';
 import { Fragment, useEffect } from 'react';
-import { ChevronDownIcon } from '@heroicons/react/solid';
 import { DotsHorizontalIcon } from '@heroicons/react/solid';
 import ModalService from '../components/Modal/services/ModalService';
 import { useDispatch, useSelector } from 'react-redux';
@@ -11,11 +10,10 @@ export default function Dropdown(props) {
   const { user: currentUser } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
-  useEffect(()=>{
-    console.log(currentUser.id)
-  },[])
-  const addModal = (modal) => {
-    ModalService.open(modal);
+  const addModal = (props) => {
+    
+    ModalService.open(EditPetModal);
+    console.log(props)
   };
 
   return (
@@ -39,11 +37,11 @@ export default function Dropdown(props) {
           leaveTo="transform opacity-0 scale-95"
         >
           <Menu.Items className="absolute right-0 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-            <div className="px-1 py-1 ">
+            <div className="px-1 py-1">
               <Menu.Item>
                 {({ active }) => (
                   <button
-                  onClick={() => addModal(EditPetModal)}
+                  onClick={()=> addModal(props) }
                     className={`${
                       active ? 'bg-orange-400 text-white' : 'text-gray-900'
                     } group flex w-full items-center rounded-md px-2 py-2 text-sm`}

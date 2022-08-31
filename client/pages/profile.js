@@ -22,7 +22,6 @@ export default function Profile() {
 
   useEffect(()=> {
     setUser(currentUser)
-    console.log("USER'S PETS: ", currentUser)
   },[currentUser])
   if(user){
     return (
@@ -48,7 +47,7 @@ export default function Profile() {
                     <p>{user?.address}</p>
                     <p>Toronto, Canada</p>
                     <p>652-333-4553</p>
-                    <p>{user.email}</p>
+                    <p>{user?.email}</p>
                     <p>{user.account_type}</p>
                     <div className="mt-10 grid grid-cols-1 gap-y-3 text-base">
                       <button className="flex h-10 w-36 justify-start rounded bg-yellow-500 py-2 px-4 font-bold text-white hover:bg-blue-700">
@@ -82,8 +81,8 @@ export default function Profile() {
                 <li key={item?._id} style={{ listStyle: 'none' }}>
                   {
                     <PetCard
-                    userId={user?.id}
-                      title={item?.name}
+                      userId={user?.id}
+                      name={item?.name}
                       image={require('/assets/default_pet_profile.png')}
                       description={item?.breed}
                     />

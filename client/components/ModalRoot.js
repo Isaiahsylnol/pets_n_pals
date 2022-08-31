@@ -25,7 +25,7 @@ export default function ModalRoot() {
       { ModalComponent && (
         <ModalComponent
           { ...modal.props }
-          taget
+          target
           close={ modal.close }
           className={ ModalComponent ? 'd-block' : '' }
         />

@@ -6,7 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { createPet } from "../../slices/auth";
 import { useFormik } from "formik";
 import CustomSelect from "../CustomSelect";
-import petService from "../../services/pet.service";
+import PetService from "../../services/pet.service";
 
 export default function CreatePetModal(props) {
   const dispatch = useDispatch();
@@ -15,7 +15,8 @@ export default function CreatePetModal(props) {
 
   // Population of the pet breed select tag's options 
   useEffect(() => {
-    petService.getDogBreeds().then((response) =>
+    console.log(props)
+    PetService.getDogBreeds().then((response) =>
       response.data.forEach((element) => {
         dict.push({
           value: element.name,

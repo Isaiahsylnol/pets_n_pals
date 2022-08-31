@@ -45,8 +45,8 @@ export const login = createAsyncThunk(
     }
   }
 );
-export const logout = createAsyncThunk("auth/logout", async () => {
-  await AuthService.logout();
+export const logout = createAsyncThunk("auth/logout", () => {
+  AuthService.logout();
 });
 
 export const createPet = createAsyncThunk("pet/create",
@@ -90,8 +90,8 @@ export const deletePet = createAsyncThunk("pet/delete",
 async (name, thunkAPI) => {
   try {
     const response = await PetService.deletePet(name);
-            thunkAPI.dispatch(setMessage(response.data));
-            localStorage.setItem("user", JSON.stringify(response.data))
+    console.log(response.data)
+            thunkAPI.dispatch(setMessage(response.data.pets));
             return response.data;
   } catch (error) {
     const message =
@@ -135,11 +135,13 @@ const authSlice = createSlice({
       localStorage.setItem("user", JSON.stringify(state.user))
     },
     [editPet.fulfilled]: (state, action) => {
-      state.user.pets = action.payload.user.pets
+      console.log(action)
+     //state.user.pets = action.payload.user.pets
       localStorage.setItem("user", JSON.stringify(state.user))
   },
   [deletePet.fulfilled]: (state, action) => {
-    state.user = action.payload;
+    state.user.pets = action.payload;
+    localStorage.setItem("user", JSON.stringify(state.user))
   },
   },
 });

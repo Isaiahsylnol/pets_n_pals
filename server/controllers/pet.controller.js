@@ -63,7 +63,7 @@ exports.delete = (req, res) => {
       remainingArr = user.pets.filter(data => data.name != req.body.name);
       user.pets = remainingArr
       user.save().then(
-        res.json(user))
+        res.json(user.pets))
     })
     } catch (e) {
       console.log(e);

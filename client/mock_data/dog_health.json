@@ -62,5 +62,13 @@
         "article": "mock article data",
         "date_created": "2021-08-01T00:00:00+00:00",
         "thumbnail": "pet_news.jpg"
+    },
+    {
+        "id": "9",
+        "breed": "Any",
+        "title": "Teach Your Pup How to Fetch",
+        "article": "mock article data",
+        "date_created": "2021-08-01T00:00:00+00:00",
+        "thumbnail": "pet_news.jpg"
     }
 ]

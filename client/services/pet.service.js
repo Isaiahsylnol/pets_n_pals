@@ -11,14 +11,14 @@ const curatedPetFeed = (pets) => {
     return result;
 };
 
-const deletePet = async (userId, name) => {
-    return await axios.delete(`http://localhost:8080/api/pets/62cf23619797694d94e4f943`, { data: userId, name })
+const deletePet = async (props) => {
+    return await axios.delete(`http://localhost:8080/api/pets/${props.id}`, { data: props })
 };
 
-const petService = {
+const PetService = {
     getDogBreeds,
     curatedPetFeed,
     deletePet
 }
 
-export default petService;
+export default PetService;

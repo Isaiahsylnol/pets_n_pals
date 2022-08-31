@@ -2,7 +2,7 @@
 
 import axios from "axios";
 import authHeader from "./auth-header";
-const API_URL = "http://localhost:8080/api/user/test/";
+const API_URL = "http://localhost:8080/api/pets/";
 
 const createPet = (userId, name, age, breed, weight) => {
   return axios.post("http://localhost:8080/api/pets/add-pet", {
@@ -22,8 +22,8 @@ const editPet = async (username, name, target, id) => {
   })};
 
 const getPublicContent = () => {
-  return axios.get(API_URL + "public");
-};
+    return axios.get("http://localhost:8080/api/user/test/public");
+  };
 const getUserBoard = () => {
   return axios.get(API_URL + "user", { headers: authHeader() });
 };

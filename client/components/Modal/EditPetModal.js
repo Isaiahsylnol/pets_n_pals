@@ -3,16 +3,18 @@ import ModalBody from './ModalBody';
 import ModalHeader from './ModalHeader';
 import { editPet } from '../../slices/auth';
 import { useDispatch } from 'react-redux';
+import { useState, useEffect } from 'react';
 import React from 'react';
 
-export default function EditPetModal(props) {
+export default function EditPetModal(props, heck) {
   const dispatch = useDispatch();
+  console.log(heck)
   const onSubmit = (event) => {
     event.preventDefault(event)
   // Logic for communicating with server to Edit pet
     let target = props.name
     let username = JSON.parse(localStorage.getItem("user")).username
-    let id = JSON.parse(localStorage.getItem("user")).id
+    let id = props.id
     let name = event.target.name.value
     dispatch(editPet({name, target, username, id})) 
   }
