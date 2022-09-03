@@ -19,7 +19,8 @@ function Header() {
   };
   
   return (
-    <header className='flex items-center space-x-2 md:space-x-10 z-40 bg-white'><h3>Header</h3>
+    <header className='flex items-center space-x-2 md:space-x-10 z-40 bg-white'>
+      <h3>Header</h3>
     <div>
       <nav>
         <ul className='hidden space-x-4 md:flex'>
@@ -27,6 +28,7 @@ function Header() {
           <li className='nav-link'><Link href="/shop" >Shop</Link></li>
           <li className='nav-link'><Link href="/manage_pets" >Manage Pets</Link></li>
           <li className='nav-link'><Link href="/about" >About</Link></li>
+          <li className='nav-link'><Link href="/subscriptions" >Subscriptions</Link></li>
         </ul>
       </nav>
     </div>

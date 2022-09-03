@@ -1,19 +1,9 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
-import Header from '../components/Header.js';
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { register } from "../slices/auth";
 import { clearMessage } from "../slices/message";
-import PetList from '../components/petList';
-import {
-  PhoneIcon,
-  ExclamationIcon,
-  ViewGridIcon,
-} from '@heroicons/react/outline'
 
 export default function Register() {
 
