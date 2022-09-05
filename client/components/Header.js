@@ -20,7 +20,14 @@ function Header() {
   
   return (
     <header className='flex items-center space-x-2 md:space-x-10 z-40 bg-white'>
-      <h3>Header</h3>
+      <a href='/'>
+      <Image
+                src={require(`/assets/logo-4.png`)}
+                alt="Vercel Logo"
+                width={100}
+                height={40}
+              />
+      </a>
     <div>
       <nav>
         <ul className='hidden space-x-4 md:flex'>
