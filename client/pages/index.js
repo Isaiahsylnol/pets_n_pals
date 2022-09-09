@@ -25,17 +25,18 @@ export default function Home() {
  let feed = PetService.curatedPetFeed(currentUser?.pets);
 
  useEffect(() => {
+  console.log(feed)
   setItems(feed)
 }, [currentUser]);
 
   useEffect(() => {
-    if (currentUser) {
-      setShowModeratorBoard(currentUser.roles.includes("ROLE_MODERATOR"));
-      setShowAdminBoard(currentUser.roles.includes("ROLE_ADMIN"));
-    } else {
-      setShowModeratorBoard(false);
-      setShowAdminBoard(false);
-    }
+    // if (currentUser) {
+    //   setShowModeratorBoard(currentUser.roles.includes("ROLE_MODERATOR"));
+    //   setShowAdminBoard(currentUser.roles.includes("ROLE_ADMIN"));
+    // } else {
+    //   setShowModeratorBoard(false);
+    //   setShowAdminBoard(false);
+    // }
     EventBus.on("logout", () => {
       logOut();
     });

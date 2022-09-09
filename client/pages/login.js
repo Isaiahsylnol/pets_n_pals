@@ -1,4 +1,4 @@
-import Header from '../components/Header.js';
+import Image from 'next/image'
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Formik, Field, Form, ErrorMessage } from "formik";
@@ -8,7 +8,6 @@ import { clearMessage } from "../slices/message";
  
 
 export default function Login() {
-
   const [successful, setSuccessful] = useState(false);
   const { message } = useSelector((state) => state.message);
   const dispatch = useDispatch();
@@ -58,17 +57,16 @@ export default function Login() {
   };
 
   return (
-    <div className="justify-content-center container mx-auto">
-      <div className="relative mx-auto mt-4 max-w-xl bg-white text-left shadow-md sm:rounded-lg">
-        <div className="justify-content-center container mx-auto flex flex-col">
+      <div className="relative mx-auto  max-w-xl bg-white text-left shadow-md sm:rounded-lg">
+        <div className="justify-center container mx-auto flex flex-col">
           <h1 className="p-6 text-center title">Login</h1>
-          {/* <Image
+          <Image
             className="mx-auto object-contain"
             alt="Food Image"
             width={300}
             height={300}
             src={require('/assets/logo2.png')}
-          /> */}
+          />
         </div>
         <Formik
           initialValues={initialValues}
@@ -115,6 +113,5 @@ export default function Login() {
           )}
       </Formik>
       </div>
-    </div>
   );
 }

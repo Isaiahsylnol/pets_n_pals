@@ -5,23 +5,26 @@ import PetCard from '../components/PetCard.js';
 import { useSelector } from "react-redux";
 import CreatePetModal from '../components/Modal/CreatePetModal';
 import ModalService from '../components/Modal/services/ModalService';
+import { useRouter } from 'next/router';
 import {
   PhoneIcon,
   ExclamationIcon,
   ViewGridIcon,
-} from '@heroicons/react/outline'
-import React, { useEffect, useState } from 'react'
+} from '@heroicons/react/outline';
+import React, { useEffect, useState } from 'react';
+import Login from './login.js';
 
 export default function Profile() {
   const { user: currentUser } = useSelector((state) => state.auth);
-  const [user, setUser] = useState()
+  const [user, setUser] = useState();
+  const router = useRouter();
 
   const addModal = (modal) => {
-    ModalService.open(modal)
+    ModalService.open(modal);
   }
 
   useEffect(()=> {
-    setUser(currentUser)
+    setUser(currentUser);
   },[currentUser])
   if(user){
     return (
@@ -96,5 +99,6 @@ export default function Profile() {
           <Footer />
         </div>
       )
-  }
+  } return(<Login/>)
+ 
 }
