@@ -55,10 +55,10 @@ export default function Home() {
       <main className={styles.main}>
       
         {/* Feed display - Flex Grid */}
-        <div className="w-full flex flex-wrap p-7 gap-y-5 bg-grey-light">
+        <div className="w-full flex flex-wrap p-7 bg-grey-light justify-center">
         {newsItems?.map((item) => {
               return (
-                <div key={item.id} className=' border-8 w-full lg:w-1/3 bg-grey'>
+                <div key={item.id} className='w-full md:w-1/2 lg:w-1/2 lg:p-8 bg-grey max-w-4xl'>
                   <NewsWidget item={item}/>
                 </div>
               )

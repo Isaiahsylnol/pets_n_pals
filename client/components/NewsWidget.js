@@ -4,21 +4,25 @@ import Dropdown from "../components/Dropdown";
 
 function NewsWidget({ item }) {
   return (
-    <div key={item.id} className="rounded-xl border-2 bg-orange-200 text-6xl">
-      <span className="float-right z-30 p-3"><Dropdown item={item}  /></span>
-      <div className="rounded-xl  p-6">
-      <Image
+    <div key={item.id} className="p-4 w-full lg:w-2/3 mb-6">
+        <div className="rounded-lg">
+        <span className="float-right z-30 p-3"><Dropdown item={item}  /></span>
+        <Image
                 src={require(`/assets/${item.thumbnail}`)}
                 alt="Vercel Logo"
                 width={502}
                 height={306}
               />
-        <div>
-        <h5 className="text-base mt-2">{item?.date_created}</h5>
-          <h2 className="font-semibold text-xl mt-4">{item?.title}</h2>
         </div>
+        <h2 className="text-xl font-medium title-font text-gray-900 mt-5">{item?.title}</h2>
+        <h5 className="text-base mt-2">{item?.date_created}</h5>
+        <p className="text-base leading-relaxed mt-2">Swag shoivdigoitch literally meditation subway tile tumblr cold-pressed. Gastropub street art beard dreamcatcher neutra, ethical XOXO lumbersexual.</p>
+        <a className="text-indigo-500 inline-flex items-center mt-3">Learn More
+          <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
+            <path d="M5 12h14M12 5l7 7-7 7"></path>
+          </svg>
+        </a>
       </div>
-    </div>
   );
 }
 
