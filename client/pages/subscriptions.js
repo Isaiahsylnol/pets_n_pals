@@ -76,7 +76,7 @@ export default function Subscriptions() {
             </SubscribeContainer>
           </div>
           {user ? null : (
-            <a href="/login">
+            <a href="/login-register">
             <button
               type="button"
               className="text-white bg-orange-400 hover:bg-[#1F1F1F] font-medium rounded-full text-sm px-8 py-4 text-center mr-2 mb-2"

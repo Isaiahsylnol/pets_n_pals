@@ -2,28 +2,19 @@ import Image from 'next/image'
 import Modal from "./Modal";
 import ModalBody from "./ModalBody";
 import ModalHeader from "./ModalHeader";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
-import { useSelector, useDispatch } from "react-redux";
-import { createPet } from "../../slices/auth";
-import { useFormik } from "formik";
+import { useDispatch } from "react-redux";
 import * as Yup from "yup";
 import { login } from '../../slices/auth';
-import CustomSelect from "../CustomSelect";
-import PetService from "../../services/pet.service";
 
 export default function LoginModal(props) {
   const dispatch = useDispatch();
- 
-  // Population of the pet breed select tag's options 
-
   const initialValues = {
     username: "",
     password: "",
   };
-  useEffect(()=> {
-    console.log(props);
-  },[]);
+
   const validationSchema = Yup.object().shape({
     username: Yup.string()
       .test(
@@ -47,12 +38,21 @@ export default function LoginModal(props) {
       .required("This field is required!"),
   });
 
+  // Referrence to the modal close button 
+  // programmatically close the modal once 
+  // successfully sign in 
+  const close = useRef(null);
+  const closeModal = () => {
+    close.current.click();
+  }
+
   const handleSubmit = (formValue) => {
     const { username, password } = formValue;
     console.log("FORM VALUES: ", username, password)
     dispatch(login({ username, password }))
       .unwrap()
       .then(() => {
+        closeModal()
         setSuccessful(true);
         window.location.replace('/');
       })
@@ -64,10 +64,10 @@ export default function LoginModal(props) {
     <Modal>
       <div className="float-right justify-center">
         <button
+          ref={close}
           aria-label="Close Modal"
           aria-labelledby="close-modal"
           onClick={props.close}
-          className="btn btn-primary"
         >
           <span id="close-modal" className="_hide-visual">
             Close
@@ -87,13 +87,13 @@ export default function LoginModal(props) {
         </button>
       </div>
       <ModalHeader>
-        <h3 className="mx-auto flex justify-center title">Login</h3>
+        <h1 className="text-center">Sign In</h1>
       </ModalHeader>
       <ModalBody>
-      <div className="bg-white text-left shadow-md sm:rounded-lg w-96">
-        <div className="justify-center container mx-auto flex flex-col">
+      <div className="bg-white w-96">
+        <div className="flex flex-col">
           <Image
-            className="mx-auto object-contain"
+            className="object-contain"
             alt="Logo Image"
             width={300}
             height={300}
@@ -130,13 +130,13 @@ export default function LoginModal(props) {
                 />
               </div>
               <div>
-                <button type="submit" className="mt-4 bg-blue-500 text-white py-2 px-6 w-full rounded-lg">
-                  Login
+                <button type="submit" className="mt-4 bg-blue-500 text-white py-2 w-2/3 rounded-lg">
+                Sign In
                 </button>
                 <button
                   type="button"
                   onClick={resetForm}
-                  className="btn btn-warning float-right"
+                  className="p-6 float-right"
                 >
                   Reset
                 </button>

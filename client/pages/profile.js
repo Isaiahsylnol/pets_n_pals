@@ -12,7 +12,7 @@ import {
   ViewGridIcon,
 } from '@heroicons/react/outline';
 import React, { useEffect, useState } from 'react';
-import Login from './login.js';
+import Login from './login-register';
 
 export default function Profile() {
   const { user: currentUser } = useSelector((state) => state.auth);

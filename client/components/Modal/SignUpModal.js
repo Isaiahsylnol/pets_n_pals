@@ -2,11 +2,12 @@ import Image from 'next/image'
 import Modal from "./Modal";
 import ModalBody from "./ModalBody";
 import ModalHeader from "./ModalHeader";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import { useSelector, useDispatch } from "react-redux";
 import * as Yup from "yup";
 import { clearMessage } from "../../slices/message";
+import { register } from "../../slices/auth";
 
 export default function SignUpModal(props) {
   const [successful, setSuccessful] = useState(false);
@@ -15,15 +16,14 @@ export default function SignUpModal(props) {
   useEffect(() => {
     dispatch(clearMessage());
   }, [dispatch]);
- 
-  // Population of the pet breed select tag's options 
 
   const initialValues = {
     username: "",
+    email: "",
     password: "",
   };
   useEffect(()=> {
-    console.log(props);
+    console.log();
   },[]);
   const validationSchema = Yup.object().shape({
     username: Yup.string()
@@ -36,17 +36,25 @@ export default function SignUpModal(props) {
           val.toString().length <= 20
       )
       .required("This field is required!"),
+    email: Yup.string()
+      .email("This is not a valid email.")
+      .required("This field is required!"),
     password: Yup.string()
       .test(
         "len",
-        "The password must be between 7 and 40 characters.",
+        "The password must be between 6 and 40 characters.",
         (val) =>
           val &&
-          val.toString().length >= 7 &&
+          val.toString().length >= 6 &&
           val.toString().length <= 40
       )
       .required("This field is required!"),
   });
+
+  const close = useRef(null);
+  const closeModal = () => {
+    setTimeout(() => close.current.click(), 1500);
+  }
 
   const handleRegister = (formValue) => {
     const { username, email, password } = formValue;
@@ -55,6 +63,7 @@ export default function SignUpModal(props) {
       .unwrap()
       .then(() => {
         setSuccessful(true);
+        closeModal()
       })
       .catch(() => {
         setSuccessful(false);
@@ -63,12 +72,13 @@ export default function SignUpModal(props) {
 
   return (
     <Modal>
+        {/* Close modal button */}
       <div className="float-right justify-center">
         <button
+          ref={close}
           aria-label="Close Modal"
           aria-labelledby="close-modal"
           onClick={props.close}
-          className="btn btn-primary"
         >
           <span id="close-modal" className="_hide-visual">
             Close
@@ -87,15 +97,15 @@ export default function SignUpModal(props) {
           </svg>
         </button>
       </div>
+      {/* Close modal button - END */}
       <ModalHeader>
-        <h1 className="mx-auto flex justify-center title">Sign up</h1>
+        <h1 className="text-center">Sign Up</h1>
       </ModalHeader>
       <ModalBody>
-      <div className="mx-auto max-w-xl text-left sm:rounded-lg">
-      <div className="justify-center container mx-auto flex flex-col">
+      <div className="justify-center w-96 flex">
           <Image
-            className="mx-auto object-contain"
-            alt="Food Image"
+            className="object-contain"
+            alt="Logo Image"
             width={300}
             height={300}
             src={require('/assets/logo2.png')}
@@ -110,35 +120,29 @@ export default function SignUpModal(props) {
           <Form className="py-6 px-8">
             {!successful && (
               <div>
-                <div className="form-group">
-                <label htmlFor="username" className="block font-semibold"> Username </label>
+                <label htmlFor="username" className="block font-semibold">Username</label>
                 <Field name="username" type="text" className="border w-full h-5 px-3 py-5 mt-2 hover:outline-none focus:outline-none focus:ring-1 focus:ring-orange-600 rounded-md" />
                   <ErrorMessage
                     name="username"
                     component="div"
-                    className="alert alert-danger"
+                    className="text-red-500"
                   />
-                </div>
-                <div className="form-group">
-                <label htmlFor="email" className="block font-semibold"> Email </label>
+           
+                <label htmlFor="email" className="block font-semibold">Email</label>
                 <Field name="email" type="text" className="border w-full h-5 px-3 py-5 mt-2 hover:outline-none focus:outline-none focus:ring-1 focus:ring-orange-600 rounded-md" />
                   <ErrorMessage
                     name="email"
                     component="div"
-                    className="alert alert-danger"
+                    className="text-red-500"
                   />
-                </div>
-                <div className="form-group">
                 <label htmlFor="password" className="block font-semibold"> Password </label>
                 <Field name="password" type="password" className="border w-full h-5 px-3 py-5 mt-2 hover:outline-none focus:outline-none focus:ring-1 focus:ring-orange-600 rounded-md" />
                   <ErrorMessage
                     name="password"
                     component="div"
-                    className="alert alert-danger"
+                    className="text-red-500"
                   />
-                </div>
-                <div className="form-group">
-                <button type="submit" className="mt-4 bg-blue-500 text-white py-2 px-6 w-full rounded-lg">
+                <button type="submit" className="mt-4 bg-blue-500 text-white py-2 w-2/3 rounded-lg">
                   Sign Up
                 </button>
                 <button
@@ -147,24 +151,20 @@ export default function SignUpModal(props) {
                   className="p-6 float-right">
                   Reset
                 </button>
-                </div>
               </div>
             )}
           </Form>
 )}
         </Formik>
-      
       {message && (
         <div className="form-group">
           <div
             className={successful ? "alert alert-success" : "alert alert-danger"}
-            role="alert"
-          >
-            {message}
+            role="alert">
+            { message }
           </div>
         </div>
       )}
-    </div>
       </ModalBody>
     </Modal>
   );
