@@ -1,0 +1,75 @@
+
+[
+    {
+        "sku": "160-332",
+        "quantity": 3,
+        "breed": "Boxer",
+        "name": "Boxer health",
+        "description": "mock description data",
+        "thumbnail": "puppy_house.jpg"
+    },
+    {
+        "sku": "206-655",
+        "quantity": 13,
+        "breed": "Husky",
+        "name": "Husky health",
+        "description": "mock description data",
+        "thumbnail": "dog_house1.jpg"
+    },
+    {
+        "sku": "398-688",
+        "quantity": 22,
+        "breed": "Weiner",
+        "name": "Weiner health",
+        "description": "mock description data",
+        "thumbnail": "dog_pills.jpg"
+    },
+    {
+        "sku": "808-898",
+        "quantity": 2,
+        "breed": "Barbet",
+        "name": "Barbet health",
+        "description": "mock description data",
+        "thumbnail": "dog_pills.jpg"
+    },
+    {
+        "sku": "499-022",
+        "quantity": 52,
+        "breed": "Any",
+        "name": "Premium Dog Leash",
+        "description": "mock description data",
+        "thumbnail": "tie_cable.jpg"
+    },
+    {
+        "sku": "525-661",
+        "quantity": 17,
+        "breed": "Any",
+        "name": "Petcal Doggie Seat",
+        "description": "Travel in confidence with the secure pup car seat",
+        "thumbnail": "car_seat.jpg"
+    },
+    {
+        "sku": "619-746",
+        "quantity": 77,
+        "breed": "Any",
+        "name": "Best dog walk times",
+        "description": "mock description data",
+        "thumbnail": "toy1.jpg"
+    },
+    {
+        "sku": "117-675",
+        "quantity": 80,
+        "breed": "Akita",
+        "name": "Doggie Dailies Joint Supplement",
+        "description": "The latest advanced formula to perserve Fido's joints and health.",
+        "thumbnail": "dog_pills.jpg"
+    },
+    {
+        "sku": "669-856",
+        "quantity": 11,
+        "breed": "Any",
+        "name": "Premium Dog House",
+        "description": "Shelter Fido from the elements in this real wood dog house.",
+        "thumbnail": "dog_house1.jpg"
+    }
+]
