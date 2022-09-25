@@ -26,7 +26,13 @@ const Shop = () => {
         <div className="w-full flex flex-wrap bg-grey-light justify-center">
         {products?.map((item) => {
               return (
-                <Link href={'/products/' + item.sku} key={item.sku} className='lg:w-1/4 md:w-1/2 w-full'>
+                <Link href={{pathname: '/products/[sku]', query: {
+                    sku: item.sku,
+                    name: item.name,
+                    price: item.price,
+                    thumbnail: item.thumbnail,
+                    description: item.description
+                }}} as={`/products/${item.sku}`} key={item.sku} className='lg:w-1/4 md:w-1/2 w-full'>
                   <a className='m-4'>
                   <ProductCard item={item} />
                   </a>

@@ -2,14 +2,16 @@
 [
     {
         "sku": "160-332",
+        "price": 200.00,
         "quantity": 3,
         "breed": "Boxer",
-        "name": "Boxer health",
+        "name": "Wood Dog House(indoor)",
         "description": "mock description data",
         "thumbnail": "puppy_house.jpg"
     },
     {
         "sku": "206-655",
+        "price": 270.00,
         "quantity": 13,
         "breed": "Husky",
         "name": "Husky health",
@@ -18,6 +20,7 @@
     },
     {
         "sku": "398-688",
+        "price": 30.00,
         "quantity": 22,
         "breed": "Weiner",
         "name": "Weiner health",
@@ -26,6 +29,7 @@
     },
     {
         "sku": "808-898",
+        "price": 13.00,
         "quantity": 2,
         "breed": "Barbet",
         "name": "Barbet health",
@@ -34,6 +38,7 @@
     },
     {
         "sku": "499-022",
+        "price": 26.99,
         "quantity": 52,
         "breed": "Any",
         "name": "Premium Dog Leash",
@@ -42,6 +47,7 @@
     },
     {
         "sku": "525-661",
+        "price": 40.00,
         "quantity": 17,
         "breed": "Any",
         "name": "Petcal Doggie Seat",
@@ -50,6 +56,7 @@
     },
     {
         "sku": "619-746",
+        "price": 15.00,
         "quantity": 77,
         "breed": "Any",
         "name": "Best dog walk times",
@@ -58,14 +65,16 @@
     },
     {
         "sku": "117-675",
+        "price": 56.00,
         "quantity": 80,
         "breed": "Akita",
-        "name": "Doggie Dailies Joint Supplement",
+        "name": "Royal Canin Chow Bag",
         "description": "The latest advanced formula to perserve Fido's joints and health.",
-        "thumbnail": "dog_pills.jpg"
+        "thumbnail": "royal_canin_french_bulldog.png"
     },
     {
         "sku": "669-856",
+        "price": 270.00,
         "quantity": 11,
         "breed": "Any",
         "name": "Premium Dog House",

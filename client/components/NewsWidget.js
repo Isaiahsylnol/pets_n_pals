@@ -9,7 +9,7 @@ function NewsWidget({ item }) {
         <span className="float-right z-30 p-3"><Dropdown item={item}  /></span>
         <Image
                 src={require(`/assets/${item.thumbnail}`)}
-                alt="Vercel Logo"
+                alt="News thumbnail"
                 width={502}
                 height={306}
               />
