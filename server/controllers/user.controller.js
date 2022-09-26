@@ -3,9 +3,7 @@ const User = db.user;
 
 // Retrieve all Users from the database.
 exports.findAll = (req, res) => {
-    const name = req.query.name;
-    const condition = name ? { name: { $regex: new RegExp(name), $options: "i" } } : {};
-    User.find(condition)
+    User.find({})
       .then(data => {
         res.send(data);
       })
@@ -22,7 +20,7 @@ exports.findOne = (req, res) => {
     User.findById(id)
       .then(data => {
         if (!data)
-          res.status(404).send({ message: "Not found User with id " + id });
+          res.status(404).send({ message: "Failed to find User with id " + id });
         else res.send(data);
       })
       .catch(err => {

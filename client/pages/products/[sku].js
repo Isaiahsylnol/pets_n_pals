@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { useRouter } from "next/router";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
@@ -7,6 +6,10 @@ const Details = () => {
   const router = useRouter();
   const query = router.query;
   const item = query;
+
+  function AddToCart() {
+    console.log("Added to cart!")
+  }
 
   return (
     <div className="mt-12">
@@ -45,7 +48,7 @@ const Details = () => {
                 <span className="title-font font-medium text-2xl text-gray-900">
                   ${item.price}
                 </span>
-                <button className="flex ml-auto text-white bg-orange-500 border-0 py-2 px-6 focus:outline-none hover:bg-gray-900 rounded">
+                <button onClick={AddToCart} className="flex ml-auto text-white bg-orange-500 border-0 py-2 px-6 focus:outline-none hover:bg-gray-900 rounded">
                   Add to Cart
                 </button>
               </div>
