@@ -1,84 +1,83 @@
-
 [
-    {
-        "sku": "160-332",
-        "price": 200.00,
-        "quantity": 3,
-        "breed": "Boxer",
-        "name": "Wood Dog House(indoor)",
-        "description": "mock description data",
-        "thumbnail": "puppy_house.jpg"
-    },
-    {
-        "sku": "206-655",
-        "price": 270.00,
-        "quantity": 13,
-        "breed": "Husky",
-        "name": "Husky health",
-        "description": "mock description data",
-        "thumbnail": "dog_house1.jpg"
-    },
-    {
-        "sku": "398-688",
-        "price": 30.00,
-        "quantity": 22,
-        "breed": "Weiner",
-        "name": "Weiner health",
-        "description": "mock description data",
-        "thumbnail": "dog_pills.jpg"
-    },
-    {
-        "sku": "808-898",
-        "price": 13.00,
-        "quantity": 2,
-        "breed": "Barbet",
-        "name": "Barbet health",
-        "description": "mock description data",
-        "thumbnail": "dog_pills.jpg"
-    },
-    {
-        "sku": "499-022",
-        "price": 26.99,
-        "quantity": 52,
-        "breed": "Any",
-        "name": "Premium Dog Leash",
-        "description": "mock description data",
-        "thumbnail": "tie_cable.jpg"
-    },
-    {
-        "sku": "525-661",
-        "price": 40.00,
-        "quantity": 17,
-        "breed": "Any",
-        "name": "Petcal Doggie Seat",
-        "description": "Travel in confidence with the secure pup car seat",
-        "thumbnail": "car_seat.jpg"
-    },
-    {
-        "sku": "619-746",
-        "price": 15.00,
-        "quantity": 77,
-        "breed": "Any",
-        "name": "Best dog walk times",
-        "description": "mock description data",
-        "thumbnail": "toy1.jpg"
-    },
-    {
-        "sku": "117-675",
-        "price": 56.00,
-        "quantity": 80,
-        "breed": "Akita",
-        "name": "Royal Canin Chow Bag",
-        "description": "The latest advanced formula to perserve Fido's joints and health.",
-        "thumbnail": "royal_canin_french_bulldog.png"
-    },
-    {
-        "sku": "669-856",
-        "price": 270.00,
-        "quantity": 11,
-        "breed": "Any",
-        "name": "Premium Dog House",
-        "description": "Shelter Fido from the elements in this real wood dog house.",
-        "thumbnail": "dog_house1.jpg"
-    }
+  {
+    "sku": "160-332",
+    "price": 200.0,
+    "quantity": 3,
+    "breed": "Boxer",
+    "name": "Wood Dog House(indoor)",
+    "description": "mock description data",
+    "thumbnail": "puppy_house.jpg"
+  },
+  {
+    "sku": "206-655",
+    "price": 270.0,
+    "quantity": 13,
+    "breed": "Any",
+    "name": "Grey Designer Dog House",
+    "description": "Features： Overall Dimensions: 34.5 in(L)×30.5 in(W)×32 in(H) Net Weight：21.2pounds Color: blue and white Material:PP ◎Our dog house is made of environmentally friendly PP material, which is durable, sun-proof and waterproof. Perfect for use in the backyard garden, providing a perfect home for your pet. ◎Our plastic dog house provides a comfortable and superior event space, perfect for medium and large size dogs. ◎Smooth surfaces and detachable roof make this outdoor dog house easy to clean. ◎Our large dog house is easy to assemble, instructions are included in the box. According to instructions, an adult can complete the assembly in about half an hour ◎Raised floors and waterproof materials keep the dog house from leaking and protect your pet from rain.",
+    "thumbnail": "dog_house1.jpg"
+  },
+  {
+    "sku": "398-688",
+    "price": 30.0,
+    "quantity": 22,
+    "breed": "Weiner",
+    "name": "Weiner health",
+    "description": "mock description data",
+    "thumbnail": "dog_pills.jpg"
+  },
+  {
+    "sku": "808-898",
+    "price": 13.0,
+    "quantity": 2,
+    "breed": "Barbet",
+    "name": "Barbet health",
+    "description": "mock description data",
+    "thumbnail": "dog_pills.jpg"
+  },
+  {
+    "sku": "499-022",
+    "price": 26.99,
+    "quantity": 52,
+    "breed": "Any",
+    "name": "Premium Dog Leash",
+    "description": "mock description data",
+    "thumbnail": "tie_cable.jpg"
+  },
+  {
+    "sku": "525-661",
+    "price": 40.0,
+    "quantity": 17,
+    "breed": "Any",
+    "name": "Petcal Doggie Seat",
+    "description": "Travel in confidence with the secure pup car seat",
+    "thumbnail": "car_seat.jpg"
+  },
+  {
+    "sku": "619-746",
+    "price": 15.0,
+    "quantity": 77,
+    "breed": "Any",
+    "name": "Best dog walk times",
+    "description": "mock description data",
+    "thumbnail": "toy1.jpg"
+  },
+  {
+    "sku": "117-675",
+    "price": 56.0,
+    "quantity": 80,
+    "breed": "Akita",
+    "name": "Royal Canin Chow Bag",
+    "description": "The latest advanced formula to perserve Fido's joints and health.",
+    "thumbnail": "royal_canin_french_bulldog.png"
+  },
+  {
+    "sku": "669-856",
+    "price": 270.0,
+    "quantity": 11,
+    "breed": "Any",
+    "name": "Premium Dog House",
+    "description": "Shelter Fido from the elements in this real wood dog house.",
+    "thumbnail": "dog_house1.jpg"
+  }
 ]

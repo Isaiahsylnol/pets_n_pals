@@ -5,7 +5,6 @@ import PetCard from '../components/PetCard.js';
 import { useSelector } from "react-redux";
 import CreatePetModal from '../components/Modal/CreatePetModal';
 import ModalService from '../components/Modal/services/ModalService';
-import { useRouter } from 'next/router';
 import {
   PhoneIcon,
   ExclamationIcon,
@@ -17,15 +16,14 @@ import Login from './login-register';
 export default function Profile() {
   const { user: currentUser } = useSelector((state) => state.auth);
   const [user, setUser] = useState();
-  const router = useRouter();
 
   const addModal = (modal) => {
     ModalService.open(modal);
   }
 
   useEffect(()=> {
-    setUser(currentUser);
-  },[currentUser])
+    setUser(currentUser?.user);
+  },[])
   if(user){
     return (
         <div className="container-fluid mx-auto">
@@ -51,7 +49,7 @@ export default function Profile() {
                     <p>Toronto, Canada</p>
                     <p>652-333-4553</p>
                     <p>{user?.email}</p>
-                    <p>{user.account_type}</p>
+                    <p>{user?.account_type}</p>
                     <div className="mt-10 grid grid-cols-1 gap-y-3 text-base">
                       <button className="flex h-10 w-36 justify-start rounded bg-yellow-500 py-2 px-4 font-bold text-white hover:bg-blue-700">
                         <PhoneIcon className="inline h-6 w-6" />

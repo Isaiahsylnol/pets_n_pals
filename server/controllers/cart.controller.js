@@ -34,7 +34,7 @@ exports.findOne = (req, res) => {
   exports.createCart = (req, res) => {
     console.log(req.body)
     const cart = new Cart({
-        _id: req.body.userId,
+        userId: req.body.userId,
         status: req.body.status,
         quantity: req.body.quantity,
         total: req.body.total,

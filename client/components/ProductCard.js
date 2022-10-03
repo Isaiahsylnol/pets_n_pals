@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
-function ProductCard({item}) {
+function ProductCard(props) {
+  const { item, onAdd} = props;
 
     return(
         <div className="text-left m-6 bg-slate-500">
@@ -18,6 +19,7 @@ function ProductCard({item}) {
           <h2 className="text-gray-900 title-font text-lg font-medium">{item.name}</h2>
           <p className="mt-1">$16.00</p>
         </div>
+        <button onClick={() => onAdd(item)}>Add To Cart</button>
       </div>
     )
 }

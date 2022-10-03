@@ -4,14 +4,9 @@ import styles from '../styles/Home.module.css'
 import Header from '../components/Header.js';
 import products from '../mock_data/products.json';
 import ProductCard from '../components/ProductCard';
-import { useEffect } from 'react';
 import Link from 'next/link';
 
 const Shop = () => {
-    useEffect(()=>{
-        console.log(products)
-    },[])
-
     return (
         <div>
             <Head>
@@ -21,7 +16,6 @@ const Shop = () => {
       </Head>
       <Header />
       <main className={styles.main}>
-      
         {/* Feed display - Flex Grid */}
         <div className="w-full flex flex-wrap bg-grey-light justify-center">
         {products?.map((item) => {
@@ -44,7 +38,6 @@ const Shop = () => {
       <Footer/>
         </div>
     )
-
 }
 
 export default Shop;

@@ -2,14 +2,76 @@ import { useRouter } from "next/router";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import Image from "next/image";
+import { useDispatch } from "react-redux";
+import { createCart } from "../../slices/cart";
+import data from '../../mock_data/products.json';
+import { useEffect, useState } from "react";
+
 const Details = () => {
+  const dispatch = useDispatch();
   const router = useRouter();
   const query = router.query;
   const item = query;
+  let user = {};
 
+  useEffect(()=>{
+    user = JSON.parse(localStorage.getItem("user"))
+  },[])
+ 
   function AddToCart() {
-    console.log("Added to cart!")
+    dispatch(createCart({"userId" : user.id,
+    "status" : true,
+    "quantity" : 1,
+    "total" : 224.99,
+    "products": [{
+        "name": item.name,
+        "sku": item.sku
+    }]}))
   }
+
+  const [cartItems, setCartItems] = useState([]);
+    const { products } = data;
+
+    const onAdd = (product) => {
+        const exist = cartItems.find((x) => x.sku === product.sku);
+        console.log("EXIST: ", exist)
+        if(exist) {
+            setCartItems(
+                cartItems.map((x) =>
+                  x.sku === product.sku ? { ...exist, qty: exist.qty + 1 } : x
+                )
+              );
+            localStorage.setItem("cartItems", JSON.stringify(cartItems));
+           // console.log(cartItems);
+        } else {
+            //console.log("new item: ", cartItems)
+            const newCartItems = [...cartItems, { ...product, qty: 1 }];
+            console.log("New Items: ", newCartItems)
+            setCartItems(newCartItems);
+            localStorage.setItem("cartItems", JSON.stringify(newCartItems));
+        }
+    }
+
+    const onRemove = (product) => {
+        const exist = cartItems.find((x) => x.sku === product.sku);
+        if (exist.qty === 1) {
+            const newCartItems = cartItems.filter((x) => x.sku !== product.sku);
+            setCartItems(newCartItems);
+            localStorage.setItem("cartItems", JSON.stringify(newCartItems));
+        } else {
+            const newCartItems = cartItems.map((x) => 
+            x.sku === product.sku ? { ...exist, qty: exist.qty - 1 } : x);
+            console.log(newCartItems)
+            setCartItems(newCartItems);
+            localStorage.setItem("cartItems", JSON.stringify(newCartItems));
+        }
+    };
+
+    useEffect(() => {
+        setCartItems(localStorage.getItem("cartItems")
+        ? JSON.parse(localStorage.getItem("cartItems"))
+        : []);
+    },[]);
 
   return (
     <div className="mt-12">
@@ -35,7 +97,7 @@ const Details = () => {
                   fill="currentColor"
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  stroke-width="2"
+                  strokeWidth="2"
                   className="w-5 h-5"
                   viewBox="0 0 24 24"
                 >
@@ -48,9 +110,15 @@ const Details = () => {
                 <span className="title-font font-medium text-2xl text-gray-900">
                   ${item.price}
                 </span>
-                <button onClick={AddToCart} className="flex ml-auto text-white bg-orange-500 border-0 py-2 px-6 focus:outline-none hover:bg-gray-900 rounded">
-                  Add to Cart
+                <button onClick={() => onRemove(item)} className="flex ml-auto text-white bg-orange-500 border-0 py-2 px-6 focus:outline-none hover:bg-gray-900 rounded">
+                  -
                 </button>
+              
+                <button onClick={() => onAdd(item)} className="flex ml-auto text-white bg-orange-500 border-0 py-2 px-6 focus:outline-none hover:bg-gray-900 rounded">
+                  +
+                </button>
+    
+                <button onClick={() => onAdd(item)} className="flex ml-auto text-white bg-orange-500 border-0 py-2 px-6 focus:outline-none hover:bg-gray-900 rounded">Add To Cart</button>
               </div>
             </div>
           </div>
