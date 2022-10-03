@@ -48,13 +48,12 @@ export default function LoginModal(props) {
 
   const handleSubmit = (formValue) => {
     const { username, password } = formValue;
-    console.log("FORM VALUES: ", username, password)
     dispatch(login({ username, password }))
       .unwrap()
       .then(() => {
         closeModal()
-        setSuccessful(true);
         window.location.replace('/');
+        setSuccessful(true);
       })
       .catch(() => {
       })

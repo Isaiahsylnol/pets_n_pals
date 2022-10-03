@@ -52,21 +52,6 @@ const Details = () => {
         }
     }
 
-    const onRemove = (product) => {
-        const exist = cartItems.find((x) => x.sku === product.sku);
-        if (exist.qty === 1) {
-            const newCartItems = cartItems.filter((x) => x.sku !== product.sku);
-            setCartItems(newCartItems);
-            localStorage.setItem("cartItems", JSON.stringify(newCartItems));
-        } else {
-            const newCartItems = cartItems.map((x) => 
-            x.sku === product.sku ? { ...exist, qty: exist.qty - 1 } : x);
-            console.log(newCartItems)
-            setCartItems(newCartItems);
-            localStorage.setItem("cartItems", JSON.stringify(newCartItems));
-        }
-    };
-
     useEffect(() => {
         setCartItems(localStorage.getItem("cartItems")
         ? JSON.parse(localStorage.getItem("cartItems"))
@@ -110,14 +95,6 @@ const Details = () => {
                 <span className="title-font font-medium text-2xl text-gray-900">
                   ${item.price}
                 </span>
-                <button onClick={() => onRemove(item)} className="flex ml-auto text-white bg-orange-500 border-0 py-2 px-6 focus:outline-none hover:bg-gray-900 rounded">
-                  -
-                </button>
-              
-                <button onClick={() => onAdd(item)} className="flex ml-auto text-white bg-orange-500 border-0 py-2 px-6 focus:outline-none hover:bg-gray-900 rounded">
-                  +
-                </button>
-    
                 <button onClick={() => onAdd(item)} className="flex ml-auto text-white bg-orange-500 border-0 py-2 px-6 focus:outline-none hover:bg-gray-900 rounded">Add To Cart</button>
               </div>
             </div>

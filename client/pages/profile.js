@@ -22,8 +22,8 @@ export default function Profile() {
   }
 
   useEffect(()=> {
-    setUser(currentUser?.user);
-  },[])
+    setUser(currentUser);
+  },[currentUser])
   if(user){
     return (
         <div className="container-fluid mx-auto">
