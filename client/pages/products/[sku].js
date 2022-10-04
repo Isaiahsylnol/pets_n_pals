@@ -4,7 +4,6 @@ import Footer from "../../components/Footer";
 import Image from "next/image";
 import { useDispatch } from "react-redux";
 import { createCart } from "../../slices/cart";
-import data from '../../mock_data/products.json';
 import { useEffect, useState } from "react";
 
 const Details = () => {
@@ -14,23 +13,28 @@ const Details = () => {
   const item = query;
   let user = {};
 
+  const [cartItems, setCartItems] = useState([]);
+  useEffect(() => {
+    setCartItems(
+      localStorage.getItem("cartItems")
+        ? JSON.parse(localStorage.getItem("cartItems"))
+        : []
+    );
+  }, []);
+
   useEffect(()=>{
     user = JSON.parse(localStorage.getItem("user"))
   },[])
  
-  function AddToCart() {
-    dispatch(createCart({"userId" : user.id,
-    "status" : true,
-    "quantity" : 1,
-    "total" : 224.99,
-    "products": [{
-        "name": item.name,
-        "sku": item.sku
-    }]}))
-  }
 
-  const [cartItems, setCartItems] = useState([]);
-    const { products } = data;
+    // dispatch(createCart({"userId" : user.id,
+    // "status" : true,
+    // "quantity" : 1,
+    // "total" : 224.99,
+    // "products": [{
+    //     "name": item.name,
+    //     "sku": item.sku
+    // }]})) 
 
     const onAdd = (product) => {
         const exist = cartItems.find((x) => x.sku === product.sku);
@@ -42,9 +46,7 @@ const Details = () => {
                 )
               );
             localStorage.setItem("cartItems", JSON.stringify(cartItems));
-           // console.log(cartItems);
         } else {
-            //console.log("new item: ", cartItems)
             const newCartItems = [...cartItems, { ...product, qty: 1 }];
             console.log("New Items: ", newCartItems)
             setCartItems(newCartItems);
@@ -60,7 +62,7 @@ const Details = () => {
 
   return (
     <div className="mt-12">
-      <Header />
+      <Header countCartItems={cartItems.length} />
       <section className="text-gray-600 body-font overflow-hidden">
         <div className="container px-5 py-24 mx-auto">
           <div className="lg:w-4/5 mx-auto flex flex-wrap">
