@@ -5,6 +5,7 @@
     "quantity": 3,
     "breed": "Boxer",
     "name": "Wood Dog House(indoor)",
+    "rating": 2,
     "description": "mock description data",
     "thumbnail": "puppy_house.jpg"
   },
@@ -14,6 +15,7 @@
     "quantity": 13,
     "breed": "Any",
     "name": "Grey Designer Dog House",
+    "rating": 4,
     "description": "Features： Overall Dimensions: 34.5 in(L)×30.5 in(W)×32 in(H) Net Weight：21.2pounds Color: blue and white Material:PP ◎Our dog house is made of environmentally friendly PP material, which is durable, sun-proof and waterproof. Perfect for use in the backyard garden, providing a perfect home for your pet. ◎Our plastic dog house provides a comfortable and superior event space, perfect for medium and large size dogs. ◎Smooth surfaces and detachable roof make this outdoor dog house easy to clean. ◎Our large dog house is easy to assemble, instructions are included in the box. According to instructions, an adult can complete the assembly in about half an hour ◎Raised floors and waterproof materials keep the dog house from leaking and protect your pet from rain.",
     "thumbnail": "dog_house1.jpg"
   },
@@ -23,6 +25,7 @@
     "quantity": 22,
     "breed": "Weiner",
     "name": "Weiner health",
+    "rating": 5,
     "description": "mock description data",
     "thumbnail": "dog_pills.jpg"
   },
@@ -32,6 +35,7 @@
     "quantity": 2,
     "breed": "Barbet",
     "name": "Barbet health",
+    "rating": 4,
     "description": "mock description data",
     "thumbnail": "dog_pills.jpg"
   },
@@ -41,6 +45,7 @@
     "quantity": 52,
     "breed": "Any",
     "name": "Premium Dog Leash",
+    "rating": 5,
     "description": "mock description data",
     "thumbnail": "tie_cable.jpg"
   },
@@ -50,6 +55,7 @@
     "quantity": 17,
     "breed": "Any",
     "name": "Petcal Doggie Seat",
+    "rating": 4,
     "description": "Travel in confidence with the secure pup car seat",
     "thumbnail": "car_seat.jpg"
   },
@@ -59,6 +65,7 @@
     "quantity": 77,
     "breed": "Any",
     "name": "Best dog walk times",
+    "rating": 2,
     "description": "mock description data",
     "thumbnail": "toy1.jpg"
   },
@@ -68,6 +75,7 @@
     "quantity": 80,
     "breed": "Akita",
     "name": "Royal Canin Chow Bag",
+    "rating": 4,
     "description": "The latest advanced formula to perserve Fido's joints and health.",
     "thumbnail": "royal_canin_french_bulldog.png"
   },
@@ -77,6 +85,7 @@
     "quantity": 11,
     "breed": "Any",
     "name": "Premium Dog House",
+    "rating": 4,
     "description": "Shelter Fido from the elements in this real wood dog house.",
     "thumbnail": "dog_house1.jpg"
   }

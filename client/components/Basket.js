@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import styles from "../styles/Home.module.css";
 import Link from "next/link";
 
-export default function Basket(props) {
+const Basket = () => {
   const [cartItems, setCartItems] = useState([]);
   const itemPrice = cartItems.reduce((a, c) => a + c.qty * c.price, 0);
   const taxPrice = itemPrice * 0.15;
@@ -71,15 +71,17 @@ export default function Basket(props) {
             </Link>
           </div>
         )}
-<Link href="/shop">
-              <div>
-              {cartItems.length ? (<button className="text-black  float-right focus:outline-none hover:text-white rounded">
+        <Link href="/shop">
+          <div>
+            {cartItems.length ? (
+              <button className="text-black  float-right focus:outline-none hover:text-white rounded">
                 Add More Items
-              </button>) : null}
-              </div>
-            </Link>
+              </button>
+            ) : null}
+          </div>
+        </Link>
         {cartItems.map((item) => (
-            <div key={item.sku} className="bg-slate-300 p-5 m-1 mt-12">
+          <div key={item.sku} className="bg-slate-300 p-5 m-1 mt-12">
             <div>
               <div className="row flex flex-row p-1">
                 <div className="pr-5">
@@ -165,4 +167,6 @@ export default function Basket(props) {
       </div>
     </div>
   );
-}
+};
+
+export default Basket;

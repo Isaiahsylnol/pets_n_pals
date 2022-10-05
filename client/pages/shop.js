@@ -26,7 +26,7 @@ const Shop = () => {
       <Header countCartItems={cartItems.length} />
       <main className={styles.main}>
         {/* Feed display - Flex Grid */}
-        <div className="w-full flex flex-wrap bg-grey-light justify-center">
+        <div className="w-full flex flex-wrap bg-grey-light pt-20 justify-center">
         {products?.map((item) => {
               return (
                 <Link href={{pathname: '/products/[sku]', query: {
@@ -34,7 +34,8 @@ const Shop = () => {
                     name: item.name,
                     price: item.price,
                     thumbnail: item.thumbnail,
-                    description: item.description
+                    description: item.description,
+                    rating: item.rating
                 }}} as={`/products/${item.sku}`} key={item.sku} className='lg:w-1/4 md:w-1/2 w-full'>
                   <a className='m-4'>
                   <ProductCard item={item} />
