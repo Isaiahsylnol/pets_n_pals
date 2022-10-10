@@ -25,6 +25,7 @@
     "react-router-dom": "^6.3.0",
     "react-select": "^5.4.0",
     "react-star-ratings": "^2.3.0",
+    "stripe": "^10.13.0",
     "yup": "^0.32.11"
   },
   "devDependencies": {

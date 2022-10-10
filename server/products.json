@@ -1,7 +1,7 @@
 [
   {
     "sku": "160-332",
-    "price": 200.0,
+    "price": 200,
     "quantity": 3,
     "breed": "Boxer",
     "name": "Wood Dog House(indoor)",
@@ -11,7 +11,7 @@
   },
   {
     "sku": "206-655",
-    "price": 270.0,
+    "price": 205,
     "quantity": 13,
     "breed": "Any",
     "name": "Grey Designer Dog House",
@@ -21,7 +21,7 @@
   },
   {
     "sku": "398-688",
-    "price": 30.0,
+    "price": 350,
     "quantity": 22,
     "breed": "Weiner",
     "name": "Weiner health",
@@ -31,7 +31,7 @@
   },
   {
     "sku": "808-898",
-    "price": 13.0,
+    "price": 130,
     "quantity": 2,
     "breed": "Barbet",
     "name": "Barbet health",
@@ -41,7 +41,7 @@
   },
   {
     "sku": "499-022",
-    "price": 26.99,
+    "price": 299,
     "quantity": 52,
     "breed": "Any",
     "name": "Premium Dog Leash",
@@ -51,7 +51,7 @@
   },
   {
     "sku": "525-661",
-    "price": 40.0,
+    "price": 400,
     "quantity": 17,
     "breed": "Any",
     "name": "Petcal Doggie Seat",
@@ -61,7 +61,7 @@
   },
   {
     "sku": "619-746",
-    "price": 15.0,
+    "price": 150,
     "quantity": 77,
     "breed": "Any",
     "name": "Best dog walk times",
@@ -71,17 +71,17 @@
   },
   {
     "sku": "117-675",
-    "price": 56.0,
+    "price": 500,
     "quantity": 80,
     "breed": "Akita",
     "name": "Royal Canin Chow Bag",
     "rating": 4,
-    "description": "The latest advanced formula to perserve Fido's joints and health.",
+    "description": "The latest advanced formula to preserve Fido's joints and health.",
     "thumbnail": "royal_canin_french_bulldog.png"
   },
   {
     "sku": "669-856",
-    "price": 270.0,
+    "price": 200,
     "quantity": 11,
     "breed": "Any",
     "name": "Premium Dog House",

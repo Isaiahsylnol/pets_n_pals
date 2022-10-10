@@ -29,7 +29,7 @@ const ProductCard = (props) => {
         <h2 className="text-gray-900 title-font text-lg font-medium">
           {item.name}
         </h2>
-        <p className="mt-1">$16.00</p>
+        <p className="mt-1">${item.price}</p>
       </div>
     </div>
   );

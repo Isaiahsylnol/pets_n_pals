@@ -2,14 +2,14 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import styles from "../styles/Home.module.css";
 import Link from "next/link";
+import getStripe from "../lib/getStripe";
 
-const Basket = () => {
+const Checkout = () => {
   const [cartItems, setCartItems] = useState([]);
   const itemPrice = cartItems.reduce((a, c) => a + c.qty * c.price, 0);
   const taxPrice = itemPrice * 0.15;
   const shippingPrice = itemPrice > 2000 ? 0 : 20;
   const totalPrice = itemPrice + taxPrice + shippingPrice;
-
   useEffect(() => {
     setCartItems(
       localStorage.getItem("cartItems")
@@ -17,6 +17,22 @@ const Basket = () => {
         : []
     );
   }, []);
+  
+  const handleCheckout = async () => {
+    const stripe = await getStripe();
+    const response = await fetch('/api/stripe', {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(cartItems),
+  });
+  if(response.statusCode === 500) return;
+
+  const data = await response.json();
+
+  stripe.redirectToCheckout({ sessionId: data.id });
+  }
 
   const onAdd = (product) => {
     const exist = cartItems.find((x) => x.sku === product.sku);
@@ -157,7 +173,7 @@ const Basket = () => {
             </div>
             <button
               type="submit"
-              onClick={() => alert("implement Checkout")}
+              onClick={handleCheckout}
               className="mt-4 bg-blue-500 text-white py-2 w-1/4 rounded-lg"
             >
               Checkout
@@ -169,4 +185,4 @@ const Basket = () => {
   );
 };
 
-export default Basket;
+export default Checkout;

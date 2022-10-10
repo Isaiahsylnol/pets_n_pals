@@ -29,10 +29,8 @@ exports.findOne = (req, res) => {
           .send({ message: "Error retrieving Cart with id=" + id });
       });
   };
-
   // Create a cart given user's ID
   exports.createCart = (req, res) => {
-    console.log(req.body)
     const cart = new Cart({
         userId: req.body.userId,
         status: req.body.status,
@@ -50,6 +48,4 @@ exports.findOne = (req, res) => {
         }
     })
   };
- 
- 
  

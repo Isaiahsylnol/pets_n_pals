@@ -1,13 +1,15 @@
-import '../styles/globals.css'
-import { Provider } from 'react-redux'
-import ModalRoot from '../components/ModalRoot'
-import store from '../store'
+import "../styles/globals.css";
+import { Provider } from "react-redux";
+import ModalRoot from "../components/ModalRoot";
+import store from "../store";
+
 function MyApp({ Component, pageProps }) {
-  return(
+  return (
     <Provider store={store}>
       <ModalRoot />
-  <Component {...pageProps} />
-  </Provider>
-)}
+      <Component {...pageProps} />
+    </Provider>
+  );
+}
 
-export default MyApp
+export default MyApp;

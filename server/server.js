@@ -8,6 +8,14 @@ const corsOptions = {
   origin: "http://localhost:3000"
 };
 app.use(cors(corsOptions));
+
+// Loading of products that the frontend will fetch
+let products;
+const fs = require('fs');
+fs.readFile('products.json', (err, data) => {
+  if(err) throw err;
+  products = JSON.parse(data);
+})
 // parse requests of content-type - application/json
 app.use(bodyParser.json());
 // parse requests of content-type - application/x-www-form-urlencoded
@@ -27,6 +35,11 @@ db.mongoose
 app.get("/", (req, res) => {
   res.json({ message: "Welcome to the backend." });
 });
+// Products route
+app.get("/products", (req, res) => {
+  res.json({ data: products });
+});
+
 require("./routes/pet.routes.js")(app);
 require("./routes/auth.routes.js")(app);
 require("./routes/user.routes.js")(app);
