@@ -11,6 +11,7 @@ app.use(cors(corsOptions));
 
 // Loading of products that the frontend will fetch
 let products;
+let product;
 const fs = require('fs');
 fs.readFile('products.json', (err, data) => {
   if(err) throw err;
@@ -39,7 +40,7 @@ app.get("/", (req, res) => {
 app.get("/products", (req, res) => {
   res.json({ data: products });
 });
-
+ 
 require("./routes/pet.routes.js")(app);
 require("./routes/auth.routes.js")(app);
 require("./routes/user.routes.js")(app);

@@ -3,7 +3,6 @@ module.exports = mongoose => {
       {
         userId: mongoose.Schema.Types.ObjectId,
         status: Boolean,
-        quantity: Number,
         total: Number,
         products: Array
       },

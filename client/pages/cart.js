@@ -7,11 +7,7 @@ import React, { useState, useEffect } from 'react';
 const Cart = () => {
   const [cartItems, setCartItems] = useState([]);
   useEffect(() => {
-    setCartItems(
-      localStorage.getItem("cartItems")
-        ? JSON.parse(localStorage.getItem("cartItems"))
-        : []
-    );
+    setCartItems(JSON.parse(localStorage.getItem('cartItems')));
   }, []);
   return (
     <div>
@@ -20,7 +16,7 @@ const Cart = () => {
         <meta name="description" content="Shopping cart" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Header countCartItems={cartItems.length} />
+      <Header countCartItems={cartItems?.length} />
         <div className="w-full flex flex-wrap bg-grey-light justify-center">
           <Checkout />
         </div>

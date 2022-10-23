@@ -1,18 +1,27 @@
 import React from "react";
 import Image from "next/image";
 import StarRatings from "react-star-ratings";
-
+import Link from 'next/link';
 const ProductCard = (props) => {
-  const { item, onAdd } = props;
+  const { item } = props;
   return (
+    <Link href={{pathname: '/products/[sku]', query: {
+      sku: item.sku,
+      name: item.name,
+      price: item.price,
+      thumbnail: item.thumbnail,
+      description: item.description,
+      rating: item.rating
+  }}} as={`/product/${item.sku}`} key={item.sku} className='lg:w-1/4 md:w-1/2 w-full'>
+    <a className='m-4'>
     <div className="text-left m-6">
-      <div className="block relative h-48 rounded overflow-hidden">
+      <div className="block relative  rounded overflow-hidden">
         <Image
           className="object-cover object-center w-full h-full block"
-          src={require(`/assets/${item.thumbnail}`)}
-          alt="ecommerce thumbnail"
+          src={item.thumbnail}
+          alt="Product thumbnail"
           width={420}
-          height={260}
+          height={400}
         />
       </div>
       <div className="p-4">
@@ -32,6 +41,8 @@ const ProductCard = (props) => {
         <p className="mt-1">${item.price}</p>
       </div>
     </div>
+    </a>
+                </Link>
   );
 };
 

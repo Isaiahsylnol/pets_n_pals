@@ -3,19 +3,17 @@ import { useEffect, useState } from "react";
 import styles from "../styles/Home.module.css";
 import Link from "next/link";
 import getStripe from "../lib/getStripe";
+import toast, { Toaster } from "react-hot-toast";
 
 const Checkout = () => {
   const [cartItems, setCartItems] = useState([]);
-  const itemPrice = cartItems.reduce((a, c) => a + c.qty * c.price, 0);
+  const itemPrice = cartItems?.reduce((a, c) => a + c.qty * c.price, 0);
   const taxPrice = itemPrice * 0.15;
   const shippingPrice = itemPrice > 2000 ? 0 : 20;
   const totalPrice = itemPrice + taxPrice + shippingPrice;
   useEffect(() => {
-    setCartItems(
-      localStorage.getItem("cartItems")
-        ? JSON.parse(localStorage.getItem("cartItems"))
-        : []
-    );
+ 
+    setCartItems(JSON.parse(localStorage.getItem('cartItems')));
   }, []);
   
   const handleCheckout = async () => {
@@ -31,6 +29,8 @@ const Checkout = () => {
 
   const data = await response.json();
 
+  toast.loading('Redirecting')
+
   stripe.redirectToCheckout({ sessionId: data.id });
   }
 
@@ -41,11 +41,8 @@ const Checkout = () => {
         x.sku === product.sku ? { ...exist, qty: exist.qty + 1 } : x
       );
       setCartItems(newCartItems);
-    } else {
-      const newCartItems = [...cartItems, { ...product, qty: 1 }];
-      setCartItems(newCartItems);
-      localStorage.setItem("cartItems", JSON.stringify(newCartItems));
-    }
+      localStorage.setItem('cartItems', JSON.stringify(newCartItems));
+    }  
   };
 
   const onRemove = (product) => {
@@ -53,13 +50,13 @@ const Checkout = () => {
     if (exist.qty === 1) {
       const newCartItems = cartItems.filter((x) => x.sku !== product.sku);
       setCartItems(newCartItems);
-      localStorage.setItem("cartItems", JSON.stringify(newCartItems));
+      localStorage.setItem('cartItems', JSON.stringify(newCartItems));
     } else {
       const newCartItems = cartItems.map((x) =>
         x.sku === product.sku ? { ...exist, qty: exist.qty - 1 } : x
       );
       setCartItems(newCartItems);
-      localStorage.setItem("cartItems", JSON.stringify(newCartItems));
+      localStorage.setItem('cartItems', JSON.stringify(newCartItems));
     }
   };
 
@@ -74,10 +71,11 @@ const Checkout = () => {
   return (
     <div className={styles.main}>
       <div className="block w-full lg:w-1/2 bg-orange-400 p-12">
+      <Toaster />
         <div className="mb-4">
           <h1>Your Cart</h1>
         </div>
-        {cartItems.length === 0 && (
+        {cartItems?.length === 0 && (
           <div>
             Cart is empty{" "}
             <Link href="/shop">
@@ -89,21 +87,21 @@ const Checkout = () => {
         )}
         <Link href="/shop">
           <div>
-            {cartItems.length ? (
+            {cartItems?.length ? (
               <button className="text-black  float-right focus:outline-none hover:text-white rounded">
                 Add More Items
               </button>
             ) : null}
           </div>
         </Link>
-        {cartItems.map((item) => (
+        {cartItems?.map((item) => (
           <div key={item.sku} className="bg-slate-300 p-5 m-1 mt-12">
             <div>
               <div className="row flex flex-row p-1">
                 <div className="pr-5">
                   <Image
                     className="object-cover object-center"
-                    src={require(`/assets/${item.thumbnail}`)}
+                    src={`${item.thumbnail}`}
                     alt="ecommerce thumbnail"
                     width={133}
                     height={133}
@@ -151,33 +149,35 @@ const Checkout = () => {
             </div>
           </div>
         ))}
-        {cartItems.length !== 0 && (
+        {cartItems?.length !== 0 && (
           <>
             <div className="row mt-11">
               <div>Items Price</div>
-              <div className="text-right">${itemPrice.toFixed(2)}</div>
+              <div className="text-right">{itemPrice ? `$${itemPrice.toFixed(2)}` : null}</div>
             </div>
             <div className="row">
               <div className="">Tax Price</div>
-              <div className="text-right">${taxPrice.toFixed(2)}</div>
+              <div className="text-right">{itemPrice ? `$${taxPrice.toFixed(2)}` : null}</div>
             </div>
             <div className="row">
               <div>Shipping Price</div>
-              <div className="text-right">${shippingPrice.toFixed(2)}</div>
+              <div className="text-right">{itemPrice ? `$${shippingPrice.toFixed(2)}` : null}</div>
             </div>
             <div className="row">
               <div>Total Price</div>
               <div className="text-right font-bold">
-                ${totalPrice.toFixed(2)}
+                {totalPrice ? `$${totalPrice.toFixed(2)}` : null}
               </div>
             </div>
-            <button
-              type="submit"
-              onClick={handleCheckout}
-              className="mt-4 bg-blue-500 text-white py-2 w-1/4 rounded-lg"
-            >
-              Checkout
-            </button>
+            {
+             cartItems ? <button
+             type="submit"
+             onClick={handleCheckout}
+             className="mt-4 bg-blue-500 text-white py-2 w-1/4 rounded-lg"
+           >
+             Checkout
+           </button> : <></>
+            }
           </>
         )}
       </div>

@@ -34,7 +34,6 @@ exports.findOne = (req, res) => {
     const cart = new Cart({
         userId: req.body.userId,
         status: req.body.status,
-        quantity: req.body.quantity,
         total: req.body.total,
         products: req.body.products
       }); 
