@@ -1,0 +1,84 @@
+
+[
+    {
+        "id": "1",
+        "breed": "Boxer",
+        "title": "Boxer health",
+        "article": "mock article data",
+        "date_created": "1971-08-01T00:00:00+00:00",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse sit amet malesuada nibh. Aliquam lobortis quis velit vitae molestie. Cras quis lorem et ex vestibulum faucibus. Proin sit amet arcu mollis, euismod augue a, ultrices mauris. Vestibulum sit amet ipsum consectetur, interdum tellus sit amet, convallis diam. In quis rhoncus nibh. Sed id venenatis arcu. Fusce lobortis libero dolor, quis fringilla justo suscipit molestie. Cras porta consectetur justo non tincidunt. Ut consequat felis nec sem volutpat, nec porta ligula facilisis. Nullam nec risus erat. Aliquam ullamcorper quam ipsum, ac placerat eros accumsan vel. Nam eget magna lorem. Nunc nec fringilla diam. In maximus auctor rutrum.",
+        "thumbnail": "puppy_house.jpg"
+    },
+    {
+        "id": "2",
+        "breed": "Husky",
+        "title": "Husky health",
+        "article": "mock article data",
+        "date_created": "1971-08-01T00:00:00+00:00",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse sit amet malesuada nibh. Aliquam lobortis quis velit vitae molestie. Cras quis lorem et ex vestibulum faucibus. Proin sit amet arcu mollis, euismod augue a, ultrices mauris. Vestibulum sit amet ipsum consectetur, interdum tellus sit amet, convallis diam. In quis rhoncus nibh. Sed id venenatis arcu. Fusce lobortis libero dolor, quis fringilla justo suscipit molestie. Cras porta consectetur justo non tincidunt. Ut consequat felis nec sem volutpat, nec porta ligula facilisis. Nullam nec risus erat. Aliquam ullamcorper quam ipsum, ac placerat eros accumsan vel. Nam eget magna lorem. Nunc nec fringilla diam. In maximus auctor rutrum.",
+        "thumbnail": "dog_house1.jpg"
+    },
+    {
+        "id": "3",
+        "breed": "Weiner",
+        "title": "Weiner health",
+        "article": "mock article data",
+        "date_created": "1971-08-01T00:00:00+00:00",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse sit amet malesuada nibh. Aliquam lobortis quis velit vitae molestie. Cras quis lorem et ex vestibulum faucibus. Proin sit amet arcu mollis, euismod augue a, ultrices mauris. Vestibulum sit amet ipsum consectetur, interdum tellus sit amet, convallis diam. In quis rhoncus nibh. Sed id venenatis arcu. Fusce lobortis libero dolor, quis fringilla justo suscipit molestie. Cras porta consectetur justo non tincidunt. Ut consequat felis nec sem volutpat, nec porta ligula facilisis. Nullam nec risus erat. Aliquam ullamcorper quam ipsum, ac placerat eros accumsan vel. Nam eget magna lorem. Nunc nec fringilla diam. In maximus auctor rutrum.",
+        "thumbnail": "dog_pills.jpg"
+    },
+    {
+        "id": "8",
+        "breed": "Barbet",
+        "title": "Barbet health",
+        "article": "mock article data",
+        "date_created": "1971-08-01T00:00:00+00:00",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse sit amet malesuada nibh. Aliquam lobortis quis velit vitae molestie. Cras quis lorem et ex vestibulum faucibus. Proin sit amet arcu mollis, euismod augue a, ultrices mauris. Vestibulum sit amet ipsum consectetur, interdum tellus sit amet, convallis diam. In quis rhoncus nibh. Sed id venenatis arcu. Fusce lobortis libero dolor, quis fringilla justo suscipit molestie. Cras porta consectetur justo non tincidunt. Ut consequat felis nec sem volutpat, nec porta ligula facilisis. Nullam nec risus erat. Aliquam ullamcorper quam ipsum, ac placerat eros accumsan vel. Nam eget magna lorem. Nunc nec fringilla diam. In maximus auctor rutrum.",
+        "thumbnail": "dog_pills.jpg"
+    },
+    {
+        "id": "4",
+        "breed": "Akita",
+        "title": "Akita health",
+        "article": "mock article data",
+        "date_created": "1971-08-01T00:00:00+00:00",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse sit amet malesuada nibh. Aliquam lobortis quis velit vitae molestie. Cras quis lorem et ex vestibulum faucibus. Proin sit amet arcu mollis, euismod augue a, ultrices mauris. Vestibulum sit amet ipsum consectetur, interdum tellus sit amet, convallis diam. In quis rhoncus nibh. Sed id venenatis arcu. Fusce lobortis libero dolor, quis fringilla justo suscipit molestie. Cras porta consectetur justo non tincidunt. Ut consequat felis nec sem volutpat, nec porta ligula facilisis. Nullam nec risus erat. Aliquam ullamcorper quam ipsum, ac placerat eros accumsan vel. Nam eget magna lorem. Nunc nec fringilla diam. In maximus auctor rutrum.",
+        "thumbnail": "types_of_akita_dog_breeds_3909_orig.jpg"
+    },
+    {
+        "id": "5",
+        "breed": "Any",
+        "title": "Teach Fido the Latest Tricks",
+        "article": "mock article data",
+        "date_created": "2021-08-01T00:00:00+00:00",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse sit amet malesuada nibh. Aliquam lobortis quis velit vitae molestie. Cras quis lorem et ex vestibulum faucibus. Proin sit amet arcu mollis, euismod augue a, ultrices mauris. Vestibulum sit amet ipsum consectetur, interdum tellus sit amet, convallis diam. In quis rhoncus nibh. Sed id venenatis arcu. Fusce lobortis libero dolor, quis fringilla justo suscipit molestie. Cras porta consectetur justo non tincidunt. Ut consequat felis nec sem volutpat, nec porta ligula facilisis. Nullam nec risus erat. Aliquam ullamcorper quam ipsum, ac placerat eros accumsan vel. Nam eget magna lorem. Nunc nec fringilla diam. In maximus auctor rutrum.",
+        "thumbnail": "pet_news.jpg"
+    },
+    {
+        "id": "6",
+        "breed": "Any",
+        "title": "Best dog walk times",
+        "article": "mock article data",
+        "date_created": "2021-08-01T00:00:00+00:00",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse sit amet malesuada nibh. Aliquam lobortis quis velit vitae molestie. Cras quis lorem et ex vestibulum faucibus. Proin sit amet arcu mollis, euismod augue a, ultrices mauris. Vestibulum sit amet ipsum consectetur, interdum tellus sit amet, convallis diam. In quis rhoncus nibh. Sed id venenatis arcu. Fusce lobortis libero dolor, quis fringilla justo suscipit molestie. Cras porta consectetur justo non tincidunt. Ut consequat felis nec sem volutpat, nec porta ligula facilisis. Nullam nec risus erat. Aliquam ullamcorper quam ipsum, ac placerat eros accumsan vel. Nam eget magna lorem. Nunc nec fringilla diam. In maximus auctor rutrum.",
+        "thumbnail": "pet_news.jpg"
+    },
+    {
+        "id": "7",
+        "breed": "Any",
+        "title": "How to Shower Fido",
+        "article": "mock article data",
+        "date_created": "2021-08-01T00:00:00+00:00",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse sit amet malesuada nibh. Aliquam lobortis quis velit vitae molestie. Cras quis lorem et ex vestibulum faucibus. Proin sit amet arcu mollis, euismod augue a, ultrices mauris. Vestibulum sit amet ipsum consectetur, interdum tellus sit amet, convallis diam. In quis rhoncus nibh. Sed id venenatis arcu. Fusce lobortis libero dolor, quis fringilla justo suscipit molestie. Cras porta consectetur justo non tincidunt. Ut consequat felis nec sem volutpat, nec porta ligula facilisis. Nullam nec risus erat. Aliquam ullamcorper quam ipsum, ac placerat eros accumsan vel. Nam eget magna lorem. Nunc nec fringilla diam. In maximus auctor rutrum.",
+        "thumbnail": "pet_news.jpg"
+    },
+    {
+        "id": "9",
+        "breed": "Any",
+        "title": "Teach Your Pup How to Fetch",
+        "article": "mock article data",
+        "date_created": "2021-08-01T00:00:00+00:00",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse sit amet malesuada nibh. Aliquam lobortis quis velit vitae molestie. Cras quis lorem et ex vestibulum faucibus. Proin sit amet arcu mollis, euismod augue a, ultrices mauris. Vestibulum sit amet ipsum consectetur, interdum tellus sit amet, convallis diam. In quis rhoncus nibh. Sed id venenatis arcu. Fusce lobortis libero dolor, quis fringilla justo suscipit molestie. Cras porta consectetur justo non tincidunt. Ut consequat felis nec sem volutpat, nec porta ligula facilisis. Nullam nec risus erat. Aliquam ullamcorper quam ipsum, ac placerat eros accumsan vel. Nam eget magna lorem. Nunc nec fringilla diam. In maximus auctor rutrum.",
+        "thumbnail": "pet_news.jpg"
+    }
+]

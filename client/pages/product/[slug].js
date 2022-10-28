@@ -47,7 +47,7 @@ export default function DynamicPage({ product }) {
         : []
     );
   }, []);
-  
+
   function changeRating(newRating, name) {
     setRating(newRating);
   }
@@ -60,7 +60,7 @@ export default function DynamicPage({ product }) {
       x.sku === product.sku ? { ...exist, qty: exist.qty + 1 } : x
     )
       setCartItems(newCartItems);
-      localStorage.setItem("cartItems", JSON.stringify(newCartItems));
+       
       dispatch(
         createCart({
           userId: user.id,
@@ -71,7 +71,7 @@ export default function DynamicPage({ product }) {
     } else {
       newCartItems = [...cartItems, { ...product, qty: 1 }];
       setCartItems(newCartItems);
-      localStorage.setItem("cartItems", JSON.stringify(newCartItems));
+       
       dispatch(
         createCart({
           userId: user.id,
@@ -84,7 +84,7 @@ export default function DynamicPage({ product }) {
 
   return (
     <div className="mt-12">
-      <Header countCartItems={product.length} />
+      <Header countCartItems={cartItems.length} />
       <section className="text-gray-600 body-font overflow-hidden">
         <div className="container px-5 py-24 mx-auto">
           <div className="lg:w-4/5 mx-auto flex flex-wrap">

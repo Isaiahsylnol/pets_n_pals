@@ -39,7 +39,7 @@ app.get("/", (req, res) => {
 // Products route
 app.get("/products", (req, res) => {
   res.json({ data: products });
-});
+}); 
  
 require("./routes/pet.routes.js")(app);
 require("./routes/auth.routes.js")(app);

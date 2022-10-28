@@ -7,12 +7,12 @@ import toast, { Toaster } from "react-hot-toast";
 
 const Checkout = () => {
   const [cartItems, setCartItems] = useState([]);
+  const [purchaseSuccess, setSuccess] = useState();
   const itemPrice = cartItems?.reduce((a, c) => a + c.qty * c.price, 0);
   const taxPrice = itemPrice * 0.15;
   const shippingPrice = itemPrice > 2000 ? 0 : 20;
   const totalPrice = itemPrice + taxPrice + shippingPrice;
   useEffect(() => {
- 
     setCartItems(JSON.parse(localStorage.getItem('cartItems')));
   }, []);
   
@@ -30,8 +30,8 @@ const Checkout = () => {
   const data = await response.json();
 
   toast.loading('Redirecting')
-
-  stripe.redirectToCheckout({ sessionId: data.id });
+console.log(data)
+  //stripe.redirectToCheckout({ sessionId: data.id });
   }
 
   const onAdd = (product) => {

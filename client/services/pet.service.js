@@ -1,5 +1,5 @@
 import axios from 'axios';
-import dogHealth from '../mock_data/dog_health.json';
+import dogHealth from '../mock_data/articles.json';
 const API_URL = 'https://api.thedogapi.com/v1/breeds';
 const getDogBreeds = async () => {
   return await axios.get(API_URL);

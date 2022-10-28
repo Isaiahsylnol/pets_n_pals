@@ -34,7 +34,8 @@ const cartSlice = createSlice({
   extraReducers: {
     [createCart.fulfilled]: (state, action) => {
       state.cart = action.payload;
-      //localStorage.setItem("cartItem", JSON.stringify(state.cart));
+      localStorage.setItem("cartItems", JSON.stringify(state.cart.products));
+      localStorage.setItem("cartInfo", JSON.stringify(state.cart));
     },
   },
 });
