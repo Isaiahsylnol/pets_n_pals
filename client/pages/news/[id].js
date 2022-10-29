@@ -47,15 +47,18 @@ export default function DynamicArticle({ article }) {
     <div>
         <Header countCartItems={cartItems.length} />
         <main className={styles.main}>
-        <section className="text-gray-600 body-font overflow-hidden">
-        <div className="container mx-auto">
-          <div className="justify-center mx-auto flex flex-wrap">
-            {/* <Image
+        <div className="container mx-auto text-gray-600 body-font p-8">
+            <div className="">
+      <div class="rounded-lg flex justify-center mb-4">
+      <Image
               src={`${article.thumbnail}`}
-              alt="Product thumbnail"
-              width={502}
+              alt="Article thumbnail"
+              width={902}
               height={500}
-            /> */}
+            />
+        </div>
+            </div>
+          <div className="justify-center mx-auto flex flex-wrap">
             <div className="lg:w-1/2 w-full lg:py-6 lg:mt-0">
               <h1 className="text-gray-900 text-3xl title-font font-medium mb-6 inline-flex">
                 {article.title}
@@ -64,7 +67,7 @@ export default function DynamicArticle({ article }) {
             </div>
           </div>
         </div>
-      </section>
+  
         </main>
         <Footer />
     </div>

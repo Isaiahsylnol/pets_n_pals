@@ -51,7 +51,7 @@ export default function Home() {
     };
   }, [currentUser, logOut]);
   return (
-    <div >
+    <>
       <Head>
         <title>The Latest News on Pets</title>
         <meta name="description" content="News Feed" />
@@ -60,7 +60,7 @@ export default function Home() {
       <Header countCartItems={cartItems.length} />
       <main className={styles.main}>
         {/* Feed display - Flex Grid */}
-        <div className="flex flex-wrap p-7 bg-[#f5f6f8]">
+        <div className="flex flex-wrap bg-[#f5f6f8]">
         {newsItems?.map((item) => {
               return (
                 <div key={item.id} className="w-full p-4 mb-4 sm:w-1/2 md:w-1/2 lg:w-1/3 xl:w-1/4">
@@ -73,6 +73,6 @@ export default function Home() {
         </div>
       </main>
       <Footer/>
-    </div>
+    </>
   )
 };

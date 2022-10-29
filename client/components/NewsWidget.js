@@ -10,7 +10,7 @@ function NewsWidget({ item }) {
           <Dropdown item={item} />
         </span>
         <Image
-          src={require(`/assets/${item.thumbnail}`)}
+          src={`${item.thumbnail}`}
           alt="News thumbnail"
           width={502}
           height={306}
@@ -19,7 +19,6 @@ function NewsWidget({ item }) {
       <h2 className="text-xl font-medium title-font text-gray-900 mt-5">
         {item?.title}
       </h2>
-      <h5 className="text-base mt-2">{item?.date_created}</h5>
       <p className="text-base leading-relaxed mt-2">
         Swag shoivdigoitch literally meditation subway tile tumblr cold-pressed.
         Gastropub street art beard dreamcatcher neutra, ethical XOXO
