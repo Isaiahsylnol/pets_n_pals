@@ -1,13 +1,16 @@
-import { Menu, Transition } from '@headlessui/react';
-import { Fragment } from 'react';
-import { DotsHorizontalIcon } from '@heroicons/react/solid';
-import ModalService from '../components/Modal/services/ModalService';
-import { useDispatch } from 'react-redux';
-import EditPetModal from './Modal/EditPetModal';
-import { deletePet } from '../slices/auth';
+import { Menu, Transition } from "@headlessui/react";
+import { Fragment } from "react";
+import { DotsHorizontalIcon } from "@heroicons/react/solid";
+import ModalService from "../components/Modal/services/ModalService";
+import { useDispatch } from "react-redux";
+ import EditPetModal from './Modal/EditPetModal'
+import { deletePet } from "../slices/auth";
 
 export default function Dropdown(props) {
+
   const dispatch = useDispatch();
+ 
+ //console.log("Dropdown: ", props)
 
   const addModal = () => {
     ModalService.open(EditPetModal);
@@ -38,9 +41,9 @@ export default function Dropdown(props) {
               <Menu.Item>
                 {({ active }) => (
                   <button
-                  onClick={ addModal }
+                    onClick={addModal}
                     className={`${
-                      active ? 'bg-orange-400 text-white' : 'text-gray-900'
+                      active ? "bg-orange-400 text-white" : "text-gray-900"
                     } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                   >
                     {active ? (
@@ -57,14 +60,14 @@ export default function Dropdown(props) {
                     Edit
                   </button>
                 )}
-              </Menu.Item> 
+              </Menu.Item>
             </div>
             <div className="px-1 py-1">
               <Menu.Item>
                 {({ active }) => (
                   <button
                     className={`${
-                      active ? 'bg-orange-400 text-white' : 'text-gray-900'
+                      active ? "bg-orange-400 text-white" : "text-gray-900"
                     } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                   >
                     {active ? (
@@ -87,9 +90,9 @@ export default function Dropdown(props) {
               <Menu.Item>
                 {({ active }) => (
                   <button
-                    onClick={ () => dispatch(deletePet(props)) }
+                    onClick={() => dispatch(deletePet(props))}
                     className={`${
-                      active ? 'bg-orange-400 text-white' : 'text-gray-900'
+                      active ? "bg-orange-400 text-white" : "text-gray-900"
                     } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                   >
                     {active ? (
@@ -112,7 +115,7 @@ export default function Dropdown(props) {
         </Transition>
       </Menu>
     </div>
-  )
+  );
 }
 
 function EditInactiveIcon(props) {
@@ -130,7 +133,7 @@ function EditInactiveIcon(props) {
         strokeWidth="2"
       />
     </svg>
-  )
+  );
 }
 
 function EditActiveIcon(props) {
@@ -148,8 +151,8 @@ function EditActiveIcon(props) {
         strokeWidth="2"
       />
     </svg>
-  )
-}  
+  );
+}
 
 function ArchiveInactiveIcon(props) {
   return (
@@ -179,7 +182,7 @@ function ArchiveInactiveIcon(props) {
       />
       <path d="M8 12H12" stroke="#f68b5c" strokeWidth="2" />
     </svg>
-  )
+  );
 }
 
 function ArchiveActiveIcon(props) {
@@ -210,7 +213,7 @@ function ArchiveActiveIcon(props) {
       />
       <path d="M8 12H12" stroke="#A78BFA" strokeWidth="2" />
     </svg>
-  )
+  );
 }
 
 function DeleteInactiveIcon(props) {
@@ -233,7 +236,7 @@ function DeleteInactiveIcon(props) {
       <path d="M3 6H17" stroke="#f68b5c" strokeWidth="2" />
       <path d="M8 6V4H12V6" stroke="#f68b5c" strokeWidth="2" />
     </svg>
-  )
+  );
 }
 
 function DeleteActiveIcon(props) {
@@ -256,6 +259,5 @@ function DeleteActiveIcon(props) {
       <path d="M3 6H17" stroke="#fff" strokeWidth="2" />
       <path d="M8 6V4H12V6" stroke="#fff" strokeWidth="2" />
     </svg>
-  )
+  );
 }
- 

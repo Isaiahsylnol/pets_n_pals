@@ -78,25 +78,24 @@ export const createPet = createAsyncThunk(
   }
 );
 
-export const editPet = createAsyncThunk(
-  "pet/edit",
-  async ({ username, name, target, id }, thunkAPI) => {
-    try {
-      const response = await UserService.editPet(username, name, target, id);
-      thunkAPI.dispatch(setMessage(response.data));
-      return response.data;
-    } catch (error) {
-      const message =
-        (error.response &&
-          error.response.data &&
-          error.response.data.message) ||
-        error.message ||
-        error.toString();
-      thunkAPI.dispatch(setMessage(message));
-      return thunkAPI.rejectWithValue();
-    }
+export const editPet = createAsyncThunk("pet/edit",
+async ({ username, new_name, target, id }, thunkAPI) => {
+  try {
+    const response = await UserService.editPet(username, new_name, target, id);
+            thunkAPI.dispatch(setMessage(response.data));
+            console.log(response.data)
+            return response.data;
+  } catch (error) {
+    const message =
+              (error.response &&
+                error.response.data &&
+                error.response.data.message) ||
+              error.message ||
+              error.toString();
+            thunkAPI.dispatch(setMessage(message));
+            return thunkAPI.rejectWithValue();
   }
-);
+})
 
 export const deletePet = createAsyncThunk(
   "pet/delete",
@@ -150,9 +149,10 @@ const authSlice = createSlice({
       localStorage.setItem("user", JSON.stringify(state));
     },
     [editPet.fulfilled]: (state, action) => {
-      console.log(action);
-      //state.user.pets = action.payload.user.pets
+      
+      state.user.pets = action.payload.user.pets
       localStorage.setItem("user", JSON.stringify(state.user));
+      console.log("payload: ", action.payload.user.pets)
     },
     [deletePet.fulfilled]: (state, action) => {
       state.user.pets = action.payload;

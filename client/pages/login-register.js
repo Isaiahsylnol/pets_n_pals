@@ -1,12 +1,9 @@
 import Image from "next/image";
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Formik, Field, Form, ErrorMessage } from "formik";
 import styles from "../styles/Home.module.css";
-import * as Yup from "yup";
 import LoginModal from "../components/Modal/SignInModal";
 import ModalService from "../components/Modal/services/ModalService";
-import { login } from "../slices/auth";
 import { clearMessage } from "../slices/message";
 import SignUpModal from "../components/Modal/SignUpModal";
 
@@ -50,7 +47,7 @@ export default function Login() {
                   <div className="flex flex-col md:mt-4 mt-6">
                     <a
                       onClick={() => addModal(SignUpModal)}
-                      className="justify-center inline-flex text-white bg-orange-500 rounded-full border-0 py-1 px-4 focus:outline-none hover:bg-indigo-600 rounded w-72"
+                      className="justify-center inline-flex text-white bg-orange-500 border-0 py-1 px-4 focus:outline-none hover:bg-indigo-600 rounded w-72"
                     >
                       Sign up
                     </a>
@@ -58,7 +55,7 @@ export default function Login() {
                   <hr className="w-72 my-4 border-black" />
                   <a
                     onClick={() => addModal(LoginModal)}
-                    className="justify-center inline-flex text-white bg-orange-500 mb-4 rounded-full border-0 py-1 px-4 focus:outline-none hover:bg-indigo-600 rounded w-72"
+                    className="justify-center inline-flex text-white bg-orange-500 mb-4 border-0 py-1 px-4 focus:outline-none hover:bg-indigo-600 rounded w-72"
                   >
                     Sign in
                   </a>

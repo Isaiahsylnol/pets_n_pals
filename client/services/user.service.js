@@ -14,10 +14,10 @@ const createPet = (userId, name, age, breed, weight) => {
   });
 };
 
-const editPet = async (username, name, target, id) => {
-  return await axios.put(API_URL +  id, {
+const editPet = async (username, new_name, target, id) => {
+  return axios.put(API_URL +  id, {
     target, 
-    name,
+    new_name,
     username
   })};
 

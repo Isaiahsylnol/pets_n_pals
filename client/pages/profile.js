@@ -22,6 +22,7 @@ export default function Profile() {
   }
 
   useEffect(()=> {
+   // console.log(currentUser)
     setUser(currentUser);
   },[currentUser])
   if(user){

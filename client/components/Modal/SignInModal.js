@@ -2,7 +2,7 @@ import Image from 'next/image'
 import Modal from "./Modal";
 import ModalBody from "./ModalBody";
 import ModalHeader from "./ModalHeader";
-import React, { useEffect, useRef } from "react";
+import React, { useRef } from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import { useDispatch } from "react-redux";
 import * as Yup from "yup";
@@ -52,7 +52,7 @@ export default function LoginModal(props) {
       .unwrap()
       .then(() => {
         closeModal()
-        window.location.replace('/');
+  
         setSuccessful(true);
       })
       .catch(() => {
