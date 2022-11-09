@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 const db = {};
 db.mongoose = mongoose;
+db.refreshToken = require("./refreshToken.model.js")(mongoose);
 db.pet = require("./pet.model.js")(mongoose);
 db.user = require("./user.model.js")(mongoose);
 db.cart = require("./cart.model.js")(mongoose);

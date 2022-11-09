@@ -1,14 +1,10 @@
 import React from "react";
 import Image from "next/image";
-import Dropdown from "../components/Dropdown";
 
 function NewsWidget({ item }) {
   return (
     <div key={item.id} className="p-4 w-full mb-6">
       <div className="rounded-lg">
-        <span className="float-right z-30 p-3">
-          <Dropdown item={item} />
-        </span>
         <Image
           src={`${item.thumbnail}`}
           alt="News thumbnail"

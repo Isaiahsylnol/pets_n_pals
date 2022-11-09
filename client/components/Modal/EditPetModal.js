@@ -3,20 +3,28 @@ import ModalBody from './ModalBody';
 import ModalHeader from './ModalHeader';
 import { editPet } from '../../slices/auth';
 import { useDispatch } from 'react-redux';
-import { useState, useEffect } from 'react';
 import React from 'react';
 
-export default function EditPetModal(props, heck) {
+export default function EditPetModal(props) {
   const dispatch = useDispatch();
-  console.log(heck)
+
+  function closeModal(){
+    console.log("Close this bitch")
+  }
+
+  console.log("Edit Pets Props: ", props)
+  
   const onSubmit = (event) => {
     event.preventDefault(event)
+
+    let target = "Baxter"
   // Logic for communicating with server to Edit pet
-    let target = props.name
-    let username = JSON.parse(localStorage.getItem("user")).username
-    let id = props.id
-    let name = event.target.name.value
-    dispatch(editPet({name, target, username, id})) 
+  let id = "63659373f93844d88e158c9e";
+    let username = JSON.parse(localStorage.getItem("user")) 
+ 
+    let new_name = event.target.new_name.value
+   // console.log("Edit Pet target: ", target);
+    dispatch(editPet({new_name, target, username, id})) 
   }
 
   return (
@@ -25,7 +33,7 @@ export default function EditPetModal(props, heck) {
         <button
           aria-label="Close Modal"
           aria-labelledby="close-modal"
-          onClick={props.close}
+          onClick={closeModal}
           className="btn btn-primary"
         >
           <span id="close-modal" className="_hide-visual">
@@ -53,15 +61,15 @@ export default function EditPetModal(props, heck) {
           <div className="mb-4">
             <label
               className="mb-2 block text-sm font-bold text-gray-700"
-              htmlFor="name"
+              htmlFor="new_name"
             >
               Name
             </label>
             <input
               className="focus:shadow-outline w-full appearance-none rounded border py-2 px-3 leading-tight text-gray-700 shadow focus:outline-none"
-              id="name"
+              id="new_name"
               type="text"
-              name="name"
+              name="new_name"
               placeholder="Name"
             />
           </div>

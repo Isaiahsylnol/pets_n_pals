@@ -41,7 +41,7 @@ exports.update = (req, res) => {
   }
   User.findOneAndUpdate({"pets.name": req.body.target, username: req.body.username}, 
     { 
-      "$set": {'pets.$.name': req.body.name} 
+      "$set": {'pets.$.name': req.body.new_name} 
     },
     { 
       new: true
