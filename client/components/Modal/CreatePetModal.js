@@ -5,8 +5,8 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { createPet } from "../../slices/auth";
 import { useFormik } from "formik";
-import CustomSelect from "../CustomSelect";
 import PetService from "../../services/pet.service";
+import PetForm from "./Form";
 
 export default function CreatePetModal(props) {
   const dispatch = useDispatch();
@@ -15,7 +15,6 @@ export default function CreatePetModal(props) {
 
   // Population of the pet breed select tag's options 
   useEffect(() => {
-    console.log(props)
     PetService.getDogBreeds().then((response) =>
       response.data.forEach((element) => {
         dict.push({
@@ -100,72 +99,7 @@ export default function CreatePetModal(props) {
         <h3 className="mx-auto  flex justify-center">Create Pet</h3>
       </ModalHeader>
       <ModalBody>
-        <form onSubmit={formik.handleSubmit}>
-          <div>
-            <label htmlFor="name">Name</label>
-            <input
-              id="name"
-              name="name"
-              type="text"
-              className="input shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              value={formik.values.name}
-            />
-            {formik.touched.name && formik.errors.name ? (
-              <div className="text-red-500 text-xs italic">
-                {formik.errors.name}
-              </div>
-            ) : null}
-          </div>
-          <div>
-            <label htmlFor="age">Age</label>
-            <input
-              id="age"
-              name="age"
-              type="number"
-              className="input shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              onChange={formik.handleChange}
-              value={formik.values.age}
-            />
-            {formik.touched.age && formik.errors.age ? (
-              <div className="text-red-500 text-xs italic">
-                {formik.errors.age}
-              </div>
-            ) : null}
-          </div>
-          <div>
-            <label htmlFor="weight">Weight</label>
-            <input
-              id="weight"
-              name="weight"
-              type="number"
-              className="input shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              value={formik.values.weight}
-            />
-            {formik.touched.weight && formik.errors.weight ? (
-              <div className="text-red-500 text-xs italic">
-                {formik.errors.weight}
-              </div>
-            ) : null}
-          </div>
-          <label htmlFor="breed">Breed</label>
-          <CustomSelect
-            className="input"
-            onChange={(value) => formik.setFieldValue("breed", value.value)}
-            onBlur={formik.handleBlur}
-            value={formik.values.breed}
-            options={dict}
-          />
-          {formik.touched.breed && formik.errors.breed ? (
-            <div className="text-red-500 text-xs italic">
-              {formik.errors.breed}
-            </div>
-          ) : null}
-          <button type="submit">Register</button>
-        </form>
+        <PetForm breeds={dict} formik={formik} onSubmit={formik.handleSubmit} submitBtnTitle="Register" />
       </ModalBody>
     </Modal>
   );
