@@ -63,7 +63,7 @@ export const createPet = createAsyncThunk(
         breed,
         weight
       );
-      thunkAPI.dispatch(setMessage(response.data.message));
+      thunkAPI.dispatch(setMessage(response.data));
       return response.data;
     } catch (error) {
       const message =
@@ -83,7 +83,6 @@ async ({ username, name, weight, age, breed, target, id }, thunkAPI) => {
   try {
     const response = await UserService.editPet(username, name, weight, age, breed, target, id);
             thunkAPI.dispatch(setMessage(response.data));
-  //          console.log(response.data)
             return response.data;
   } catch (error) {
     const message =
@@ -102,8 +101,7 @@ export const deletePet = createAsyncThunk(
   async (name, thunkAPI) => {
     try {
       const response = await PetService.deletePet(name);
-      console.log(response.data);
-      thunkAPI.dispatch(setMessage(response.data.pets));
+      thunkAPI.dispatch(setMessage(response.data));
       return response.data;
     } catch (error) {
       const message =
@@ -125,27 +123,27 @@ const authSlice = createSlice({
   name: "auth",
   initialState,
   extraReducers: {
-    [register.fulfilled]: (state, action) => {
+    [register.fulfilled]: (state) => {
       state.isLoggedIn = false;
     },
-    [register.rejected]: (state, action) => {
+    [register.rejected]: (state) => {
       state.isLoggedIn = false;
     },
     [login.fulfilled]: (state, action) => {
       state.isLoggedIn = true;
       state.user = action.payload.user;
     },
-    [login.rejected]: (state, action) => {
+    [login.rejected]: (state) => {
       state.isLoggedIn = false;
       state.user = null;
     },
-    [logout.fulfilled]: (state, action) => {
+    [logout.fulfilled]: (state) => {
       state.isLoggedIn = false;
       state.user = null;
     },
     [createPet.fulfilled]: (state, action) => {
       state.user.pets = action.payload.pets;
-      localStorage.setItem("user", JSON.stringify(state));
+      localStorage.setItem("user", JSON.stringify(state.user));
     },
     [editPet.fulfilled]: (state, action) => {
       state.user.pets = action.payload.user.pets
