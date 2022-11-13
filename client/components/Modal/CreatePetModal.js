@@ -96,7 +96,7 @@ export default function CreatePetModal(props) {
         </button>
       </div>
       <ModalHeader>
-        <h3 className="mx-auto  flex justify-center">Create Pet</h3>
+        <h3 className="mx-auto flex justify-center">Create Pet</h3>
       </ModalHeader>
       <ModalBody>
         <PetForm breeds={dict} formik={formik} onSubmit={formik.handleSubmit} submitBtnTitle="Register" />

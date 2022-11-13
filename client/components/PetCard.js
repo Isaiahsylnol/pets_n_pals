@@ -1,17 +1,20 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { editPet } from "../slices/auth";
 import EditPetForm from "./Modal/Form";
 import PetService from "../services/pet.service";
 import { useFormik } from "formik";
+import { deletePet } from "../slices/auth";
 
 function PetCard({ image, data }) {
+  const { user: currentUser } = useSelector((state) => state.auth);
   const [dict] = useState([]);
   const [toggle, setToggle] = useState(false);
   const dispatch = useDispatch();
   const { name, age, breed, weight } = data;
-
+  const id = currentUser?.id;
+  const username = currentUser?.username;
   // Population of the pet breed select tag's options
   useEffect(() => {
     PetService.getDogBreeds().then((response) =>
@@ -68,8 +71,6 @@ function PetCard({ image, data }) {
     onSubmit: (values) => {
       const { name, age, breed, weight } = values;
       let target = data.name;
-      let username = JSON.parse(localStorage.getItem("user")).username;
-      let id = JSON.parse(localStorage.getItem("user")).id;
 
       dispatch(
         editPet({
@@ -86,6 +87,16 @@ function PetCard({ image, data }) {
     },
   });
 
+  // Delete selected pet 
+  function deletePetCell(){
+    dispatch(
+      deletePet({
+        name,
+        id,
+      })
+    );
+  }
+
   return (
     <div className="rounded-xl bg-slate-500 text-white p-6">
       {toggle ? (
@@ -100,7 +111,6 @@ function PetCard({ image, data }) {
       <div className="p-4 flex">
         <Image src={image} alt="Pet thumbnail" width={72} height={76} />
       </div>
-
       {toggle ? (
         <div className="m-4">
           <EditPetForm
@@ -109,6 +119,7 @@ function PetCard({ image, data }) {
             onSubmit={formik.handleSubmit}
             submitBtnTitle="SAVE"
           />
+          <button className="rounded float-right p-3 bg-blue-500 text-white" onClick={deletePetCell}>DELETE</button>
         </div>
       ) : (
         <>
