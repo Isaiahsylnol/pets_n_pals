@@ -5,7 +5,8 @@ import { editPet } from "../slices/auth";
 import EditPetForm from "./Modal/Form";
 import PetService from "../services/pet.service";
 import { useFormik } from "formik";
-import { deletePet } from "../slices/auth";
+import DeleteConfirmation from "./Modal/DeleteConfirmationModal";
+import ModalService from "../components/Modal/services/ModalService";
 
 function PetCard({ image, data }) {
   const { user: currentUser } = useSelector((state) => state.auth);
@@ -26,6 +27,10 @@ function PetCard({ image, data }) {
       })
     );
   }, []);
+
+  const addModal = (modal) => {
+    ModalService.open(modal);
+  };
 
   const editToggle = () => {
     toggle ? setToggle(false) : setToggle(true);
@@ -89,12 +94,13 @@ function PetCard({ image, data }) {
 
   // Delete selected pet 
   function deletePetCell(){
-    dispatch(
-      deletePet({
-        name,
-        id,
-      })
-    );
+    addModal(() => DeleteConfirmation({name, id}))
+    // dispatch(
+    //   deletePet({
+    //     name,
+    //     id,
+    //   })
+    // );
   }
 
   return (
@@ -119,7 +125,8 @@ function PetCard({ image, data }) {
             onSubmit={formik.handleSubmit}
             submitBtnTitle="SAVE"
           />
-          <button className="rounded float-right p-3 bg-blue-500 text-white" onClick={deletePetCell}>DELETE</button>
+          {/* Delete Pet Button */}
+          <button className="rounded float-right relative bottom-12 p-3 bg-red-500 text-white" onClick={deletePetCell}>DELETE</button>
         </div>
       ) : (
         <>

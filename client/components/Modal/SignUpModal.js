@@ -13,6 +13,7 @@ export default function SignUpModal(props) {
   const [successful, setSuccessful] = useState(false);
   const { message } = useSelector((state) => state.message);
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(clearMessage());
   }, [dispatch]);
@@ -22,9 +23,7 @@ export default function SignUpModal(props) {
     email: "",
     password: "",
   };
-  useEffect(()=> {
-    console.log();
-  },[]);
+
   const validationSchema = Yup.object().shape({
     username: Yup.string()
       .test(
@@ -63,7 +62,7 @@ export default function SignUpModal(props) {
       .unwrap()
       .then(() => {
         setSuccessful(true);
-        closeModal()
+        closeModal();
       })
       .catch(() => {
         setSuccessful(false);

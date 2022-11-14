@@ -46,7 +46,7 @@ export default function Profile() {
               <p className="text-2xl font-bold mb-2">{user?.username}</p>
               <p>{user?.address}</p>
               <p>Toronto, Canada</p>
-              <p>652-333-4553</p>
+              <p>222-333-4444</p>
               <p>{user?.email}</p>
               <p>{user?.account_type}</p>
               <div className="mt-10 grid grid-cols-1 text-white">
@@ -77,7 +77,7 @@ export default function Profile() {
             </button>
             {user?.pets?.map((pet) => {
               return (
-                <li key={pet?._id} className="p-5 rounded-xl h-min" style={{ listStyle: "none" }}>
+                <li key={pet?._id} className="hover:bg-slate-700 p-5 rounded-xl h-min" style={{ listStyle: "none" }}>
                   {
                     <PetCard
                       data={pet}
