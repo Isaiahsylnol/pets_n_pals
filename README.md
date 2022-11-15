@@ -31,7 +31,7 @@ yarn dev
 - Display latest news articles
 - Feature latest and trending products 
 
-[![pets n pals](https://github.com/Isaiahsylnol/pets_n_pals/blob/main/screenshots/ladning-page.png)](#features)
+[![pets n pals](https://github.com/Isaiahsylnol/pets_n_pals/blob/main/screenshots/landing-page.png)](#features)
 
 -----------
 
@@ -79,7 +79,7 @@ yarn dev
 ### Login/Register Page
 - Display two buttons for login/register modal 
 
-[![pets n pals](https://github.com/Isaiahsylnol/pets_n_pals/blob/main/screenshots/log-register-page.png)](#features)
+[![pets n pals](https://github.com/Isaiahsylnol/pets_n_pals/blob/main/screenshots/login-register-page.png)](#features)
 
 -----------
 
