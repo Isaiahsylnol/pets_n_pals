@@ -7,6 +7,9 @@ export default async function handler(req, res) {
     try {
         const params = {
             submit_type: 'pay',
+            automatic_tax: {
+              enabled: true,
+            },
             mode: 'payment',
             payment_method_types: [
                 "card"
@@ -27,6 +30,7 @@ export default async function handler(req, res) {
                             images: [img]
                         },
                         unit_amount: item.price * 100,
+                        tax_behavior: "exclusive",
                     },
                     adjustable_quantity: {
                         enabled: true,
