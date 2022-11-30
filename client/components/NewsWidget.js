@@ -16,9 +16,7 @@ function NewsWidget({ item }) {
         {item?.title}
       </h2>
       <p className="text-base leading-relaxed mt-2">
-        Swag shoivdigoitch literally meditation subway tile tumblr cold-pressed.
-        Gastropub street art beard dreamcatcher neutra, ethical XOXO
-        lumbersexual.
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tempus ipsum nec pulvinar finibus. Proin non ipsum eu dui tempor iaculis ultrices id velit. Donec eget accumsan ipsum. Sed ipsum dui, porta sit amet gravida id
       </p>
       <a href="#" className="text-indigo-500 inline-flex items-center mt-3">
         Learn More

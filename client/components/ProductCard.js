@@ -9,33 +9,33 @@ const ProductCard = (props) => {
       href={{
         pathname: "/products/[sku]",
         query: {
-          sku: item.sku,
-          name: item.name,
-          price: item.price,
-          thumbnail: item.thumbnail,
-          description: item.description,
-          rating: item.rating,
+          sku: item?.sku,
+          name: item?.name,
+          price: item?.price,
+          thumbnail: item?.thumbnail,
+          description: item?.description,
+          rating: item?.rating,
         },
       }}
-      as={`/product/${item.sku}`}
-      key={item.sku}
+      as={`/product/${item?.sku}`}
+      key={item?.sku}
       className="lg:w-1/4 md:w-1/2 w-full"
     >
       <a className="m-4">
         <div className="text-left m-6">
           <div className="block relative  rounded overflow-hidden">
-            <Image
+            {item ? <Image
               className="object-cover object-center w-full h-full block"
-              src={item.thumbnail}
+              src={item?.thumbnail}
               alt="Product thumbnail"
               width={420}
               height={400}
-            />
+            /> : null}
           </div>
           <div className="p-4">
             <div className="mb-1">
               <StarRatings
-                rating={item.rating}
+                rating={item?.rating}
                 starRatedColor="orange"
                 numberOfStars={5}
                 starDimension="20px"
@@ -44,9 +44,9 @@ const ProductCard = (props) => {
               />
             </div>
             <h2 className="text-gray-900 title-font text-lg font-medium">
-              {item.name}
+              {item?.name}
             </h2>
-            <p className="mt-1">${item.price}</p>
+            <p className="mt-1">${item?.price}</p>
           </div>
         </div>
       </a>

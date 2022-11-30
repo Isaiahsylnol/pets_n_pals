@@ -42,19 +42,19 @@ function Header(props) {
       <div>
         <nav>
           <ul className="hidden space-x-4 md:flex">
-            <li className="nav-link">
+            <li className="nav-link md:text-base lg:text-2xl">
               <Link href="/">Home</Link>
             </li>
-            <li className="nav-link">
+            <li className="nav-link md:text-base  lg:text-2xl">
               <Link href="/shop">Shop</Link>
             </li>
-            <li className="nav-link">
+            <li className="nav-link md:text-base lg:text-2xl">
               <Link href="/manage_pets">Manage Pets</Link>
             </li>
-            <li className="nav-link">
+            <li className="nav-link md:text-base lg:text-2xl">
               <Link href="/about">About</Link>
             </li>
-            <li className="nav-link">
+            <li className="nav-link md:text-base lg:text-2xl">
               <Link href="/subscriptions">Subscriptions</Link>
             </li>
           </ul>
