@@ -22,7 +22,7 @@ const editPet = async (username, name, weight, age, breed, target, id) => {
     age,
     breed,
     username
-  })};
+  }, { headers: authHeader() })};
 
 const getPublicContent = () => {
     return axios.get("http://localhost:8080/api/user/test/public");

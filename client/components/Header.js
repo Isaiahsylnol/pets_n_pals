@@ -23,86 +23,137 @@ function Header(props) {
         : []
     );
   }, [currentUser]);
-
+  const [isNavOpen, setIsNavOpen] = useState(false); // initiate isNavOpen state with false
   const handleSignOut = async () => {
     dispatch(logout());
     router.push("/");
   };
 
   return (
-    <header className="flex items-center space-x-2 md:space-x-10 z-40 bg-white">
-      <a href="/">
+    <div className="h-16 lg:h-auto items-center justify-between bg-white top-0 z-10 py-4 sticky">
+      <a href="/" className="absolute ml-4 -mt-1">
         <Image
           src={require(`/assets/logo-4.png`)}
-          alt="Vercel Logo"
+          alt="Pets'N Pals Logo"
           width={100}
           height={40}
         />
       </a>
-      <div>
-        <nav>
-          <ul className="hidden space-x-4 md:flex">
-            <li className="nav-link md:text-base lg:text-2xl">
-              <Link href="/">Home</Link>
-            </li>
-            <li className="nav-link md:text-base  lg:text-2xl">
-              <Link href="/shop">Shop</Link>
-            </li>
-            <li className="nav-link md:text-base lg:text-2xl">
-              <Link href="/manage_pets">Manage Pets</Link>
-            </li>
-            <li className="nav-link md:text-base lg:text-2xl">
-              <Link href="/about">About</Link>
-            </li>
-            <li className="nav-link md:text-base lg:text-2xl">
-              <Link href="/subscriptions">Subscriptions</Link>
-            </li>
-          </ul>
-        </nav>
-      </div>
-      <div className="flex items-center space-x-4 text-sm font-light">
-        <SearchIcon className="hidden h-6 w-6 sm:inline" />
-        <BellIcon className="h-6 w-6" />
-        <Link href="/profile" passHref>
-          <AccButton />
-        </Link>
-        
-          <a href="/cart" className="w-3">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth="1.5"
-            stroke="currentColor"
-            className="w-6 h-6"
+      <nav>
+        <section className="MOBILE-MENU flex lg:hidden justify-end">
+          <div
+            className={isNavOpen ? "w-full top-0 z-10 bg-orange-400" : "hidden"}
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"
-            />
-          </svg>
-          </a>
-          {props.countCartItems ? (<div className="bg-red-500 rounded-full w-6 h-6 text-white text-center">{props.countCartItems} </div>) : null}
-        {user ? (
-            <svg
-            onClick={handleSignOut}
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth="1.5"
-            stroke="currentColor"
-            className="w-6 h-6"
+            <ul className="flex flex-col items-center justify-between min-h-[250px]">
+              <li className="border-b border-gray-400 my-8 uppercase text-4xl">
+                <Link href="/" className="text-4xl">
+                  <a className="rounded-lg p-3 duration-300 hover:bg-blue-500">
+                    Home
+                  </a>
+                </Link>
+              </li>
+              <li className="border-b border-gray-400 my-8 uppercase">
+                <Link href="/shop">Shop</Link>
+              </li>
+              <li className="border-b border-gray-400 my-8 uppercase">
+                <Link href="/manage_pets">Manage Pets</Link>
+              </li>
+              <li className="border-b border-gray-400 my-8 uppercase">
+                <Link href="/about">About</Link>
+              </li>
+              <li className="border-b border-gray-400 my-8 uppercase">
+                <Link href="/subscriptions">Subscriptions</Link>
+              </li>
+              <li className="border-b border-gray-400 my-8 uppercase">
+                <Link href="/profile" passHref>
+                  <AccButton />
+                </Link>
+              </li>
+            </ul>
+          </div>
+          <div
+            className="space-y-2 lg:hidden flex flex-col float-right absolute z-10 mt-1 mr-2"
+            onClick={() => setIsNavOpen((prev) => !prev)} // toggle isNavOpen state on click
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9"
-            />
-          </svg>
-        ) : null}
-      </div>
-    </header>
+            <span className="block h-0.5 w-8 animate-pulse bg-gray-600"></span>
+            <span className="block h-0.5 w-8 animate-pulse bg-gray-600"></span>
+            <span className="block h-0.5 w-8 animate-pulse bg-gray-600"></span>
+          </div>
+        </section>
+
+        <ul className="DESKTOP-MENU hidden space-x-6 lg:flex justify-end">
+          <li>
+            <Link href="/">
+              <a className="rounded-lg text-lg font-semibold p-3 duration-300 hover:text-orange-500">
+                Home
+              </a>
+            </Link>
+          </li>
+          <li>
+            <Link href="/shop">
+              <a className="rounded-lg text-lg font-semibold p-3 duration-300 hover:text-orange-500">
+                Shop
+              </a>
+            </Link>
+          </li>
+          <li>
+            <Link href="/shop">
+              <a className="rounded-lg text-lg font-semibold p-3 duration-300 hover:text-orange-500">
+                Manage Pets
+              </a>
+            </Link>
+          </li>
+          <li>
+            <Link href="/shop">
+              <a className="rounded-lg text-lg font-semibold p-3 duration-300 hover:text-orange-500">
+                About
+              </a>
+            </Link>
+          </li>
+          <li>
+            <Link href="/shop">
+              <a className="rounded-lg text-lg font-semibold p-3 duration-300 hover:text-orange-500">
+                Subscriptions
+              </a>
+            </Link>
+          </li>
+          <li className="flex justify-end">
+            <Link href="/profile" passHref>
+              <AccButton />
+            </Link>
+          </li>
+          <li className="pr-4">
+            <a href="/cart">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth="1.5"
+                stroke="currentColor"
+                className="w-6 h-6"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"
+                />
+              </svg>{" "}
+              {props.countCartItems ? (
+                <div className="bg-red-500 rounded-full w-6 h-6 text-white text-center -mt-8 ml-3">
+                  {props.countCartItems}{" "}
+                </div>
+              ) : null}
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <style>{`
+      .hideMenuNav {
+        display: none;
+      }
+     
+    `}</style>
+    </div>
   );
 }
 
@@ -111,8 +162,8 @@ const AccButton = React.forwardRef(({ onClick, href }, ref) => {
     <a href={href} onClick={onClick} ref={ref}>
       <Image
         alt="Profile Icon"
-        width={30}
-        height={30}
+        width={25}
+        height={25}
         src={require("../assets/account.png")}
       />
     </a>

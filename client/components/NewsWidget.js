@@ -18,7 +18,7 @@ function NewsWidget({ item }) {
       <p className="text-base leading-relaxed mt-2">
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tempus ipsum nec pulvinar finibus. Proin non ipsum eu dui tempor iaculis ultrices id velit. Donec eget accumsan ipsum. Sed ipsum dui, porta sit amet gravida id
       </p>
-      <a href="#" className="text-indigo-500 inline-flex items-center mt-3">
+      <p className="text-indigo-500 inline-flex items-center mt-3">
         Learn More
         <svg
           fill="none"
@@ -31,7 +31,7 @@ function NewsWidget({ item }) {
         >
           <path d="M5 12h14M12 5l7 7-7 7"></path>
         </svg>
-      </a>
+      </p>
     </div>
   );
 }

@@ -1,6 +1,5 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import styles from "../styles/Home.module.css";
 import Link from "next/link";
 import getStripe from "../lib/getStripe";
 import toast, { Toaster } from "react-hot-toast";
@@ -13,26 +12,26 @@ const Checkout = () => {
   const shippingPrice = itemPrice > 2000 ? 0 : 20;
   const totalPrice = itemPrice + taxPrice + shippingPrice;
   useEffect(() => {
-    setCartItems(JSON.parse(localStorage.getItem('cartItems')));
+    setCartItems(JSON.parse(localStorage.getItem("cartItems")));
   }, []);
-  
+
   const handleCheckout = async () => {
     const stripe = await getStripe();
-    const response = await fetch('/api/stripe', {
-      method: 'POST',
+    const response = await fetch("/api/stripe", {
+      method: "POST",
       headers: {
-          'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(cartItems),
-  });
-  if(response.statusCode === 500) return;
+    });
+    if (response.statusCode === 500) return;
 
-  const data = await response.json();
+    const data = await response.json();
 
-  toast.loading('Redirecting')
+    toast.loading("Redirecting");
 
-  stripe.redirectToCheckout({ sessionId: data.id });
-  }
+    stripe.redirectToCheckout({ sessionId: data.id });
+  };
 
   const onAdd = (product) => {
     const exist = cartItems.find((x) => x.sku === product.sku);
@@ -41,8 +40,8 @@ const Checkout = () => {
         x.sku === product.sku ? { ...exist, qty: exist.qty + 1 } : x
       );
       setCartItems(newCartItems);
-      localStorage.setItem('cartItems', JSON.stringify(newCartItems));
-    }  
+      localStorage.setItem("cartItems", JSON.stringify(newCartItems));
+    }
   };
 
   const onRemove = (product) => {
@@ -50,13 +49,13 @@ const Checkout = () => {
     if (exist.qty === 1) {
       const newCartItems = cartItems.filter((x) => x.sku !== product.sku);
       setCartItems(newCartItems);
-      localStorage.setItem('cartItems', JSON.stringify(newCartItems));
+      localStorage.setItem("cartItems", JSON.stringify(newCartItems));
     } else {
       const newCartItems = cartItems.map((x) =>
         x.sku === product.sku ? { ...exist, qty: exist.qty - 1 } : x
       );
       setCartItems(newCartItems);
-      localStorage.setItem('cartItems', JSON.stringify(newCartItems));
+      localStorage.setItem("cartItems", JSON.stringify(newCartItems));
     }
   };
 
@@ -69,64 +68,32 @@ const Checkout = () => {
   };
 
   return (
-    <div className={styles.main}>
-      <div className="block w-full lg:w-1/2 bg-orange-400 p-12">
-      <Toaster />
-        <div className="mb-4">
-          <h1>Your Cart</h1>
-        </div>
-        {cartItems?.length === 0 && (
-          <div>
-            Cart is empty{" "}
-            <Link href="/shop">
-              <button className="text-white block bg-orange-700 border-0 py-2 px-6 mt-4 focus:outline-none hover:bg-gray-900 rounded">
-                Continue Shopping
-              </button>
-            </Link>
-          </div>
-        )}
-        <Link href="/shop">
-          <div>
-            {cartItems?.length ? (
-              <button className="text-black  float-right focus:outline-none hover:text-white rounded">
-                Add More Items
-              </button>
-            ) : null}
-          </div>
-        </Link>
-        {cartItems?.map((item) => (
-          <div key={item.sku} className="bg-slate-300 p-5 m-1 mt-12">
-            <div>
-              <div className="row flex flex-row p-1">
-                <div className="pr-5">
-                  <Image
-                    className="object-cover object-center"
-                    src={`${item.thumbnail}`}
-                    alt="ecommerce thumbnail"
-                    width={133}
-                    height={133}
-                  />
+    <>
+      {cartItems?.length ? (
+        <div>
+          <h1 className="mb-4 w-full flex justify-center items-center text-3xl font-bold mt-16">
+            Shopping Bag
+          </h1>
+          {/* Layout Container */}
+          <div className="max-w-8xl lg:p-12 sm:grid grid-cols-2 gap-x-8 h-screen">
+            {/* Left Grid item - Cart products */}
+            <section>
+              <Link href="/shop">
+                <div>
+                  {cartItems?.length ? (
+                    <button className="text-gray-500 text-sm focus:outline-none underline rounded uppercas ml-12 mt-6 sm:mt-0 pb-3">
+                      Add More Items
+                    </button>
+                  ) : null}
                 </div>
-                <div className="basis-3/4">
-                  <h2>{item.name}</h2>
-                  <div className="row p-1">Quantity: {item.qty}</div>
-                  <div className="row p-1">
-                    <button
-                      onClick={() => onRemove(item)}
-                      className="remove p-1 text-lg font-extrabold"
-                    >
-                      -
-                    </button>
-                    <button
-                      onClick={() => onAdd(item)}
-                      className="add p-1 w-12 font-bold"
-                    >
-                      +
-                    </button>
-                    <button
-                      onClick={() => onDelete(item)}
-                      className="remove   text-lg font-extrabold float-right"
-                    >
+              </Link>
+              <Toaster />
+              {/* Displayed cart items */}
+              {cartItems?.map((item) => (
+                <div key={item.sku} className="p-3">
+                  <div className="flex flex-row p-1">
+                    {/* Remove product from cart button */}
+                    <button onClick={() => onDelete(item)} className="pr-4">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
@@ -142,46 +109,102 @@ const Checkout = () => {
                         />
                       </svg>
                     </button>
+                    <Image
+                      className="object-cover"
+                      src={`${item.thumbnail}`}
+                      alt="ecommerce thumbnail"
+                      width={233}
+                      height={233}
+                    />
+                    <div className="basis-3/4 ml-5">
+                      <h2>{item.name}</h2>
+                      <div className="p-1">Quantity: {item.qty}</div>
+                      <div className="p-1">
+                        <button
+                          onClick={() => onRemove(item)}
+                          className="p-1 text-lg font-extrabold"
+                        >
+                          -
+                        </button>
+                        <button
+                          onClick={() => onAdd(item)}
+                          className="add p-1 w-12 font-bold"
+                        >
+                          +
+                        </button>
+                      </div>
+                    </div>
+                    <div className="text-right font-bold">${item.price}</div>
                   </div>
                 </div>
-                <div className="text-right font-bold">${item.price}</div>
+              ))}
+            </section>
+            {/* Right Grid Item - Transaction summary */}
+            <section>
+              {/* Transaction details */}
+              <div className="w-full sm:w-4/6 float-right">
+                {/* Card header  */}
+                {cartItems?.length !== 0 && (
+                  <div className="p-4">
+                    <div className="border-b-2 w-full border-gray-300 p-3">
+                      <h1 className="text-lg font-semibold mb-3">Summary</h1>
+                    </div>
+                    <div className="flex p-1">
+                      <span className="w-full">Items Price</span>
+                      <span className="text-right w-full float-right justify-end">
+                        {itemPrice ? `$${itemPrice.toFixed(2)}` : null}
+                      </span>
+                    </div>
+                    <div className="flex p-1">
+                      <span className="w-full">Tax Price</span>
+                      <span className="text-right w-full float-right justify-end">
+                        {itemPrice ? `$${taxPrice.toFixed(2)}` : null}
+                      </span>
+                    </div>
+
+                    <div className="flex p-1">
+                      <span className="w-full">Shipping</span>
+                      <span className="text-right w-full float-right justify-end">
+                        {itemPrice ? `$${shippingPrice.toFixed(2)}` : null}
+                      </span>
+                    </div>
+
+                    <div className="flex p-1">
+                      <span className="w-full text-base font-semibold uppercase">
+                        Order Total{" "}
+                      </span>
+                      <span className="text-right w-full text-base font-semibold">
+                        {totalPrice ? `$${totalPrice.toFixed(2)}` : null}
+                      </span>
+                    </div>
+                    {cartItems ? (
+                      <button
+                        type="submit"
+                        onClick={handleCheckout}
+                        className="w-full mt-4 bg-slate-800 hover:bg-slate-700 text-white py-2 rounded-lg"
+                      >
+                        Checkout
+                      </button>
+                    ) : (
+                      <></>
+                    )}
+                  </div>
+                )}
               </div>
-            </div>
+            </section>
           </div>
-        ))}
-        {cartItems?.length !== 0 && (
-          <>
-            <div className="row mt-11">
-              <div>Items Price</div>
-              <div className="text-right">{itemPrice ? `$${itemPrice.toFixed(2)}` : null}</div>
-            </div>
-            <div className="row">
-              <div className="">Tax Price</div>
-              <div className="text-right">{itemPrice ? `$${taxPrice.toFixed(2)}` : null}</div>
-            </div>
-            <div className="row">
-              <div>Shipping Price</div>
-              <div className="text-right">{itemPrice ? `$${shippingPrice.toFixed(2)}` : null}</div>
-            </div>
-            <div className="row">
-              <div>Total Price</div>
-              <div className="text-right font-bold">
-                {totalPrice ? `$${totalPrice.toFixed(2)}` : null}
-              </div>
-            </div>
-            {
-             cartItems ? <button
-             type="submit"
-             onClick={handleCheckout}
-             className="mt-4 bg-blue-500 text-white py-2 w-1/4 rounded-lg"
-           >
-             Checkout
-           </button> : <></>
-            }
-          </>
-        )}
-      </div>
-    </div>
+        </div>
+      ) : (
+        <div className="text-2xl uppercase font-bold h-screen mt-64">
+          YOUR BAG IS CURRENTLY EMPTY.{" "}
+          <Link href="/shop">
+            <a className="flex w-52 mx-auto py-2 px-6 mt-4 text-white text-sm bg-orange-700 hover:bg-orange-800 focus:outline-none rounded">
+              Continue Shopping
+            </a>
+          </Link>
+        </div>
+      )}
+    </>
   );
 };
 

@@ -8,12 +8,13 @@ import EventBus from '../common/EventBus';
 import PetService from '../services/pet.service';
 import dynamic from 'next/dynamic';
 import Footer from '../components/Footer';
+import withAuth from "../common/AuthVerify.js";
 import Link from 'next/link';
 import axios from 'axios';
 import ProductCard from '../components/ProductCard';
 const NewsWidget = dynamic(()=>import('../components/NewsWidget'), { ssr: false });
 
-export default function Home() {
+const Home = () => {
   const [showModeratorBoard, setShowModeratorBoard] = useState(false);
   const [showAdminBoard, setShowAdminBoard] = useState(false);
   const [cartItems, setCartItems] = useState([]);
@@ -102,3 +103,5 @@ useEffect(() => {
     </>
   )
 };
+
+export default withAuth(Home);

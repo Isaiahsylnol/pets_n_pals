@@ -10,14 +10,14 @@ const parseJwt = (token) => {
 const withAuth = (Component) => {
      const user = false
         if (user) {
-
             console.log("user exist!")
             const decodedJwt = parseJwt(user.accessToken);
       
             if (decodedJwt.exp * 1000 < Date.now()) {
                 console.log("Log out immediately!")
             }
-          } else { console.log("Log out immediately!") }
+          } else { 
+            console.log("Log out immediately!") }
     return Component;
   };
   
