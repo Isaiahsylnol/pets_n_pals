@@ -26,7 +26,7 @@ export default function Profile() {
   }, [currentUser]);
   if (user) {
     return (
-      <div className="container-fluid justify-center w-full">
+      <div className="justify-center w-full">
         <Head>
           <title>Profile</title>
           <link rel="icon" href="/favicon.ico" />
@@ -50,17 +50,17 @@ export default function Profile() {
               <p>{user?.email}</p>
               <p>{user?.account_type}</p>
               <div className="mt-10 grid grid-cols-1 text-white">
-                <button className="h-10 w-36 justify-start rounded bg-yellow-500 font-bold   hover:bg-blue-700">
+                <button className="h-10 w-36 justify-start rounded bg-yellow-500 font-bold hover:bg-yellow-600">
                   <PhoneIcon className="inline h-6 w-6" />
                   <a className="ml-3">Support</a>
                 </button>
                 <br />
-                <button className="h-10 w-44 justify-start rounded bg-blue-500 font-bold   hover:bg-blue-700">
+                <button className="h-10 w-44 justify-start rounded bg-blue-500 font-bold hover:bg-blue-600">
                   <ViewGridIcon className="inline h-6 w-6" />
                   <a className="ml-3 justify-start">Manage Plan</a>
                 </button>
                 <br />
-                <button className="h-10 w-36 justify-start rounded bg-red-500 font-bold   hover:bg-blue-700">
+                <button className="h-10 w-36 justify-start rounded bg-red-500 font-bold hover:bg-red-600">
                   <ExclamationIcon className="inline h-6 w-6" />
                   <a className="ml-3 justify-start">Deactivate</a>
                 </button>
@@ -68,16 +68,20 @@ export default function Profile() {
             </div>
           </div>
           {/* grid nested  */}
-          <div className="grid grid-cols-1 gap-6 w-full sm:w-full md:w-full md:grid-cols-1 lg:w-2/5 lg:grid-cols-1">
+          <div className="grid grid-cols-1 w-full sm:w-full md:w-full md:grid-cols-1 lg:w-2/5 lg:grid-cols-1">
             <button
               onClick={() => addModal(CreatePetModal)}
-              className="btn btn-primary m-4 h-min"
+              className="btn btn-primary rounded-2xl bg-green-600 hover:bg-green-500 p-6 w-5/6 mx-auto text-lg font-semibold text-white uppercase"
             >
               Create Pet
             </button>
             {user?.pets?.map((pet) => {
               return (
-                <li key={pet?._id} className="hover:bg-slate-700 p-5 rounded-xl h-min" style={{ listStyle: "none" }}>
+                <li
+                  key={pet?._id}
+                  className="p-5 rounded-xl h-min"
+                  style={{ listStyle: "none" }}
+                >
                   {
                     <PetCard
                       data={pet}

@@ -1,19 +1,21 @@
 import Modal from "./Modal";
 import ModalBody from "./ModalBody";
 import ModalHeader from "./ModalHeader";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { createPet } from "../../slices/auth";
 import { useFormik } from "formik";
 import PetService from "../../services/pet.service";
 import PetForm from "./Form";
+import toast from "react-hot-toast";
 
 export default function CreatePetModal(props) {
+  const close = useRef(null);
   const dispatch = useDispatch();
   const [dict] = useState([]);
   const { user: currentUser } = useSelector((state) => state.auth);
 
-  // Population of the pet breed select tag's options 
+  // Population of the pet breed select tag's options
   useEffect(() => {
     PetService.getDogBreeds().then((response) =>
       response.data.forEach((element) => {
@@ -65,14 +67,22 @@ export default function CreatePetModal(props) {
     onSubmit: (values) => {
       const { name, age, breed, weight } = values;
       let userId = currentUser.id;
-      dispatch(createPet({ name, age, breed, weight, userId }))
+      PetService.findPetByName({ userId, name }).then((response) => {
+        if (response.data) {
+          toast.error("Duplicate Pet");
+        } else {
+          dispatch(createPet({ name, age, breed, weight, userId }));
+          close.current.click();
+        }
+      });
     },
   });
 
   return (
     <Modal>
-      <div className="float-right justify-center">
+      <div className="float-right">
         <button
+          ref={close}
           aria-label="Close Modal"
           aria-labelledby="close-modal"
           onClick={props.close}
@@ -96,10 +106,17 @@ export default function CreatePetModal(props) {
         </button>
       </div>
       <ModalHeader>
-        <h3 className="mx-auto flex justify-center">Create Pet</h3>
+        <h3 className="text-center uppercase font-semibold text-xl">
+          Create Pet
+        </h3>
       </ModalHeader>
       <ModalBody>
-        <PetForm breeds={dict} formik={formik} onSubmit={formik.handleSubmit} submitBtnTitle="Register" />
+        <PetForm
+          breeds={dict}
+          formik={formik}
+          onSubmit={formik.handleSubmit}
+          submitBtnTitle="Register"
+        />
       </ModalBody>
     </Modal>
   );

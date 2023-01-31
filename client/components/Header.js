@@ -97,21 +97,21 @@ function Header(props) {
             </Link>
           </li>
           <li>
-            <Link href="/shop">
+            <Link href="/manage_pets">
               <a className="rounded-lg text-lg font-semibold p-3 duration-300 hover:text-orange-500">
                 Manage Pets
               </a>
             </Link>
           </li>
           <li>
-            <Link href="/shop">
+            <Link href="/about">
               <a className="rounded-lg text-lg font-semibold p-3 duration-300 hover:text-orange-500">
                 About
               </a>
             </Link>
           </li>
           <li>
-            <Link href="/shop">
+            <Link href="/subscriptions">
               <a className="rounded-lg text-lg font-semibold p-3 duration-300 hover:text-orange-500">
                 Subscriptions
               </a>

@@ -2,7 +2,6 @@ import Head from "next/head";
 import Header from "../components/Header.js";
 import { useDispatch, useSelector } from "react-redux";
 import Footer from "../components/Footer.js";
-import styles from "../styles/Home.module.css";
 import { CheckIcon, MinusIcon } from "@heroicons/react/solid";
 import SubscribeContainer from "../components/Subscriptions/Container.js";
 import { useEffect, useState } from "react";
@@ -26,10 +25,12 @@ export default function Subscriptions() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
-      <main className={styles.main}>
-        <div className="w-full p-12 flex flex-col items-center bg-silver-chalice">
-          <h1>Choose the plan that's right for you.</h1>
-          <div className="flex items-center justify-center flex-wrap p-7">
+      <main>
+        <div className="w-full p-12 flex flex-col items-center">
+          <h1 className="text-2xl font-bold pb-16">
+            Choose the plan that's right for you.
+          </h1>
+          <div className="flex items-center justify-center flex-wrap p-7 gap-16">
             <SubscribeContainer
               tier="Basic"
               price="$0.00/month"
@@ -77,13 +78,13 @@ export default function Subscriptions() {
           </div>
           {user ? null : (
             <a href="/login-register">
-            <button
-              type="button"
-              className="text-white bg-orange-400 hover:bg-[#1F1F1F] font-medium rounded-full text-sm px-8 py-4 text-center mr-2 mb-2"
-            >
-              Sign Up
-            </button>
-        </a>
+              <button
+                type="button"
+                className="text-white bg-orange-400 hover:bg-[#1F1F1F] font-medium rounded-full text-sm px-8 py-4 text-center mr-2 mb-2"
+              >
+                Sign Up
+              </button>
+            </a>
           )}
           <div className="mt-8">
             <span>

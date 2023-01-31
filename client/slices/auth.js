@@ -52,6 +52,26 @@ export const logout = createAsyncThunk("auth/logout", () => {
   AuthService.logout();
 });
 
+export const findPetById = createAsyncThunk(
+  "pet/find",
+  async ({ userId, name }) => {
+    try {
+      const response = await PetService.findPetById(userId, name);
+      thunkAPI.dispatch(setMessage(response.data));
+      return response.data;
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      thunkAPI.dispatch(setMessage(message));
+      return thunkAPI.rejectWithValue();
+    }
+  }
+);
+
 export const createPet = createAsyncThunk(
   "pet/create",
   async ({ userId, name, age, breed, weight }, thunkAPI) => {
@@ -78,23 +98,33 @@ export const createPet = createAsyncThunk(
   }
 );
 
-export const editPet = createAsyncThunk("pet/edit",
-async ({ username, name, weight, age, breed, target, id }, thunkAPI) => {
-  try {
-    const response = await UserService.editPet(username, name, weight, age, breed, target, id);
-            thunkAPI.dispatch(setMessage(response.data));
-            return response.data;
-  } catch (error) {
-    const message =
-              (error.response &&
-                error.response.data &&
-                error.response.data.message) ||
-              error.message ||
-              error.toString();
-            thunkAPI.dispatch(setMessage(message));
-            return thunkAPI.rejectWithValue();
+export const editPet = createAsyncThunk(
+  "pet/edit",
+  async ({ username, name, weight, age, breed, target, id }, thunkAPI) => {
+    try {
+      const response = await UserService.editPet(
+        username,
+        name,
+        weight,
+        age,
+        breed,
+        target,
+        id
+      );
+      thunkAPI.dispatch(setMessage(response.data));
+      return response.data;
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      thunkAPI.dispatch(setMessage(message));
+      return thunkAPI.rejectWithValue();
+    }
   }
-})
+);
 
 export const deletePet = createAsyncThunk(
   "pet/delete",
@@ -146,7 +176,7 @@ const authSlice = createSlice({
       localStorage.setItem("user", JSON.stringify(state.user));
     },
     [editPet.fulfilled]: (state, action) => {
-      state.user.pets = action.payload.user.pets
+      state.user.pets = action.payload.user.pets;
       localStorage.setItem("user", JSON.stringify(state.user));
     },
     [deletePet.fulfilled]: (state, action) => {

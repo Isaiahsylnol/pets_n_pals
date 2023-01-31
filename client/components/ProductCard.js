@@ -19,20 +19,20 @@ const ProductCard = (props) => {
       }}
       as={`/product/${item?.sku}`}
       key={item?.sku}
-      className="lg:w-1/4 md:w-1/2 w-full"
     >
-      <a className="m-4">
-        <div className="text-left m-6">
-          <div className="block relative  rounded overflow-hidden">
-            {item ? <Image
-              className="object-cover object-center w-full h-full block"
+      <a className="m-8 w-full sm:w-60">
+        <div className="text-center sm:text-left">
+          {item ? (
+            <Image
+              className="object-cover object-center w-full h-full"
               src={item?.thumbnail}
               alt="Product thumbnail"
-              width={420}
-              height={400}
-            /> : null}
-          </div>
-          <div className="p-4">
+              width={320}
+              height={300}
+            />
+          ) : null}
+
+          <div className="m-4">
             <div className="mb-1">
               <StarRatings
                 rating={item?.rating}

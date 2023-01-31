@@ -21,13 +21,19 @@ exports.findAll = (req, res) => {
 // Find a single Pet with an id
 exports.findOne = (req, res) => {
   const id = req.params.id;
-  User.findById(id)
+  const petName = req.body.name;
+  User.findById(req.body.props.userId)
     .then((data) => {
       if (!data)
-        res
-          .status(404)
-          .send({ message: "Failed to find Pets for user id: " + id });
-      else res.send(data.pets);
+        res.status(404).send({
+          message: "Failed to find Pets for user id: " + req.body.props.userId,
+        });
+      else {
+        const result = data.pets.find(
+          ({ name }) => name === req.body.props.name
+        );
+        res.send(result);
+      }
     })
     .catch((err) => {
       res
@@ -35,6 +41,7 @@ exports.findOne = (req, res) => {
         .send({ message: "Error retrieving Pets for user id= " + id });
     });
 };
+
 // Update a Pet by the id in the request
 exports.update = (req, res) => {
   if (!req.body) {

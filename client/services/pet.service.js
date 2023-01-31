@@ -1,6 +1,6 @@
-import axios from 'axios';
-import dogHealth from '../mock_data/articles.json';
-const API_URL = 'https://api.thedogapi.com/v1/breeds';
+import axios from "axios";
+import dogHealth from "../mock_data/articles.json";
+const API_URL = "https://api.thedogapi.com/v1/breeds";
 const getDogBreeds = async () => {
   return await axios.get(API_URL);
 };
@@ -23,10 +23,17 @@ const deletePet = async (props) => {
   });
 };
 
+const findPetByName = async (props) => {
+  return await axios.post(`http://localhost:8080/api/pets/${props.userId}`, {
+    props,
+  });
+};
+
 const PetService = {
   getDogBreeds,
   curatedPetFeed,
   deletePet,
+  findPetByName,
 };
 
 export default PetService;

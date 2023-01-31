@@ -5,8 +5,7 @@ import { editPet } from "../slices/auth";
 import EditPetForm from "./Modal/Form";
 import PetService from "../services/pet.service";
 import { useFormik } from "formik";
-import DeleteConfirmation from "./Modal/DeleteConfirmationModal";
-import ModalService from "../components/Modal/services/ModalService";
+import { deletePet } from "../slices/auth";
 
 function PetCard({ image, data }) {
   const { user: currentUser } = useSelector((state) => state.auth);
@@ -27,10 +26,6 @@ function PetCard({ image, data }) {
       })
     );
   }, []);
-
-  const addModal = (modal) => {
-    ModalService.open(modal);
-  };
 
   const editToggle = () => {
     toggle ? setToggle(false) : setToggle(true);
@@ -92,19 +87,18 @@ function PetCard({ image, data }) {
     },
   });
 
-  // Delete selected pet 
-  function deletePetCell(){
-    addModal(() => DeleteConfirmation({name, id}))
-    // dispatch(
-    //   deletePet({
-    //     name,
-    //     id,
-    //   })
-    // );
+  // Delete selected pet
+  function deletePetCell() {
+    dispatch(
+      deletePet({
+        name,
+        id,
+      })
+    );
   }
 
   return (
-    <div className="rounded-xl bg-slate-500 text-white p-6">
+    <div className="rounded-xl bg-slate-500 hover:bg-slate-600 text-white p-2 transform transition-all hover:translate-y-2 duration-300 hover:shadow-xl">
       {toggle ? (
         <div className="float-right p-3 text-white rounded bg-zinc-800">
           <button onClick={editToggle}>Cancel</button>
@@ -114,7 +108,7 @@ function PetCard({ image, data }) {
           <button onClick={editToggle}>Edit</button>
         </div>
       )}
-      <div className="p-4 flex">
+      <div className="p-3">
         <Image src={image} alt="Pet thumbnail" width={72} height={76} />
       </div>
       {toggle ? (
@@ -126,14 +120,19 @@ function PetCard({ image, data }) {
             submitBtnTitle="SAVE"
           />
           {/* Delete Pet Button */}
-          <button className="rounded float-right relative bottom-12 p-3 bg-red-500 text-white" onClick={deletePetCell}>DELETE</button>
+          <button
+            className="rounded w-full bottom-12 p-3 bg-red-500 hover:bg-red-600 text-white"
+            onClick={deletePetCell}
+          >
+            DELETE
+          </button>
         </div>
       ) : (
         <>
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-1 justify-center p-5 rounded-xl">
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-1 pl-4 text-xl rounded-xl">
             <div>
-              <h2 className="font-semibold text-xl">{name}</h2>
-              <h4 className="text-xl">{breed}</h4>
+              <h2 className="font-semibold ">{name}</h2>
+              <h4>{breed}</h4>
             </div>
           </div>{" "}
         </>
