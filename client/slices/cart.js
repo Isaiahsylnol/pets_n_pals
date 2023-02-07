@@ -4,11 +4,12 @@ import CartService from "../services/cart.service";
 
 export const createCart = createAsyncThunk(
   "ecom/createCart",
-  async ({ userId, status, products }, thunkAPI) => {
+  async ({ userId, status, total, products }, thunkAPI) => {
     try {
       const response = await CartService.createCart(
         userId,
         status,
+        total,
         products
       );
       thunkAPI.dispatch(setMessage(response.data.message));
@@ -34,7 +35,6 @@ const cartSlice = createSlice({
   extraReducers: {
     [createCart.fulfilled]: (state, action) => {
       state.cart = action.payload;
-      localStorage.setItem("cartItems", JSON.stringify(state.cart.products));
       localStorage.setItem("cartInfo", JSON.stringify(state.cart));
     },
   },

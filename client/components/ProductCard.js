@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 import StarRatings from "react-star-ratings";
 import Link from "next/link";
+
 const ProductCard = (props) => {
   const { item } = props;
   return (

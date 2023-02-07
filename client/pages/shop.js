@@ -1,11 +1,10 @@
 import Head from "next/head";
 import Footer from "../components/Footer";
-import styles from "../styles/Home.module.css";
 import Header from "../components/Header.js";
 import ProductCard from "../components/ProductCard";
 import React, { useState, useEffect } from "react";
 
-const Shop = () => {
+export default function Shop() {
   const [cartItems, setCartItems] = useState([]);
   const [products, setProducts] = useState([]);
   useEffect(() => {
@@ -26,9 +25,9 @@ const Shop = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header countCartItems={cartItems.length} />
-      <main className={styles.main}>
+      <main>
         {/* Shop items - Flex Grid */}
-        <div className="flex flex-wrap bg-grey-light pt-20">
+        <div className="flex flex-wrap pt-20">
           {products?.data?.map((item) => {
             return <ProductCard key={item.sku} item={item} />;
           })}
@@ -37,6 +36,4 @@ const Shop = () => {
       <Footer />
     </div>
   );
-};
-
-export default Shop;
+}

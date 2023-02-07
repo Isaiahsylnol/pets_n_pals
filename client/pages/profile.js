@@ -15,6 +15,7 @@ import Login from "./login-register";
 
 export default function Profile() {
   const { user: currentUser } = useSelector((state) => state.auth);
+  const [cartItems, setCartItems] = useState([]);
   const [user, setUser] = useState();
 
   const addModal = (modal) => {
@@ -23,7 +24,13 @@ export default function Profile() {
 
   useEffect(() => {
     setUser(currentUser);
+    setCartItems(
+      localStorage.getItem("cartItems")
+        ? JSON.parse(localStorage.getItem("cartItems"))
+        : []
+    );
   }, [currentUser]);
+
   if (user) {
     return (
       <div className="justify-center w-full">
@@ -31,7 +38,7 @@ export default function Profile() {
           <title>Profile</title>
           <link rel="icon" href="/favicon.ico" />
         </Head>
-        <Header />
+        <Header countCartItems={cartItems.length} />
         <div className="mt-20 grid-cols-1 mx-auto sm:flex justify-center gap-6 p-11 md:grid-cols-2 lg:grid-cols-2">
           {/* User profile widget - START */}
           <div className="h-min w-full sm:w-3/4 lg:w-2/5 rounded-xl border-2 border-gray-300 bg-gray-100 p-6 text-6xl">

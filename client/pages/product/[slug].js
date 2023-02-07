@@ -1,8 +1,6 @@
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import Image from "next/image";
-import { createCart } from "../../slices/cart";
-import { useDispatch } from "react-redux";
 import StarRatings from "react-star-ratings";
 import { useEffect, useState } from "react";
 
@@ -35,10 +33,10 @@ export async function getStaticPaths() {
 }
 
 export default function DynamicPage({ product }) {
-  const dispatch = useDispatch();
   let user = {};
   const [cartItems, setCartItems] = useState([]);
   const [rating, setRating] = useState();
+
   useEffect(() => {
     user = JSON.parse(localStorage.getItem("user"));
     setCartItems(
@@ -46,6 +44,7 @@ export default function DynamicPage({ product }) {
         ? JSON.parse(localStorage.getItem("cartItems"))
         : []
     );
+    setCart(JSON.parse(localStorage.getItem("cartInfo"))?.products);
   }, []);
 
   function changeRating(newRating, name) {
@@ -60,25 +59,11 @@ export default function DynamicPage({ product }) {
         x.sku === product.sku ? { ...exist, qty: exist.qty + 1 } : x
       );
       setCartItems(newCartItems);
-
-      dispatch(
-        createCart({
-          userId: user.id,
-          status: true,
-          products: newCartItems,
-        })
-      );
+      localStorage.setItem("cartItems", JSON.stringify(newCartItems));
     } else {
       newCartItems = [...cartItems, { ...product, qty: 1 }];
       setCartItems(newCartItems);
-
-      dispatch(
-        createCart({
-          userId: user.id,
-          status: true,
-          products: newCartItems,
-        })
-      );
+      localStorage.setItem("cartItems", JSON.stringify(newCartItems));
     }
   }
 
