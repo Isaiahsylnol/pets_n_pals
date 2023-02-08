@@ -19,7 +19,6 @@ export async function getStaticProps(context) {
 export async function getStaticPaths() {
   const res = await fetch("http://localhost:3000/api/products");
   const data = await res.json();
-
   const paths = data.data.map((item) => {
     return {
       params: { slug: item.sku.toString() },
@@ -35,8 +34,8 @@ export async function getStaticPaths() {
 export default function DynamicPage({ product }) {
   let user = {};
   const [cartItems, setCartItems] = useState([]);
-  const [rating, setRating] = useState();
 
+  const [rating, setRating] = useState();
   useEffect(() => {
     user = JSON.parse(localStorage.getItem("user"));
     setCartItems(
@@ -44,7 +43,6 @@ export default function DynamicPage({ product }) {
         ? JSON.parse(localStorage.getItem("cartItems"))
         : []
     );
-    setCart(JSON.parse(localStorage.getItem("cartInfo"))?.products);
   }, []);
 
   function changeRating(newRating, name) {

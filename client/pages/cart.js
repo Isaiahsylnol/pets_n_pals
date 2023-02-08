@@ -10,6 +10,7 @@ import toast, { Toaster } from "react-hot-toast";
 export default function Cart() {
   const { user: currentUser } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
+  const [loading, setLoading] = useState(false);
   const [cartItems, setCartItems] = useState([]);
   const itemPrice = cartItems?.reduce((a, c) => a + c.qty * c.price, 0);
   const taxPrice = itemPrice * 0.13;
@@ -17,19 +18,22 @@ export default function Cart() {
   const totalPrice = itemPrice + taxPrice + shippingPrice;
 
   useEffect(() => {
+    setLoading(true);
     setCartItems(JSON.parse(localStorage.getItem("cartItems")));
     // Dispatch event to create cart object in DB
-    dispatch(
-      createCart({
-        userId: currentUser.id,
-        status: true,
-        total: totalPrice,
-        products: JSON.parse(localStorage.getItem("cartItems")),
-      })
-    );
+    if (totalPrice > 20) {
+      dispatch(
+        createCart({
+          userId: currentUser?.id,
+          status: true,
+          total: totalPrice,
+          products: cartItems,
+        })
+      );
+    }
   }, [totalPrice]);
 
-  const handleCheckout = async () => {
+  async function handleCheckout() {
     const stripe = await getStripe();
     const response = await fetch("/api/stripe", {
       method: "POST",
@@ -42,9 +46,9 @@ export default function Cart() {
     const data = await response.json();
     toast.loading("Redirecting");
     stripe.redirectToCheckout({ sessionId: data.id });
-  };
+  }
 
-  const onAdd = (product) => {
+  function onAdd(product) {
     const exist = cartItems.find((x) => x.sku === product.sku);
     if (exist) {
       const newCartItems = cartItems.map((x) =>
@@ -53,9 +57,9 @@ export default function Cart() {
       setCartItems(newCartItems);
       localStorage.setItem("cartItems", JSON.stringify(newCartItems));
     }
-  };
+  }
 
-  const onRemove = (product) => {
+  function onRemove(product) {
     const exist = cartItems.find((x) => x.sku === product.sku);
     if (exist.qty === 1) {
       const newCartItems = cartItems.filter((x) => x.sku !== product.sku);
@@ -68,17 +72,17 @@ export default function Cart() {
       setCartItems(newCartItems);
       localStorage.setItem("cartItems", JSON.stringify(newCartItems));
     }
-  };
+  }
 
-  const onDelete = (product) => {
+  function onDelete(product) {
     const newCartItems = cartItems.filter(
       (item) => !(item.sku === product.sku)
     );
     setCartItems(newCartItems);
     localStorage.setItem("cartItems", JSON.stringify(newCartItems));
-  };
+  }
 
-  return (
+  return loading ? (
     <div>
       <Head>
         <title>Cart</title>
@@ -211,15 +215,17 @@ export default function Cart() {
           </div>
         </div>
       ) : (
-        <div className="text-2xl uppercase font-bold h-screen mt-64">
+        <div className="text-2xl text-center uppercase font-bold h-screen mt-64">
           YOUR BAG IS CURRENTLY EMPTY.{" "}
           <Link href="/shop">
-            <a className="flex w-52 mx-auto py-2 px-6 mt-4 text-white text-sm bg-orange-700 hover:bg-orange-800 focus:outline-none rounded">
+            <a className="flex w-52 mx-auto py-2 px-6 mt-8 text-white text-sm bg-orange-700 hover:bg-orange-800 focus:outline-none rounded">
               Continue Shopping
             </a>
           </Link>
         </div>
       )}
     </div>
+  ) : (
+    <div>Loading...</div>
   );
 }

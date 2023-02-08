@@ -75,7 +75,7 @@ export default function Profile() {
             </div>
           </div>
           {/* grid nested  */}
-          <div className="grid grid-cols-1 w-full sm:w-full md:w-full md:grid-cols-1 lg:w-2/5 lg:grid-cols-1">
+          <div className="grid grid-cols-1 w-full sm:w-full md:w-full md:grid-cols-1 lg:w-2/5 xl:w-1/4 lg:grid-cols-1">
             <button
               onClick={() => addModal(CreatePetModal)}
               className="btn btn-primary rounded-2xl bg-green-600 hover:bg-green-500 p-6 w-5/6 mx-auto text-lg font-semibold text-white uppercase"
@@ -86,7 +86,7 @@ export default function Profile() {
               return (
                 <li
                   key={pet?._id}
-                  className="p-5 rounded-xl h-min"
+                  className="p-5 rounded-xl h-min "
                   style={{ listStyle: "none" }}
                 >
                   {
