@@ -25,6 +25,27 @@ npm run dev
 # or
 yarn dev
 ```
+## Web API
+
+| Methods        | Urls           | Actions  |
+| -------------- |----------------| -------------
+| User
+| GET       | /api/user/          | Find All Users |
+| GET       | /api/user/:id       | Find Single User By ID |
+| POST      | /api/users/signup   | Register User |
+| POST      | /api/users/signin   | Sign in User |
+| PUT       | /api/user/:id       | Edit User By ID |
+| DELETE    | /api/user/:id       | Delete User By ID |
+| Pet
+| POST      | /api/pets/add-pet   | Create Pet |
+| POST      | /api/pets/:id       | Find single Pet |
+| PUT       | /api/pets/:id       | Edit Pet |
+| DELETE    | /api/pets/:id       | Delete Pet |
+| Cart        
+| GET       | /api/cart/          | Find All Carts |
+| GET       | /api/cart/:id          | Find A Single User Cart By ID |
+| POST      | /api/cart/create-cart | Create shopping cart |
+
 ## Application Screenshots
 
 ### Landing Page
