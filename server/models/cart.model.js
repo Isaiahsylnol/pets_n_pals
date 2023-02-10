@@ -1,9 +1,19 @@
 module.exports = (mongoose) => {
   const schema = mongoose.Schema(
     {
-      userId: mongoose.Schema.Types.ObjectId,
+      userId: {
+        type: mongoose.Schema.Types.ObjectId,
+        validate: async (value) => {
+          try {
+            const result = await Cart.findOne({ userId: value });
+            if (result) throw new Error("duplicity detected: id :" + value);
+          } catch (error) {
+            throw new Error(error);
+          }
+        },
+      },
       status: Boolean,
-      total: String,
+      total: Number,
       products: Array,
     },
     { timestamps: true }

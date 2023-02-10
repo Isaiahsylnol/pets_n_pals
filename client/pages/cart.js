@@ -226,6 +226,8 @@ export default function Cart() {
       )}
     </div>
   ) : (
-    <div>Loading...</div>
+    <div className="text-2xl text-center uppercase font-bold h-screen mt-64">
+      Loading...
+    </div>
   );
 }

@@ -4,8 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../slices/auth";
 import Link from "next/link";
 import Image from "next/image";
-// import { getAuth, signOut } from "firebase/auth";
-// import { Context } from '../context/index'
 import { useRouter } from "next/router";
 
 function Header(props) {
@@ -117,6 +115,11 @@ function Header(props) {
               </a>
             </Link>
           </li>
+          {user ? (
+            <li className="p-1">
+              <button onClick={handleSignOut}>Sign out</button>
+            </li>
+          ) : null}
           <li className="flex justify-end">
             <Link href="/profile" passHref>
               <AccButton />
