@@ -54,7 +54,7 @@ function Header(props) {
                 <Link href="/shop">Shop</Link>
               </li>
               <li className="border-b border-gray-400 my-8 uppercase">
-                <Link href="/manage_pets">Manage Pets</Link>
+                <Link href="/manage-pets">Manage Pets</Link>
               </li>
               <li className="border-b border-gray-400 my-8 uppercase">
                 <Link href="/about">About</Link>
@@ -95,7 +95,7 @@ function Header(props) {
             </Link>
           </li>
           <li>
-            <Link href="/manage_pets">
+            <Link href="/manage-pets">
               <a className="rounded-lg text-lg font-semibold p-3 duration-300 hover:text-orange-500">
                 Manage Pets
               </a>

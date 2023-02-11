@@ -1,4 +1,5 @@
 import Head from "next/head";
+import Image from "next/image";
 import Header from "../components/Header.js";
 import Footer from "../components/Footer";
 import PetCard from "../components/PetCard.js";
@@ -39,9 +40,9 @@ export default function Profile() {
           <link rel="icon" href="/favicon.ico" />
         </Head>
         <Header countCartItems={cartItems.length} />
-        <div className="mt-20 grid-cols-1 mx-auto sm:flex justify-center gap-6 p-11 md:grid-cols-2 lg:grid-cols-2">
+        <main className="grid-cols-1 h-screen mx-auto sm:flex justify-center gap-6 p-11 md:grid-cols-2 lg:grid-cols-2">
           {/* User profile widget - START */}
-          <div className="h-min w-full sm:w-3/4 lg:w-2/5 rounded-xl border-2 border-gray-300 bg-gray-100 p-6 text-6xl">
+          <div className="h-min w-full sm:w-3/4 lg:w-2/5 rounded-xl border-2 border-gray-300 bg-gray-100 p-6 text-6xl max-w-lg">
             {/* Edit User Profile Button - START */}
             <div className="w-full float-right">
               <button className="h-11 text-base float-right rounded py-2 px-4 font-bold hover:border-2 hover:text-orange-500">
@@ -76,30 +77,23 @@ export default function Profile() {
           </div>
           {/* grid nested  */}
           <div className="w-full max-w-xl">
-            <button
-              onClick={() => addModal(CreatePetModal)}
-              className="flex bg-green-600 hover:bg-green-500 p-6 mt-10 sm:mt-0 w-5/6 mx-auto justify-center text-lg font-semibold text-white uppercase rounded-2xl"
-            >
-              Create Pet
-            </button>
             {user?.pets?.map((pet) => {
               return (
-                <li
-                  key={pet?._id}
-                  className="p-5 rounded-xl h-min"
-                  style={{ listStyle: "none" }}
-                >
-                  {
-                    <PetCard
-                      data={pet}
-                      image={require("/assets/default_pet_profile.png")}
+                <div className="bg-slate-500 p-4 text-white rounded-xl mt-6 sm:m-5">
+                  <div className="flex p-2 gap-5 items-center">
+                    <Image
+                      src={require("/assets/default_pet_profile.png")}
+                      alt="Pet thumbnail"
+                      width={72}
+                      height={76}
                     />
-                  }
-                </li>
+                    <h2 className="font-semibold text-xl">{pet.name}</h2>
+                  </div>
+                </div>
               );
             })}
           </div>
-        </div>
+        </main>
         <Footer />
       </div>
     );

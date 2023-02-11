@@ -27,7 +27,7 @@ export default function Shop() {
       <Header countCartItems={cartItems.length} />
       <main>
         {/* Shop items - Flex Grid */}
-        <div className="flex flex-wrap sm:m-14    ">
+        <div className="w-fit mx-auto grid grid-cols-1 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 justify-center mt-10 mb-5">
           {products?.data?.map((item) => {
             return <ProductCard key={item.sku} item={item} />;
           })}

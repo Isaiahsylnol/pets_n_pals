@@ -105,12 +105,12 @@ function PetCard({ image, data }) {
         </div>
       ) : (
         <div className="float-right p-3">
-          <button onClick={editToggle}>Edit</button>
+          <button onClick={editToggle} className="bg-slate-700 p-2 rounded-2xl">
+            Edit
+          </button>
         </div>
       )}
-      <div className="p-3">
-        <Image src={image} alt="Pet thumbnail" width={72} height={76} />
-      </div>
+
       {toggle ? (
         <div className="m-4">
           <EditPetForm
@@ -129,10 +129,19 @@ function PetCard({ image, data }) {
         </div>
       ) : (
         <>
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-1 pl-4 text-xl rounded-xl">
-            <div>
-              <h2 className="font-semibold ">{name}</h2>
-              <h4>{breed}</h4>
+          <div className="p-8 text-lg rounded-xl">
+            <div className="sm:flex gap-12 items-center">
+              <div>
+                <Image src={image} alt="Pet thumbnail" width={72} height={76} />
+              </div>
+              <div>
+                <h2 className="font-semibold text-2xl">{name}</h2>
+                <h4>{breed}</h4>
+              </div>
+              <div>
+                <h4>{age} years old</h4>
+                <h4>{weight}lbs</h4>
+              </div>
             </div>
           </div>{" "}
         </>
