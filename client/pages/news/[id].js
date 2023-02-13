@@ -47,8 +47,8 @@ export default function DynamicArticle({ article }) {
     <div>
       <Header countCartItems={cartItems.length} />
       <main className={styles.main}>
-        <div className="container text-gray-600">
-          <div className=" flex flex-col mx-auto justify-center items-center">
+        <div className="container text-gray-600 h-screen">
+          <div className="flex flex-col mx-auto mt-8 justify-center items-center">
             <Image
               src={`${article.thumbnail}`}
               alt="Article thumbnail"

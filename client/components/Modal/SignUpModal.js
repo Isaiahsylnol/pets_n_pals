@@ -105,8 +105,8 @@ export default function SignUpModal(props) {
           <Image
             className="object-contain"
             alt="Logo Image"
-            width={300}
-            height={300}
+            width={120}
+            height={120}
             src={require('/assets/logo2.png')}
           />
           </div>

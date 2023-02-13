@@ -2,7 +2,7 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <footer className="flex w-full bg-[#ebdcb5] justify-center">
+    <footer className="flex w-full bg-[hsl(54,37%,90%)] justify-center">
       <div className="grid grid-rows-2 gap-y-8 mt-8">
         <h3 className="flex justify-center text-3xl font-semibold mt-8">
           Subscribe to our Newsletter
@@ -16,7 +16,7 @@ const Footer = () => {
           />
         </form>
         <div className="flex items-center mt-14">
-          <div className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-4 text-xl">
+          <div className="grid grid-cols-2 gap-10 mx-auto md:grid-cols-4 text-xl">
             <div>
               <a href="#">Contact</a>
             </div>

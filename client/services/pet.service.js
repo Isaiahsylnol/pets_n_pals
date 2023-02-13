@@ -7,7 +7,7 @@ const getDogBreeds = async () => {
 
 const curatedPetFeed = (pets) => {
   let result;
-  if (pets) {
+  if (pets?.length >= 1) {
     result = dogHealth.filter((o1) =>
       pets?.some((o2) => o1.breed === o2.breed || o1.breed === "Any")
     );

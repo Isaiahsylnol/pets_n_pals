@@ -33,7 +33,7 @@ export default function ManagePets(props) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header countCartItems={cartItems.length} />
-      <main className="mt-20 grid-cols-1 mx-auto sm:flex justify-center gap-6 p-11 md:grid-cols-2 lg:grid-cols-2">
+      <main className="mt-20 h-screen grid-cols-1 mx-auto sm:flex justify-center gap-6 p-11 md:grid-cols-2 lg:grid-cols-2">
         {/* User profile widget - START */}
         <div className="w-full max-w-2xl">
           <button

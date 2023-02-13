@@ -50,17 +50,15 @@ export default function Profile() {
               <p>222-333-4444</p>
               <p>{user?.email}</p>
               <p>{user?.account_type}</p>
-              <div className="mt-10 grid grid-cols-1 text-white">
+              <div className="mt-10 grid grid-cols-1 gap-2 text-white">
                 <button className="h-10 w-36 justify-start rounded bg-yellow-500 font-bold hover:bg-yellow-600">
                   <PhoneIcon className="inline h-6 w-6" />
                   <a className="ml-3">Support</a>
                 </button>
-                <br />
                 <button className="h-10 w-44 justify-start rounded bg-blue-500 font-bold hover:bg-blue-600">
                   <ViewGridIcon className="inline h-6 w-6" />
                   <a className="ml-3 justify-start">Manage Plan</a>
                 </button>
-                <br />
                 <button className="h-10 w-36 justify-start rounded bg-red-500 font-bold hover:bg-red-600">
                   <ExclamationIcon className="inline h-6 w-6" />
                   <a className="ml-3 justify-start">Deactivate</a>

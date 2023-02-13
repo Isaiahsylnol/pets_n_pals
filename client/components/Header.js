@@ -28,7 +28,7 @@ function Header(props) {
   };
 
   return (
-    <div className="h-16 shadow lg:h-auto items-center justify-between bg-[#5DADE2] text-white top-0 z-10 py-4 sticky">
+    <div className="h-16 shadow lg:h-auto items-center justify-between bg-[#56788f] text-white top-0 z-10 py-4 sticky">
       <a href="/" className="absolute ml-4 -mt-1">
         <Image
           src={require(`/assets/logo-4.png`)}
@@ -57,9 +57,6 @@ function Header(props) {
                 <Link href="/manage-pets">Manage Pets</Link>
               </li>
               <li className="border-b border-gray-400 my-8 uppercase">
-                <Link href="/about">About</Link>
-              </li>
-              <li className="border-b border-gray-400 my-8 uppercase">
                 <Link href="/subscriptions">Subscriptions</Link>
               </li>
               <li className="border-b border-gray-400 my-8 uppercase">
@@ -70,7 +67,7 @@ function Header(props) {
             </ul>
           </div>
           <div
-            className="space-y-2 lg:hidden flex flex-col float-right absolute z-10 mt-1 mr-2"
+            className="space-y-2 sm:hidden flex flex-col float-right absolute z-10 mt-1 mr-2"
             onClick={() => setIsNavOpen((prev) => !prev)} // toggle isNavOpen state on click
           >
             <span className="block h-0.5 w-8 animate-pulse bg-gray-600"></span>
@@ -78,8 +75,7 @@ function Header(props) {
             <span className="block h-0.5 w-8 animate-pulse bg-gray-600"></span>
           </div>
         </section>
-
-        <ul className="DESKTOP-MENU hidden space-x-6 lg:flex justify-end">
+        <ul className="DESKTOP-MENU hidden space-x-4 sm:flex justify-end">
           <li>
             <Link href="/">
               <a className="rounded-lg text-lg font-semibold p-3 duration-300 hover:text-slate-300">
@@ -98,13 +94,6 @@ function Header(props) {
             <Link href="/manage-pets">
               <a className="rounded-lg text-lg font-semibold p-3 duration-300 hover:text-slate-300">
                 Manage Pets
-              </a>
-            </Link>
-          </li>
-          <li>
-            <Link href="/about">
-              <a className="rounded-lg text-lg font-semibold p-3 duration-300 hover:text-slate-300">
-                About
               </a>
             </Link>
           </li>
@@ -154,7 +143,6 @@ function Header(props) {
       .hideMenuNav {
         display: none;
       }
-     
     `}</style>
     </div>
   );
