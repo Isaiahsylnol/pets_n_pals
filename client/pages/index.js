@@ -57,59 +57,61 @@ const Home = () => {
   return (
     <>
       <Head>
-        <title>The Latest News on Pets</title>
+        <title>All The Latest On Pets</title>
         <meta name="description" content="News Feed" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header countCartItems={cartItems.length} />
-      <main className={styles.main}>
-        {/* News Feed */}
-        <section className="flex flex-wrap m-10">
-          <h1 className="uppercase text-2xl font-semibold mb-4 mt-4">
-            Latest News
-          </h1>
-          <div className="flex flex-wrap bg-[#f5f6f8]">
-            {newsItems?.map((item) => {
-              return (
-                <div
-                  key={item.id}
-                  className="w-full p-4 mb-4 sm:w-1/2 lg:w-1/3 xl:w-1/4"
-                >
-                  <a href={"news/" + item.id}>
-                    <NewsWidget item={item} />
-                  </a>
+      <main className=" ">
+        <div className="  sm:p-10">
+          {/* News Feed */}
+          <section className="rounded-lg">
+            <h1 className="uppercase text-2xl font-semibold p-3">
+              Latest News
+            </h1>
+            <div className="flex flex-wrap">
+              {newsItems?.map((item) => {
+                return (
+                  <div
+                    key={item.id}
+                    className="w-full mb-4 sm:w-1/2 lg:w-1/3 xl:w-1/4"
+                  >
+                    <a href={"news/" + item.id}>
+                      <NewsWidget item={item} />
+                    </a>
+                  </div>
+                );
+              })}
+            </div>
+          </section>
+          <section className="mt-8">
+            <h1 className="uppercase text-2xl font-semibold p-3">
+              New Arrivals
+            </h1>
+            <div className="sm:flex">
+              <div className="w-full flex justify-center p-4">
+                <div className="justify-center">
+                  <ProductCard key={products[0]?.sku} item={products[0]} />
                 </div>
-              );
-            })}
-          </div>
-        </section>
-        <section className="mt-8">
-          <h2 className="uppercase text-center text-2xl font-semibold">
-            New Arrivals
-          </h2>
-          <div className="sm:flex">
-            <div className="w-full flex justify-center p-4">
-              <div className="justify-center">
-                <ProductCard key={products[0]?.sku} item={products[0]} />
+              </div>
+              <div className="w-full flex justify-center p-4">
+                <div className="justify-center">
+                  <ProductCard key={products[3]?.sku} item={products[3]} />
+                </div>
+              </div>
+              <div className="w-full flex justify-center p-4">
+                <div className="justify-center">
+                  <ProductCard key={products[5]?.sku} item={products[5]} />
+                </div>
+              </div>
+              <div className="w-full flex justify-center p-4">
+                <div className="justify-center">
+                  <ProductCard key={products[6]?.sku} item={products[6]} />
+                </div>
               </div>
             </div>
-            <div className="w-full flex justify-center p-4">
-              <div className="justify-center">
-                <ProductCard key={products[3]?.sku} item={products[3]} />
-              </div>
-            </div>
-            <div className="w-full flex justify-center p-4">
-              <div className="justify-center">
-                <ProductCard key={products[5]?.sku} item={products[5]} />
-              </div>
-            </div>
-            <div className="w-full flex justify-center p-4">
-              <div className="justify-center">
-                <ProductCard key={products[6]?.sku} item={products[6]} />
-              </div>
-            </div>
-          </div>
-        </section>
+          </section>
+        </div>
       </main>
       <Footer />
     </>

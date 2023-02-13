@@ -4,9 +4,6 @@
 
 
 @layer base {
- body {
-     @apply bg-[#e0e0e0]
- }
 
  header {
      @apply fixed top-0 z-50 flex w-full items-center justify-between px-4 py-4 
@@ -16,7 +13,6 @@
  body {
   margin: 0;
   padding: 0;
-  background-color: #e0e0e0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;

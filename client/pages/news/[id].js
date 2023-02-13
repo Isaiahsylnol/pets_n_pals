@@ -1,6 +1,6 @@
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
-import styles from '../../styles/Home.module.css'
+import styles from "../../styles/Home.module.css";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
@@ -11,7 +11,7 @@ export async function getStaticProps(context) {
 
   return {
     props: {
-     article: data.article,
+      article: data.article,
     },
   };
 }
@@ -41,35 +41,31 @@ export default function DynamicArticle({ article }) {
         ? JSON.parse(localStorage.getItem("cartItems"))
         : []
     );
-  }, []); 
+  }, []);
 
   return (
     <div>
-        <Header countCartItems={cartItems.length} />
-        <main className={styles.main}>
-        <div className="container mx-auto text-gray-600 body-font p-8">
-            <div className="">
-      <div class="rounded-lg flex justify-center mb-4">
-      <Image
+      <Header countCartItems={cartItems.length} />
+      <main className={styles.main}>
+        <div className="container text-gray-600">
+          <div className=" flex flex-col mx-auto justify-center items-center">
+            <Image
               src={`${article.thumbnail}`}
               alt="Article thumbnail"
               width={902}
               height={500}
             />
-        </div>
-            </div>
-          <div className="justify-center mx-auto flex flex-wrap">
-            <div className="lg:w-1/2 w-full lg:py-6 lg:mt-0">
-              <h1 className="text-gray-900 text-3xl title-font font-medium mb-6 inline-flex">
+
+            <div className="flex flex-col mx-auto mt-5 max-w-4xl p-8 sm:p-0">
+              <h1 className="text-gray-900 text-3xl font-medium mb-6 ">
                 {article.title}
               </h1>
-              <p className="leading-relaxed">{article.description}</p>
+              <p className="leading-relaxed   ">{article.description}</p>
             </div>
           </div>
         </div>
-  
-        </main>
-        <Footer />
+      </main>
+      <Footer />
     </div>
   );
 }

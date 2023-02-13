@@ -2,7 +2,7 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <footer className="flex w-full bg-orange-400 justify-center">
+    <footer className="flex w-full bg-[#ebdcb5] justify-center">
       <div className="grid grid-rows-2 gap-y-8 mt-8">
         <h3 className="flex justify-center text-3xl font-semibold mt-8">
           Subscribe to our Newsletter

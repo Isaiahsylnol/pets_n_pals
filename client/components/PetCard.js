@@ -98,15 +98,15 @@ function PetCard({ image, data }) {
   }
 
   return (
-    <div className="rounded-xl bg-slate-500 hover:bg-slate-600 text-white p-2 transform transition-all hover:translate-y-2 duration-300 hover:shadow-xl">
+    <div className="rounded-xl bg-slate-300 hover:bg-slate-400 p-2 transform transition-all hover:translate-y-2 duration-300 hover:shadow-xl">
       {toggle ? (
-        <div className="float-right p-3 text-white rounded bg-zinc-800">
+        <div className="float-right p-3 text-white rounded bg-zinc-700">
           <button onClick={editToggle}>Cancel</button>
         </div>
       ) : (
         <div className="float-right p-3">
-          <button onClick={editToggle} className="bg-slate-700 p-2 rounded-2xl">
-            Edit
+          <button onClick={editToggle} className="text-5xl rounded-2xl -mt-10">
+            ...
           </button>
         </div>
       )}

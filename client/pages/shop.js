@@ -1,8 +1,8 @@
+import React, { useState, useEffect } from "react";
 import Head from "next/head";
 import Footer from "../components/Footer";
 import Header from "../components/Header.js";
 import ProductCard from "../components/ProductCard";
-import React, { useState, useEffect } from "react";
 
 export default function Shop() {
   const [cartItems, setCartItems] = useState([]);

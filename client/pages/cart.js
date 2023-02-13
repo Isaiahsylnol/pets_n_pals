@@ -1,7 +1,8 @@
+import React, { useState, useEffect } from "react";
 import Head from "next/head";
+import Header from "../components/Header.js";
 import { createCart } from "../slices/cart";
 import Image from "next/image";
-import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import getStripe from "../lib/getStripe";
 import { useDispatch, useSelector } from "react-redux";
@@ -89,6 +90,7 @@ export default function Cart() {
         <meta name="description" content="Shopping cart" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <Header countCartItems={cartItems.length} />
       {cartItems?.length ? (
         <div>
           <h1 className="mb-4 w-full flex justify-center items-center text-3xl font-bold mt-16">

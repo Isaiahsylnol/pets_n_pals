@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { SearchIcon, BellIcon } from "@heroicons/react/solid";
+import { UserCircleIcon } from "@heroicons/react/solid";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../slices/auth";
 import Link from "next/link";
@@ -28,7 +28,7 @@ function Header(props) {
   };
 
   return (
-    <div className="h-16 lg:h-auto items-center justify-between bg-white top-0 z-10 py-4 sticky">
+    <div className="h-16 shadow lg:h-auto items-center justify-between bg-[#5DADE2] text-white top-0 z-10 py-4 sticky">
       <a href="/" className="absolute ml-4 -mt-1">
         <Image
           src={require(`/assets/logo-4.png`)}
@@ -82,41 +82,41 @@ function Header(props) {
         <ul className="DESKTOP-MENU hidden space-x-6 lg:flex justify-end">
           <li>
             <Link href="/">
-              <a className="rounded-lg text-lg font-semibold p-3 duration-300 hover:text-orange-500">
+              <a className="rounded-lg text-lg font-semibold p-3 duration-300 hover:text-slate-300">
                 Home
               </a>
             </Link>
           </li>
           <li>
             <Link href="/shop">
-              <a className="rounded-lg text-lg font-semibold p-3 duration-300 hover:text-orange-500">
+              <a className="rounded-lg text-lg font-semibold p-3 duration-300 hover:text-slate-300">
                 Shop
               </a>
             </Link>
           </li>
           <li>
             <Link href="/manage-pets">
-              <a className="rounded-lg text-lg font-semibold p-3 duration-300 hover:text-orange-500">
+              <a className="rounded-lg text-lg font-semibold p-3 duration-300 hover:text-slate-300">
                 Manage Pets
               </a>
             </Link>
           </li>
           <li>
             <Link href="/about">
-              <a className="rounded-lg text-lg font-semibold p-3 duration-300 hover:text-orange-500">
+              <a className="rounded-lg text-lg font-semibold p-3 duration-300 hover:text-slate-300">
                 About
               </a>
             </Link>
           </li>
           <li>
             <Link href="/subscriptions">
-              <a className="rounded-lg text-lg font-semibold p-3 duration-300 hover:text-orange-500">
+              <a className="rounded-lg text-lg font-semibold p-3 duration-300 hover:text-slate-300">
                 Subscriptions
               </a>
             </Link>
           </li>
           {user ? (
-            <li className="p-1">
+            <li className="p-1 hover:text-slate-300">
               <button onClick={handleSignOut}>Sign out</button>
             </li>
           ) : null}
@@ -125,7 +125,7 @@ function Header(props) {
               <AccButton />
             </Link>
           </li>
-          <li className="pr-4">
+          <li className="pr-4 hover:text-slate-300">
             <a href="/cart">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -163,12 +163,7 @@ function Header(props) {
 const AccButton = React.forwardRef(({ onClick, href }, ref) => {
   return (
     <a href={href} onClick={onClick} ref={ref}>
-      <Image
-        alt="Profile Icon"
-        width={25}
-        height={25}
-        src={require("../assets/account.png")}
-      />
+      <UserCircleIcon className="h-7 w-7 text-white hover:text-slate-300" />
     </a>
   );
 });

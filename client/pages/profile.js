@@ -1,27 +1,20 @@
+import React, { useEffect, useState } from "react";
 import Head from "next/head";
 import Image from "next/image";
 import Header from "../components/Header.js";
 import Footer from "../components/Footer";
-import PetCard from "../components/PetCard.js";
 import { useSelector } from "react-redux";
-import CreatePetModal from "../components/Modal/CreatePetModal";
-import ModalService from "../components/Modal/services/ModalService";
 import {
   PhoneIcon,
   ExclamationIcon,
   ViewGridIcon,
 } from "@heroicons/react/outline";
-import React, { useEffect, useState } from "react";
 import Login from "./login-register";
 
 export default function Profile() {
   const { user: currentUser } = useSelector((state) => state.auth);
   const [cartItems, setCartItems] = useState([]);
   const [user, setUser] = useState();
-
-  const addModal = (modal) => {
-    ModalService.open(modal);
-  };
 
   useEffect(() => {
     setUser(currentUser);

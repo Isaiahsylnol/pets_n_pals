@@ -1,21 +1,18 @@
+import React, { useEffect, useState } from "react";
 import Head from "next/head";
 import Header from "../components/Header.js";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import Footer from "../components/Footer.js";
 import { CheckIcon, MinusIcon } from "@heroicons/react/solid";
 import SubscribeContainer from "../components/Subscriptions/Container.js";
-import { useEffect, useState } from "react";
 
 export default function Subscriptions() {
   const { user: currentUser } = useSelector((state) => state.auth);
-
   const [user, setUser] = useState();
-  const dispatch = useDispatch();
+
   useEffect(() => {
     setUser(currentUser);
   }, []);
-
-  const handleRegister = () => {};
 
   return (
     <div>
@@ -27,7 +24,7 @@ export default function Subscriptions() {
       <Header />
       <main>
         <div className="w-full p-12 flex flex-col items-center">
-          <h1 className="text-2xl font-bold pb-16">
+          <h1 className="text-3xl font-bold pb-16">
             Choose the plan that's right for you.
           </h1>
           <div className="flex items-center justify-center flex-wrap p-7 gap-16">

@@ -21,7 +21,7 @@ const ProductCard = (props) => {
       as={`/product/${item?.sku}`}
       key={item?.sku}
     >
-      <a className="m-8 w-full sm:w-60">
+      <a className="sm:w-60">
         <div className="text-center sm:text-left">
           {item ? (
             <Image
