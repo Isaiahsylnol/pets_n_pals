@@ -90,7 +90,7 @@ export default function Cart() {
         <meta name="description" content="Shopping cart" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Header countCartItems={cartItems.length} />
+      <Header countCartItems={cartItems?.length} />
       {cartItems?.length ? (
         <div>
           <h1 className="mb-4 w-full flex justify-center items-center text-3xl font-bold mt-16">

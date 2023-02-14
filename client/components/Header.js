@@ -29,12 +29,12 @@ function Header(props) {
 
   return (
     <div className="h-16 shadow lg:h-auto items-center justify-between bg-[#56788f] text-white top-0 z-10 py-4 sticky">
-      <a href="/" className="absolute ml-4 -mt-1">
+      <a href="/" className="absolute -ml-20 p-1 -mt-36">
         <Image
-          src={require(`/assets/logo-4.png`)}
+          src={require(`/assets/logo-badge.png`)}
           alt="Pets'N Pals Logo"
-          width={100}
-          height={40}
+          width={300}
+          height={310}
         />
       </a>
       <nav>
@@ -67,7 +67,7 @@ function Header(props) {
             </ul>
           </div>
           <div
-            className="space-y-2 sm:hidden flex flex-col float-right absolute z-10 mt-1 mr-2"
+            className="space-y-2 md:hidden flex flex-col float-right absolute z-10 mt-1 mr-2"
             onClick={() => setIsNavOpen((prev) => !prev)} // toggle isNavOpen state on click
           >
             <span className="block h-0.5 w-8 animate-pulse bg-gray-600"></span>
@@ -75,7 +75,7 @@ function Header(props) {
             <span className="block h-0.5 w-8 animate-pulse bg-gray-600"></span>
           </div>
         </section>
-        <ul className="DESKTOP-MENU hidden space-x-4 sm:flex justify-end">
+        <ul className="DESKTOP-MENU hidden space-x-4 md:flex justify-end">
           <li>
             <Link href="/">
               <a className="rounded-lg text-lg font-semibold p-3 duration-300 hover:text-slate-300">
