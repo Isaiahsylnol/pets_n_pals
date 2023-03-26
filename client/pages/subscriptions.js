@@ -23,13 +23,14 @@ export default function Subscriptions() {
       </Head>
       <Header />
       <main>
-        <div className="w-full p-12 flex flex-col items-center">
+        <div className="w-full p-12 flex flex-col items-center h-screen">
           <h1 className="text-3xl font-bold pb-16">
             Choose the plan that's right for you.
           </h1>
           <div className="flex items-center justify-center flex-wrap p-7 gap-16">
             <SubscribeContainer
               tier="Basic"
+              priceId="price_1MpWbCBNWulKDnZkdaeb0CgC"
               price="$0.00/month"
               description="Ideal for individuals interested in the latest healthcare tips and news concerning pets."
             >
@@ -52,6 +53,7 @@ export default function Subscriptions() {
             </SubscribeContainer>
             <SubscribeContainer
               tier="Premium"
+              priceId="price_1MpWZ9BNWulKDnZkzpsoMhYA"
               price="$23.99/month"
               description="Ideal for individuals who want the latest healthcare tips, news, treats & swag geared towards their pet."
             >

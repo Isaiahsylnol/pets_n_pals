@@ -1,22 +1,22 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
-require('dotenv').config();
+require("dotenv").config();
 const app = express();
 // only requests from “http://localhost:3000” will be allowed.
 const corsOptions = {
-  origin: "http://localhost:3000"
+  origin: "http://localhost:3000",
 };
 app.use(cors(corsOptions));
 
 // Loading of products that the frontend will fetch
 let products;
-let product;
-const fs = require('fs');
-fs.readFile('products.json', (err, data) => {
-  if(err) throw err;
+
+const fs = require("fs");
+fs.readFile("products.json", (err, data) => {
+  if (err) throw err;
   products = JSON.parse(data);
-})
+});
 // parse requests of content-type - application/json
 app.use(bodyParser.json());
 // parse requests of content-type - application/x-www-form-urlencoded
@@ -24,11 +24,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const dbConfig = require("./config/db.config");
 const db = require("./models");
 db.mongoose
-.connect(`mongodb://${dbConfig.HOST}:${dbConfig.PORT}/${dbConfig.DB}`)
+  .connect(`mongodb://${dbConfig.HOST}:${dbConfig.PORT}/${dbConfig.DB}`)
   .then(() => {
     console.log("Connected to the database!");
   })
-  .catch(err => {
+  .catch((err) => {
     console.log("Cannot connect to the database!", err);
     process.exit();
   });
@@ -39,8 +39,8 @@ app.get("/", (req, res) => {
 // Products route
 app.get("/products", (req, res) => {
   res.json({ data: products });
-}); 
- 
+});
+
 require("./routes/pet.routes.js")(app);
 require("./routes/auth.routes.js")(app);
 require("./routes/user.routes.js")(app);

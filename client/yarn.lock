@@ -462,17 +462,17 @@
   "resolved" "https://registry.npmjs.org/@rushstack/eslint-patch/-/eslint-patch-1.1.4.tgz"
   "version" "1.1.4"
 
-"@stripe/react-stripe-js@^1.12.0":
-  "integrity" "sha512-LW/f/slRq8x0y99qFjlZirnIk+q0zQvNNRtidigvHfYSbHji4QdtKDMD/HfYmtriPDRpIxOFilwsJ3ayPCC9Fw=="
-  "resolved" "https://registry.npmjs.org/@stripe/react-stripe-js/-/react-stripe-js-1.12.0.tgz"
-  "version" "1.12.0"
+"@stripe/react-stripe-js@^1.16.5":
+  "integrity" "sha512-lVPW3IfwdacyS22pP+nBB6/GNFRRhT/4jfgAK6T2guQmtzPwJV1DogiGGaBNhiKtSY18+yS8KlHSu+PvZNclvQ=="
+  "resolved" "https://registry.npmjs.org/@stripe/react-stripe-js/-/react-stripe-js-1.16.5.tgz"
+  "version" "1.16.5"
   dependencies:
     "prop-types" "^15.7.2"
 
-"@stripe/stripe-js@^1.38.1":
-  "integrity" "sha512-v0hF65jEs7tw33JE70E5puJ2fFhpiS2XYwmayupEdjKWavJivycYcZgZKYXAQhTiMgtDgN9YPzqUr86VzVc3Ew=="
-  "resolved" "https://registry.npmjs.org/@stripe/stripe-js/-/stripe-js-1.38.1.tgz"
-  "version" "1.38.1"
+"@stripe/stripe-js@^1.44.1", "@stripe/stripe-js@^1.51.0":
+  "integrity" "sha512-hr75oz/bGuVSNOOVB/DiwjduvB1GG/RJxj8PKF6Z6p0BamFgmLPQBEDPM4aiqBdEjn5WZhdo2vYwgn+X/pzhkw=="
+  "resolved" "https://registry.npmjs.org/@stripe/stripe-js/-/stripe-js-1.51.0.tgz"
+  "version" "1.51.0"
 
 "@swc/helpers@0.4.2":
   "integrity" "sha512-556Az0VX7WR6UdoTn4htt/l3zPQ7bsQWK+HqdG4swV7beUCxo/BqmvbOpUkTIm/9ih86LIf1qsUnywNL3obGHw=="
@@ -3270,10 +3270,10 @@
   "resolved" "https://registry.npmjs.org/strip-json-comments/-/strip-json-comments-3.1.1.tgz"
   "version" "3.1.1"
 
-"stripe@^10.13.0":
-  "integrity" "sha512-Uq+hToFOXHU+BHgzUmop2Monc0dM8pluXcoCOrgz9oY8XBDnSPOuXAJdKa04x5DCEgKWrFMHncQfAgwqzSgaTQ=="
-  "resolved" "https://registry.npmjs.org/stripe/-/stripe-10.13.0.tgz"
-  "version" "10.13.0"
+"stripe@^10.17.0":
+  "integrity" "sha512-JHV2KoL+nMQRXu3m9ervCZZvi4DDCJfzHUE6CmtJxR9TmizyYfrVuhGvnsZLLnheby9Qrnf4Hq6iOEcejGwnGQ=="
+  "resolved" "https://registry.npmjs.org/stripe/-/stripe-10.17.0.tgz"
+  "version" "10.17.0"
   dependencies:
     "@types/node" ">=8.1.0"
     "qs" "^6.11.0"

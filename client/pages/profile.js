@@ -38,7 +38,7 @@ export default function Profile() {
           <div className="h-min w-full sm:w-3/4 lg:w-2/5 rounded-xl border-2 border-gray-300 bg-gray-100 p-6 text-6xl max-w-lg">
             {/* Edit User Profile Button - START */}
             <div className="w-full float-right">
-              <button className="h-11 text-base float-right rounded py-2 px-4 font-bold hover:border-2 hover:text-orange-500">
+              <button className="h-11 text-base float-right rounded py-2 px-4 font-bold hover:text-orange-500">
                 Edit
               </button>
             </div>
@@ -50,18 +50,18 @@ export default function Profile() {
               <p>222-333-4444</p>
               <p>{user?.email}</p>
               <p>{user?.account_type}</p>
-              <div className="mt-10 grid grid-cols-1 gap-2 text-white">
-                <button className="h-10 w-36 justify-start rounded bg-yellow-500 font-bold hover:bg-yellow-600">
-                  <PhoneIcon className="inline h-6 w-6" />
+              <div className="mt-10 grid grid-cols-1 gap-2 text-white w-44">
+                <button className="h-10 rounded bg-yellow-500 font-bold hover:bg-yellow-600">
+                  <PhoneIcon className="inline h-6" />
                   <a className="ml-3">Support</a>
                 </button>
-                <button className="h-10 w-44 justify-start rounded bg-blue-500 font-bold hover:bg-blue-600">
-                  <ViewGridIcon className="inline h-6 w-6" />
-                  <a className="ml-3 justify-start">Manage Plan</a>
+                <button className="h-10 rounded bg-blue-500 font-bold hover:bg-blue-600">
+                  <ViewGridIcon className="inline h-6" />
+                  <a className="ml-3">Manage Plan</a>
                 </button>
-                <button className="h-10 w-36 justify-start rounded bg-red-500 font-bold hover:bg-red-600">
-                  <ExclamationIcon className="inline h-6 w-6" />
-                  <a className="ml-3 justify-start">Deactivate</a>
+                <button className="h-10 rounded bg-red-500 font-bold hover:bg-red-600">
+                  <ExclamationIcon className="inline h-6" />
+                  <a className="ml-3">Deactivate</a>
                 </button>
               </div>
             </div>
