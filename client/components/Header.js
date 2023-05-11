@@ -11,15 +11,9 @@ function Header(props) {
   const router = useRouter();
   const { user: currentUser } = useSelector((state) => state.auth);
 
-  const [cartItems, setCartItems] = useState([]);
   const [user, setUser] = useState();
   useEffect(() => {
     setUser(currentUser);
-    setCartItems(
-      localStorage.getItem("cartItems")
-        ? JSON.parse(localStorage.getItem("cartItems"))
-        : []
-    );
   }, [currentUser]);
   const [isNavOpen, setIsNavOpen] = useState(false); // initiate isNavOpen state with false
   const handleSignOut = async () => {
@@ -28,51 +22,75 @@ function Header(props) {
   };
 
   return (
-    <div className="h-16 shadow lg:h-auto items-center justify-between bg-[#56788f] text-white top-0 z-10 py-4 sticky">
-      <a href="/" className="absolute -ml-20 p-1 -mt-36">
-        <Image
-          src={require(`/assets/logo-badge.png`)}
-          alt="Pets'N Pals Logo"
-          width={300}
-          height={310}
-        />
-      </a>
+    <div className="p-4 shadow bg-[#56788f] text-white top-0 z-20 sticky">
       <nav>
+        <div className="absolute">
+          <Link href="/">
+            <Image
+              src={require(`/assets/logo-badge.png`)}
+              alt="Pets'N Pals Logo"
+              width={132}
+              height={34}
+              className="object-contain"
+            />
+          </Link>
+        </div>
         <section className="MOBILE-MENU flex lg:hidden justify-end">
-          <div
-            className={isNavOpen ? "w-full top-0 z-10 bg-orange-400" : "hidden"}
-          >
-            <ul className="flex flex-col items-center justify-between min-h-[250px]">
-              <li className="border-b border-gray-400 my-8 uppercase text-4xl">
-                <Link href="/" className="text-4xl">
-                  <a className="rounded-lg p-3 duration-300 hover:bg-blue-500">
-                    Home
-                  </a>
+          <div className={isNavOpen ? "w-full top-0 z-10" : "hidden"}>
+            <ul className="flex flex-col text-2xl  mt-16 space-y-14 uppercase">
+              <li>
+                <Link href="/">
+                  <a>Home</a>
                 </Link>
               </li>
-              <li className="border-b border-gray-400 my-8 uppercase">
+              <li>
                 <Link href="/shop">Shop</Link>
               </li>
-              <li className="border-b border-gray-400 my-8 uppercase">
+              <li>
                 <Link href="/manage-pets">Manage Pets</Link>
               </li>
-              <li className="border-b border-gray-400 my-8 uppercase">
+              <li>
                 <Link href="/subscriptions">Subscriptions</Link>
               </li>
-              <li className="border-b border-gray-400 my-8 uppercase">
-                <Link href="/profile" passHref>
-                  <AccButton />
-                </Link>
-              </li>
+              <div className="grid grid-cols-2 max-w-fit ">
+                <li className="flex  ">
+                  <Link href="/profile" passHref>
+                    <AccButton />
+                  </Link>
+                </li>
+                <li className="pr-4 hover:text-slate-300">
+                  <a href="/cart">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      strokeWidth="1.5"
+                      stroke="currentColor"
+                      className="w-6 h-6"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"
+                      />
+                    </svg>{" "}
+                    {props.countCartItems ? (
+                      <div className="bg-red-500 rounded-full w-6 h-6 text-white text-center -mt-8 ml-3">
+                        {props.countCartItems}{" "}
+                      </div>
+                    ) : null}
+                  </a>
+                </li>
+              </div>
             </ul>
           </div>
           <div
-            className="space-y-2 md:hidden flex flex-col float-right absolute z-10 mt-1 mr-2"
+            className="space-y-2 md:hidden flex flex-col float-right z-10 mt-1 mr-2"
             onClick={() => setIsNavOpen((prev) => !prev)} // toggle isNavOpen state on click
           >
-            <span className="block h-0.5 w-8 animate-pulse bg-gray-600"></span>
-            <span className="block h-0.5 w-8 animate-pulse bg-gray-600"></span>
-            <span className="block h-0.5 w-8 animate-pulse bg-gray-600"></span>
+            <span className="block h-0.5 w-8 animate-pulse bg-white"></span>
+            <span className="block h-0.5 w-8 animate-pulse bg-white"></span>
+            <span className="block h-0.5 w-8 animate-pulse bg-white"></span>
           </div>
         </section>
         <ul className="DESKTOP-MENU hidden space-x-4 md:flex justify-end">

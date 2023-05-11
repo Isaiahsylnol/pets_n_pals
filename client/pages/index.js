@@ -1,5 +1,4 @@
 import Head from "next/head";
-import styles from "../styles/Home.module.css";
 import Header from "../components/Header.js";
 import React, { useState, useEffect, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -16,8 +15,6 @@ const NewsWidget = dynamic(() => import("../components/NewsWidget"), {
 });
 
 const Home = () => {
-  const [showModeratorBoard, setShowModeratorBoard] = useState(false);
-  const [showAdminBoard, setShowAdminBoard] = useState(false);
   const [cartItems, setCartItems] = useState([]);
   const { user: currentUser } = useSelector((state) => state.auth);
   const [newsItems, setItems] = useState();
@@ -57,13 +54,17 @@ const Home = () => {
   return (
     <>
       <Head>
-        <title>All The Latest On Pets</title>
-        <meta name="description" content="News Feed" />
+        <title>Home</title>
+        <meta
+          name="description"
+          content="The home page containing all the latest news and tips for pet owners."
+        />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header countCartItems={cartItems.length} />
-      <main className=" ">
-        <div className="  sm:p-10">
+      <main className="min-h-screen">
+        {/* Shop items - Flex Grid */}
+        <div>
           {/* News Feed */}
           <section className="rounded-lg">
             <h1 className="uppercase text-2xl font-semibold p-3">

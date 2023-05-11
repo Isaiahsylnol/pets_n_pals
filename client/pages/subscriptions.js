@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import Head from "next/head";
 import Header from "../components/Header.js";
 import { useSelector } from "react-redux";
@@ -7,24 +7,41 @@ import { CheckIcon, MinusIcon } from "@heroicons/react/solid";
 import SubscribeContainer from "../components/Subscriptions/Container.js";
 
 export default function Subscriptions() {
-  const { user: currentUser } = useSelector((state) => state.auth);
-  const [user, setUser] = useState();
+  const [cartItems, setCartItems] = useState([]);
 
   useEffect(() => {
-    setUser(currentUser);
+    const items = localStorage.getItem("cartItems");
+    if (items) {
+      setCartItems(JSON.parse(items));
+    }
   }, []);
 
+  const {
+    auth: { user: currentUser },
+  } = useSelector((state) => state);
+  const [user, setUser] = useState();
+  const countCartItems = cartItems?.length ?? 0;
+
+  const setUserCallback = useCallback(
+    () => setUser(currentUser),
+    [currentUser]
+  );
+  useEffect(setUserCallback, [setUserCallback]);
+
   return (
-    <div>
+    <>
       <Head>
         <title>Subscriptions</title>
-        <meta name="description" content="Subscriptions Page" />
+        <meta
+          name="description"
+          content="Choose between a basic and premium subscription plan."
+        />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Header />
-      <main>
-        <div className="w-full p-12 flex flex-col items-center h-screen">
-          <h1 className="text-3xl font-bold pb-16">
+      <Header countCartItems={countCartItems} />
+      <main className="min-h-screen">
+        <div className="w-full p-12">
+          <h1 className="text-3xl text-center font-bold pb-16">
             Choose the plan that's right for you.
           </h1>
           <div className="flex items-center justify-center flex-wrap p-7 gap-16">
@@ -85,7 +102,7 @@ export default function Subscriptions() {
               </button>
             </a>
           )}
-          <div className="mt-8">
+          <div className="mt-8 text-center">
             <span>
               See{" "}
               <a
@@ -103,6 +120,6 @@ export default function Subscriptions() {
         </div>
       </main>
       <Footer />
-    </div>
+    </>
   );
 }

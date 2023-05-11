@@ -31,6 +31,10 @@ export default function Profile() {
         <Head>
           <title>Profile</title>
           <link rel="icon" href="/favicon.ico" />
+          <meta
+            name="description"
+            content="The profile page containing settings and user information."
+          />
         </Head>
         <Header countCartItems={cartItems.length} />
         <main className="grid-cols-1 h-screen mx-auto sm:flex justify-center gap-6 p-11 md:grid-cols-2 lg:grid-cols-2">

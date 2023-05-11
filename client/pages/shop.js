@@ -18,14 +18,14 @@ export default function Shop() {
     );
   }, []);
   return (
-    <div>
+    <>
       <Head>
         <title>Shop</title>
-        <meta name="description" content="Various products for purchase" />
+        <meta name="description" content="Various products for purchase." />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header countCartItems={cartItems.length} />
-      <main>
+      <main className="min-h-screen">
         {/* Shop items - Flex Grid */}
         <div className="w-fit mx-auto grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 lg:grid-cols-4 md:grid-cols-3 justify-center mt-10 mb-5">
           {products?.data?.map((item) => {
@@ -34,6 +34,6 @@ export default function Shop() {
         </div>
       </main>
       <Footer />
-    </div>
+    </>
   );
 }
