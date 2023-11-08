@@ -3,40 +3,40 @@ import { useEffect, useState } from "react";
 import styles from "../styles/Home.module.css";
 import Link from "next/link";
 import getStripe from "../lib/getStripe";
-
+import toast, { Toaster } from "react-hot-toast";
 const Success = () => {
   const [cartItems, setCartItems] = useState([]);
   const itemPrice = cartItems?.reduce((a, c) => a + c.qty * c.price, 0);
   const taxPrice = itemPrice * 0.15;
   const shippingPrice = itemPrice > 2000 ? 0 : 20;
   const totalPrice = itemPrice + taxPrice + shippingPrice;
-  
+
   useEffect(() => {
-    setCartItems(JSON.parse(localStorage.getItem('cartItems')));
+    setCartItems(JSON.parse(localStorage.getItem("cartItems")));
   }, []);
 
   useEffect(async () => {
     const stripe = await getStripe();
-    const response = await fetch('/api/stripe', {
-      method: 'POST',
+    const response = await fetch("/api/stripe", {
+      method: "POST",
       headers: {
-          'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(cartItems),
-  });
-  if(response.statusCode === 500) return;
+    });
+    if (response.statusCode === 500) return;
 
-  const data = await response.json();
+    const data = await response.json();
   }, []);
 
   return (
     <div className={styles.main}>
       <div className="block w-full lg:w-1/2 bg-orange-400 p-12">
-      <Toaster />
+        <Toaster />
         <div className="mb-4">
           <h1>Your Purchase</h1>
         </div>
-       
+
         <Link href="/shop">
           <div>
             {cartItems?.length ? (
@@ -72,22 +72,28 @@ const Success = () => {
           <>
             <div className="row mt-11">
               <div>Items Price</div>
-              <div className="text-right">{itemPrice ? `$${itemPrice.toFixed(2)}` : null}</div>
+              <div className="text-right">
+                {itemPrice ? `$${itemPrice.toFixed(2)}` : null}
+              </div>
             </div>
             <div className="row">
               <div className="">Tax Price</div>
-              <div className="text-right">{itemPrice ? `$${taxPrice.toFixed(2)}` : null}</div>
+              <div className="text-right">
+                {itemPrice ? `$${taxPrice.toFixed(2)}` : null}
+              </div>
             </div>
             <div className="row">
               <div>Shipping Price</div>
-              <div className="text-right">{itemPrice ? `$${shippingPrice.toFixed(2)}` : null}</div>
+              <div className="text-right">
+                {itemPrice ? `$${shippingPrice.toFixed(2)}` : null}
+              </div>
             </div>
             <div className="row">
               <div>Total Price</div>
               <div className="text-right font-bold">
                 {totalPrice ? `$${totalPrice.toFixed(2)}` : null}
               </div>
-            </div> 
+            </div>
           </>
         )}
       </div>

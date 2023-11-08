@@ -1,4 +1,4 @@
-import Image from 'next/image'
+import Image from "next/image";
 import Modal from "./Modal";
 import ModalBody from "./ModalBody";
 import ModalHeader from "./ModalHeader";
@@ -30,9 +30,7 @@ export default function SignUpModal(props) {
         "len",
         "The username must be between 3 and 20 characters.",
         (val) =>
-          val &&
-          val.toString().length >= 3 &&
-          val.toString().length <= 20
+          val && val.toString().length >= 3 && val.toString().length <= 20
       )
       .required("This field is required!"),
     email: Yup.string()
@@ -43,9 +41,7 @@ export default function SignUpModal(props) {
         "len",
         "The password must be between 6 and 40 characters.",
         (val) =>
-          val &&
-          val.toString().length >= 6 &&
-          val.toString().length <= 40
+          val && val.toString().length >= 6 && val.toString().length <= 40
       )
       .required("This field is required!"),
   });
@@ -53,7 +49,7 @@ export default function SignUpModal(props) {
   const close = useRef(null);
   const closeModal = () => {
     setTimeout(() => close.current.click(), 1500);
-  }
+  };
 
   const handleRegister = (formValue) => {
     const { username, email, password } = formValue;
@@ -71,10 +67,9 @@ export default function SignUpModal(props) {
 
   return (
     <Modal>
-        {/* Close modal button */}
+      {/* Close modal button */}
       <div className="float-right justify-center">
         <button
-          ref={close}
           aria-label="Close Modal"
           aria-labelledby="close-modal"
           onClick={props.close}
@@ -101,69 +96,95 @@ export default function SignUpModal(props) {
         <h1 className="text-center">Sign Up</h1>
       </ModalHeader>
       <ModalBody>
-      <div className="justify-center w-96 flex">
+        <div className="justify-center w-96 flex">
           <Image
             className="object-contain"
             alt="Logo Image"
             width={120}
             height={120}
-            src={require('/assets/logo2.png')}
+            src={require("/assets/logo2.png")}
           />
-          </div>
+        </div>
         <Formik
           initialValues={initialValues}
           validationSchema={validationSchema}
           onSubmit={handleRegister}
         >
           {({ resetForm }) => (
-          <Form className="py-6 px-8">
-            {!successful && (
-              <div>
-                <label htmlFor="username" className="block font-semibold">Username</label>
-                <Field name="username" type="text" className="border w-full h-5 px-3 py-5 mt-2 hover:outline-none focus:outline-none focus:ring-1 focus:ring-orange-600 rounded-md" />
+            <Form className="py-6 px-8">
+              {!successful && (
+                <div>
+                  <label htmlFor="username" className="block font-semibold">
+                    Username
+                  </label>
+                  <Field
+                    name="username"
+                    type="text"
+                    className="border w-full h-5 px-3 py-5 mt-2 hover:outline-none focus:outline-none focus:ring-1 focus:ring-orange-600 rounded-md"
+                  />
                   <ErrorMessage
                     name="username"
                     component="div"
                     className="text-red-500"
                   />
-           
-                <label htmlFor="email" className="block font-semibold">Email</label>
-                <Field name="email" type="text" className="border w-full h-5 px-3 py-5 mt-2 hover:outline-none focus:outline-none focus:ring-1 focus:ring-orange-600 rounded-md" />
+
+                  <label htmlFor="email" className="block font-semibold">
+                    Email
+                  </label>
+                  <Field
+                    name="email"
+                    type="text"
+                    className="border w-full h-5 px-3 py-5 mt-2 hover:outline-none focus:outline-none focus:ring-1 focus:ring-orange-600 rounded-md"
+                  />
                   <ErrorMessage
                     name="email"
                     component="div"
                     className="text-red-500"
                   />
-                <label htmlFor="password" className="block font-semibold"> Password </label>
-                <Field name="password" type="password" className="border w-full h-5 px-3 py-5 mt-2 hover:outline-none focus:outline-none focus:ring-1 focus:ring-orange-600 rounded-md" />
+                  <label htmlFor="password" className="block font-semibold">
+                    {" "}
+                    Password{" "}
+                  </label>
+                  <Field
+                    name="password"
+                    type="password"
+                    className="border w-full h-5 px-3 py-5 mt-2 hover:outline-none focus:outline-none focus:ring-1 focus:ring-orange-600 rounded-md"
+                  />
                   <ErrorMessage
                     name="password"
                     component="div"
                     className="text-red-500"
                   />
-                <button type="submit" className="mt-4 bg-blue-500 text-white py-2 w-2/3 rounded-lg">
-                  Sign Up
-                </button>
-                <button
-                  type="button"
-                  onClick={resetForm}
-                  className="p-6 float-right">
-                  Reset
-                </button>
-              </div>
-            )}
-          </Form>
-)}
+                  <button
+                    type="submit"
+                    className="mt-4 bg-blue-500 text-white py-2 w-2/3 rounded-lg"
+                  >
+                    Sign Up
+                  </button>
+                  <button
+                    type="button"
+                    onClick={resetForm}
+                    className="p-6 float-right"
+                  >
+                    Reset
+                  </button>
+                </div>
+              )}
+            </Form>
+          )}
         </Formik>
-      {message && (
-        <div className="form-group">
-          <div
-            className={successful ? "alert alert-success" : "alert alert-danger"}
-            role="alert">
-            { message }
+        {message && (
+          <div className="form-group">
+            <div
+              className={
+                successful ? "alert alert-success" : "alert alert-danger"
+              }
+              role="alert"
+            >
+              {message}
+            </div>
           </div>
-        </div>
-      )}
+        )}
       </ModalBody>
     </Modal>
   );

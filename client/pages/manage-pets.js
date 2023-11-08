@@ -63,7 +63,7 @@ export default function ManagePets() {
             );
           })}
         </div>
-        {/* grid nested  */}
+        {/* grid nested */}
       </main>
       <Footer />
     </div>

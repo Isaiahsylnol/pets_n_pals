@@ -1,9 +1,7 @@
 export default function Modal(props) {
   return (
-    <div className="flex justify-center bg-white max-w-sm mx-auto mt-10">
-      <div>
-        <div>{props.children}</div>
-      </div>
+    <div className="bg-white max-w-md mx-auto sm:mt-10 rounded-md">
+      <div>{props.children}</div>
     </div>
   );
 }

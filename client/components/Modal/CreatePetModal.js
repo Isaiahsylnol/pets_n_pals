@@ -106,9 +106,9 @@ export default function CreatePetModal(props) {
         </button>
       </div>
       <ModalHeader>
-        <h3 className="text-center uppercase font-semibold text-xl">
-          Create Pet
-        </h3>
+        <div className="bg-white text-black flex justify-center items-center">
+          <h3 className="font-bold text-3xl">Create Pet</h3>
+        </div>
       </ModalHeader>
       <ModalBody>
         <PetForm

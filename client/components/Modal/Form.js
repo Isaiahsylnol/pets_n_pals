@@ -3,7 +3,7 @@ import CustomSelect from "../CustomSelect";
 import toast, { Toaster } from "react-hot-toast";
 export default function PetForm(props) {
   return (
-    <form onSubmit={props.onSubmit}>
+    <form onSubmit={props.onSubmit} className="flex flex-col gap-y-8">
       <div>
         <label htmlFor="name">Name</label>
         <input
@@ -54,7 +54,6 @@ export default function PetForm(props) {
           </div>
         ) : null}
       </div>
-      <label htmlFor="breed">Breed</label>
       <CustomSelect
         className="input"
         id="breed"
@@ -65,13 +64,13 @@ export default function PetForm(props) {
         options={props.breeds}
       />
       {props.formik.touched.breed && props.formik.errors.breed ? (
-        <div className="text-red-500 text-xs italic">
+        <div className="text-red-500 text-xs italic -mt-8">
           {props.formik.errors.breed}
         </div>
       ) : null}
       <Toaster />
       <button
-        className="rounded p-3 mt-8 bg-blue-500 hover:bg-blue-600 text-white w-full"
+        className="rounded p-3 mt-8 bg-orange-500 hover:bg-orange-600 text-white w-full"
         type="submit"
       >
         {props.submitBtnTitle}

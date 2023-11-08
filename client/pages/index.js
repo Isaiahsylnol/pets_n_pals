@@ -10,6 +10,7 @@ import Footer from "../components/Footer";
 import withAuth from "../common/AuthVerify.js";
 import axios from "axios";
 import ProductCard from "../components/ProductCard";
+
 const NewsWidget = dynamic(() => import("../components/NewsWidget"), {
   ssr: false,
 });

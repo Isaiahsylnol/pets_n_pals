@@ -8,23 +8,25 @@
     "start": "node server.js",
     "heroku-postbuild": "cd client && npm install && npm run build"
   },
-  "keywords": ["Backend",
-  "API",
-  "Heroku","Pets","Frontend"],
+  "keywords": [
+    "Backend",
+    "API",
+    "Heroku",
+    "Pets",
+    "Frontend"
+  ],
   "author": "Isaiah Sylvester",
   "license": "ISC",
   "dependencies": {
-    "@firebase/app": "^0.7.24",
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
-    "firebase": "^9.8.1",
-    "firebase-admin": "^10.2.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.3.4",
     "morgan": "^1.10.0",
     "nodemon": "^2.0.16",
-    "react-router-dom": "^6.3.0"
+    "react-router-dom": "^6.3.0",
+    "uuid": "^9.0.1"
   }
 }
